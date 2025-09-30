@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('shoeSize');
             $table->date('lastUniform');
             $table->unsignedBigInteger('professional_id');
-            $table->foreign('professional_id')->references('id')->on('professionals')->onDelete('cascade');
+            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->timestamps();
         });
     }
