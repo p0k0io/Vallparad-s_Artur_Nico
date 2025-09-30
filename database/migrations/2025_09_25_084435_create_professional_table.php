@@ -19,18 +19,16 @@ return new class extends Migration
             $table->string('email',150);
             $table->string('address',255);
             $table->string('phone',9);
+            $table->string('locker',10);
             $table->string('profession',100);
             $table->string('linkStatus',100);
+            $table->string('keyCode',10);//S'ha de preguntar, depen de el que es digui es treu la taula o es treu aixo
             $table->unsignedBigInteger('key_id');
             $table->foreign('key_id')->references('id')->on('keys')->onDelete('cascade');
-            $table->unsignedBigInteger('locker_id');
-            $table->foreign('locker_id')->references('id')->on('lockers')->onDelete('cascade');
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->unsignedBigInteger('rol_id');
             $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->unsignedBigInteger('uniform_id');
-            $table->foreign('uniform_id')->references('id')->on('uniforms')->onDelete('cascade');
             $table->unsignedBigInteger('cv_id');
             $table->foreign('cv_id')->references('id')->on('cv')->onDelete('cascade');
             $table->timestamps();

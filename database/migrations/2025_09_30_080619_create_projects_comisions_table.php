@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name',255);
             $table->string('description',255);
+            $table->string('observacions',255);
+            $table->enum('mode', ['project', 'comision'])->default('project');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
+            $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->timestamps();
         });
     }

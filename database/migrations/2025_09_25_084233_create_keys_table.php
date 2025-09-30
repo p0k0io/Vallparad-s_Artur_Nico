@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('doorName',75);
             $table->timestamps();
+            //potser no
         });
     }
 
