@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         $this-> call([
             CenterSeeder::class,
             LockerSeeder::class,
-            RoleSeeder::class
+            RoleSeeder::class,
+            UniformSeeder::class
 
         ]);
     }
