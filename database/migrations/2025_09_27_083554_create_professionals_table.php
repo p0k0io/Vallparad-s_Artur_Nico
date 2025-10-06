@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('profession',100);
             $table->string('linkStatus',100);
             $table->string('keyCode',10);//S'ha de preguntar, depen de el que es digui es treu la taula o es treu aixo
+            $table->unsignedBigInteger('locker_id');
+            $table->foreign('locker_id')->references('id')->on('lockers')->onDelete('cascade');
             $table->unsignedBigInteger('key_id');
             $table->foreign('key_id')->references('id')->on('keys')->onDelete('cascade');
             $table->unsignedBigInteger('center_id');
@@ -40,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professional');
+        Schema::dropIfExists('professionals');
     }
 };

@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class CenterSeeder extends Seeder
+class CvSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +14,8 @@ class CenterSeeder extends Seeder
     {
         DB::table('centers')->insert([
         [
-        'name'     => 'Can Serra',
-        'phone'    => '666666666',
-        'location' => 'Ctra. d’Esplugues, 18, 08906',
-        'email' => 'canserr@mail.com'
+        'path'     => 'text.txt'
         ]
-    ]);
+        ]);
     }
 }

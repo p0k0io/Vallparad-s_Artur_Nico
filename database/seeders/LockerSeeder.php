@@ -15,7 +15,7 @@ class LockerSeeder extends Seeder
     {
         DB::table('lockers')->insert([
             [
-                'lockerNumber' => '1'
+                'locker_Number' => '1'
             ]
             ]);
     }
