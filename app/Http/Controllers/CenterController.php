@@ -12,7 +12,8 @@ class CenterController extends Controller
      */
     public function index()
     {
-        //
+        $centers = Center::all();
+        return view('center.indexCenter', compact('centers'));
     }
 
     /**
