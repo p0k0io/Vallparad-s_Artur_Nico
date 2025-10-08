@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
             $table->unsignedBigInteger('center_id');
-            $table->foreign('center_id')->references('id')->on('keys')->onDelete('cascade');
+            $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->timestamps();
         });
     }

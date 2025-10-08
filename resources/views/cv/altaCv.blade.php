@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="w-full h-10 bg-red-200">asdas</div>
-    <form action="{{route('insertCv')}}" method ="POST">
+    <form action="{{route('cv.store')}}" method ="POST">
         @csrf
         <input type="text" name="path" id="">
         <button type="submit">insertar</button>

@@ -23,5 +23,6 @@
             </tr>
         @endforeach
     </table>
+    <a href="<?php echo route('center.create')?>">Introduir nou Centre</a>
 </body>
 </html>

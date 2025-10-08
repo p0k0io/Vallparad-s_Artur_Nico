@@ -29,5 +29,6 @@
             @endforeach
         </tbody>
     </table>
+    <a href="<?php echo route('professional.create')?>">Introduir nou Professional</a>
 </body>
 </html>

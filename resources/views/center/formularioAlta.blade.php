@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{route('insertCenter')}}" method="post">
+    <form action="{{route('center.store')}}" method="post">
         @csrf
-        Nom: <input type="text" name="name" id="name">
-        Telefon: <input type="tel" name="phone" id="phone">
-        Direccio: <input type="text" name="location" id="location">
-        Email: <input type="text" name="email" id="email">
+        Nom: <input type="text" name="name" id="name"><br>
+        Telefon: <input type="tel" name="phone" id="phone"><br>
+        Direccio: <input type="text" name="location" id="location"><br>
+        Email: <input type="text" name="email" id="email"><br>
         <button type="submit">Enviar</button>
     </form>
 </body>

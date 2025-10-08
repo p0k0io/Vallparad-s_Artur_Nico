@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Center extends Model
+class Role extends Model
 {
-    protected $table = "centers";
-    protected $fillable = ['name','phone','email','location'];
+    protected $table = "cv";
+    protected $fillable = ['roleName'];
 
     public function professional(): HasMany{
         return $this->hasMany(Professional::class);

@@ -42,8 +42,6 @@ class ProfessionalController extends Controller
             'profession'=>request('profession'),
             'linkStatus'=>request('linkStatus'),
             'keyCode'=>request('keyCode'),
-            'locker_id'=>request('locker_id'),
-            'key_id'=>request('key_id'),
             'center_id'=>request('center_id'),
             'rol_id'=>request('rol_id'),
             'cv_id'=>request('cv_id')
