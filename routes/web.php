@@ -1,26 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\CenterController;
-use App\Http\Controllers\CvController;
-use App\Http\Controllers\ProfessionalController;
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formularioAlta', [CenterController::class, 'create']);
-Route::post('/insertCenter',[CenterController::class, 'store'])->name('insertCenter');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/altaCv', [CvController::class, 'create']);
-Route::post('/insertCv',[CvController::class, 'store'])->name('insertCv');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-//Route::get('/altaProfessional', [ProfessionalController::class,'create']);
-//Route::post('/insertProfessional',[ProfessionalController::class, 'store'])->name('insertProfesional');
-
-
-Route::get('/indexCenter', [CenterController::class, 'index']);
-
-Route::get('/indexProfessional', [ProfessionalController::class,'index']);
+require __DIR__.'/auth.php';
