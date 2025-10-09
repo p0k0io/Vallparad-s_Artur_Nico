@@ -12,4 +12,8 @@ class Center extends Model
     public function professional(): HasMany{
         return $this->hasMany(Professional::class);
     }
+
+    public function projectcomission(): HasOne{
+        return $this->hasOne(ProjectComission::class);
+    }
 }
