@@ -59,17 +59,23 @@ class ProfessionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Professional $professional)
     {
-        //
+        return view("professional.editProfessional",
+        [
+            "professional" => $professional
+        ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Professional $professional)
     {
-        //
+        $professional->update($request->all());
+
+        return redirect()->route('professional.indexProfessional');
     }
 
     /**

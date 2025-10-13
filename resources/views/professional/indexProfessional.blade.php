@@ -15,6 +15,7 @@
                 <th>Primer Apellido</th>
                 <th>Email</th>
                 <th>Profesión</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -25,10 +26,15 @@
                     <td>{{ $professional->surname1 }}</td>
                     <td>{{ $professional->email }}</td>
                     <td>{{ $professional->profession }}</td>
+                    <td>
+                        <a href="<?php echo route('professional.edit', $professional)?>">Editar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <a href="<?php echo route('professional.create')?>">Introduir nou Professional</a>
+    
+</body>
 </body>
 </html>
