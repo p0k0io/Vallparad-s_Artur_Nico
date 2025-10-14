@@ -9,11 +9,11 @@ class Center extends Model
     protected $table = "centers";
     protected $fillable = ['name','phone','email','location'];
 
-    public function professional(): HasMany{
+    public function professionals(){
         return $this->hasMany(Professional::class);
     }
 
-    public function projectcomission(): HasOne{
+    public function projectcomission(){
         return $this->hasOne(ProjectComission::class);
     }
 }

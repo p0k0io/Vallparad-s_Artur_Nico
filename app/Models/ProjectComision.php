@@ -9,11 +9,11 @@ class ProjectComision extends Model
     protected $table = "projects_comisions";
     protected $fillable = ['name','description','observation','type','responsible','center_id'];
 
-    public function professional(): BelongsTo{
+    public function professional(){
         return $this->belongsTo(Professional::class);
     }
 
-    public function center(): BelongsTo{
+    public function center(){
         return $this->belongsTo(Center::class);
     }
 

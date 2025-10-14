@@ -19,8 +19,8 @@
         Profession: <input type="text" name="profession" id="profession" value='{{$professional->profession}}'><br>
         Estat: <input type="text" name="linkStatus" id="linkStatus" value='{{$professional->linkStatus}}'><br>
         Codi Clau: <input type="text" name="keyCode" id="keyCode" value='{{$professional->keyCode}}'><br>
-        ID Centre: <input type="number" name="center_id" id="center_id" value='{{$professional->center->name}}'><br>
-        ID Rol: <input type="number" name="rol_id" id="rol_id" value='{{$professional->rol->name}}'><br>
+        Centre: <input type="text" name="center_id" id="center_id" value='{{$professional->center_id}}'><br>
+        ID Rol: <input type="number" name="rol_id" id="rol_id" value='{{$professional->rol_id}}'><br>
         ID Cv: <input type="number" name="cv_id" id="cv_id" value='{{$professional->cv_id}}'><br>
         <button type="submit">Enviar</button>
     </form>

@@ -17,6 +17,8 @@ Route::resource('professional',ProfessionalController::class);
 Route::resource('cv',CvController::class);
 Route::resource('projects_comisions',ProjectComisionController::class);
 
+//changeState pasa un objecto professional con todos los datos de el professional el cual se quiere canviar el estado
+Route::put('/changeState/{professional}',[ProfessionalController::class,'changeState'])->name('changeStateProfessional');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

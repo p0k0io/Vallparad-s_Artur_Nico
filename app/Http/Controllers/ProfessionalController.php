@@ -14,7 +14,11 @@ class ProfessionalController extends Controller
     {
         $professionals = Professional::all();
         
-        return view('professional.indexProfessional', compact('professionals'));
+        return view('professional.indexProfessional', 
+                    [
+                        'professionals' => $professionals
+                    ]
+        );
         
     }
 
@@ -75,7 +79,7 @@ class ProfessionalController extends Controller
     {
         $professional->update($request->all());
 
-        return redirect()->route('professional.indexProfessional');
+        return redirect()->route('professional.index');
     }
 
     /**
@@ -83,6 +87,21 @@ class ProfessionalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+         
+    }
+
+    //Change Professional State Actiu-Desactivat
+    public function changeState(Request $request, Professional $professional)
+    {
+        if ($professional-> status == 0){
+            $professional-> status = 1;
+        } 
+        else{
+            $professional-> status = 0;
+        }
+        $professional->update($request->all());
+
+        return redirect()->route('professional.index');
     }
 }
