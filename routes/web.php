@@ -5,6 +5,8 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\ProjectComisionController;
+use App\Models\Professional;
+
 
 use Illuminate\Support\Facades\Route;
 

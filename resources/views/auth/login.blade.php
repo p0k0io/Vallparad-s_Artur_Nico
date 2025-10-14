@@ -1,10 +1,16 @@
-<x-guest-layout>
+    @vite('resources/css/app.css')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+
+    <div class="w-full flex min-h-screen items-center justify-center align-middle bg-slate-100">
+    <div class ="bg-slate-50 px-10 py-8 rounded-2xl shadow-lg w-2/6">
+    <form method="POST" class ="flex flex-col"action="{{ route('login') }}">
         @csrf
 
+        <div class="h-auto mb-12 flex justify-start items-center">
+            <x-application-logo></x-application-logo>
+        </div>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -32,16 +38,19 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex  flex-col-reverse items-center justify-end mt-4">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <button class="w-4/5 bg-orange-500  rounded-full px-8 py-3 mb-6 mt-5 text-slate-50 font-bold "type="submit">
+                Iniciar session
+            </button>
+
+
         </div>
     </form>
-</x-guest-layout>
+    </div>
+</div>
