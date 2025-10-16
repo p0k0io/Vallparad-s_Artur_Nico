@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Profesionales</h1>
-    @vite('resources/css/app.css')
+    <!--@vite('resources/css/app.css')-->
     <table border="1" cellpadding="5">
         <thead>
             <tr>

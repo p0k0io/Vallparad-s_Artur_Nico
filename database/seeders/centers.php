@@ -17,7 +17,8 @@ class centers extends Seeder
     [
         'name'     => 'Can Serra',
         'phone'    => '666666666',
-        'location' => 'Ctra. d’Esplugues, 18, 08906'
+        'location' => 'Ctra. d’Esplugues, 18, 08906',
+        'status'   => 1
     ]
 ]);
     

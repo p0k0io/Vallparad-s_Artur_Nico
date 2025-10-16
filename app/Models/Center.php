@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Center extends Model
 {
     protected $table = "centers";
-    protected $fillable = ['name','phone','email','location'];
+    protected $fillable = ['name','phone','email','location','status'];
 
     public function professionals(){
         return $this->hasMany(Professional::class);

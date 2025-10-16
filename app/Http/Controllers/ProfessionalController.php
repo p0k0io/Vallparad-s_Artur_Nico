@@ -92,7 +92,7 @@ class ProfessionalController extends Controller
     }
 
     //Change Professional State Actiu-Desactivat
-    public function changeState(Request $request, Professional $professional)
+    public function changeStateP(Request $request, Professional $professional)
     {
         if ($professional-> status == 0){
             $professional-> status = 1;
