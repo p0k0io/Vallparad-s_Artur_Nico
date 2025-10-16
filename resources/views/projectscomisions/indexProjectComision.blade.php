@@ -35,5 +35,7 @@
             @endforeach
         </tbody>
     </table>
+
+    <a href="<?php echo route('projects_comisions.create')?>">Introduir nou Professional</a>
 </body>
 </html>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Center;
+
 use Illuminate\Http\Request;
 use App\Models\ProjectComision;
+use App\Models\Professional;
 
 
 class ProjectComisionController extends Controller
@@ -24,6 +27,9 @@ class ProjectComisionController extends Controller
     public function create()
     {
         //
+        $professionals = Professional::all();
+        $centers = Center::all();
+        return view("projectscomisions.altaProjectComision", compact('professionals', 'centers'));
     }
 
     /**
@@ -31,7 +37,16 @@ class ProjectComisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            ProjectComision::create([
+        'name' => $request->input('name'),
+        'description' => $request->input('description'),
+        'observacions' => $request->input('observacions'),
+        'move_uploaded_file' => $filePath,
+        'profesional_id' => $request->input('profesional_id'),
+        'center_id' => $request->input('center_id'),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
     }
 
     /**

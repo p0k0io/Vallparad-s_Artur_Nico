@@ -9,7 +9,7 @@
     <img 
         src="{{ asset('images/asset_login_superpossed.png') }}" 
         alt="Decorative background"
-        class="absolute bottom-0 left-0 w-full h-1/2 object-cover pointer-events-none select-none"
+        class="absolute bottom-0 left-0 w-full h- object-cover pointer-events-none select-none"
     />
 
     <!-- Contenedor del formulario -->
