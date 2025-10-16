@@ -13,7 +13,11 @@ class CenterController extends Controller
     public function index()
     {
         $centers = Center::all();
-        return view('center.indexCenter', compact('centers'));
+        return view('center.indexCenter', 
+                    [
+                        'centers' => $centers
+                    ]
+        );
     }
 
     /**
@@ -49,17 +53,23 @@ class CenterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Center $center)
     {
-        //
+        return view("center.editCenter",
+        [
+            "center" => $center
+        ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Center $center)
     {
-        //
+        $center->update($request->all());
+
+        return redirect()->route('center.index');
     }
 
     /**
@@ -68,5 +78,18 @@ class CenterController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function changeStateC(Request $request, Center $center)
+    {
+        if ($center-> status == 0){
+            $center-> status = 1;
+        } 
+        else{
+            $center-> status = 0;
+        }
+        $center->update($request->all());
+
+        return redirect()->route('center.index');
     }
 }

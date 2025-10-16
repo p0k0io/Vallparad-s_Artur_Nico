@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('phone',9);
             $table->string('locker',20);
             $table->string('profession',100);
-            $table->string('linkStatus',100);
+            $table->string('linkStatus',100)->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->string('keyCode',20);
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');

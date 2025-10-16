@@ -9,7 +9,7 @@ class Cv extends Model
     protected $table = "cv";
     protected $fillable = ['path'];
 
-    public function professional(): HasOne{
+    public function professional(){
         return $this->hasOne(Professional::class);
     }
 }
