@@ -6,6 +6,9 @@ use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\ProjectComisionController;
 use App\Models\Professional;
+use App\Http\Controllers\UniformController;
+
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -17,7 +20,8 @@ Route::get('/', function () {
 Route::resource('center',CenterController::class);
 Route::resource('professional',ProfessionalController::class);
 Route::resource('cv',CvController::class);
-Route::resource('projects_comisions',ProjectComisionController::class);
+Route::resource('uniforms',UniformController::class);
+Route::get('uniforms/export', [UniformController::class, 'export'])->name('uniforms.export');
 
 //changeState pasa un objecto professional con todos los datos de el professional el cual se quiere canviar el estado
 Route::put('/changeStateP/{professional}',[ProfessionalController::class,'changeStateP'])->name('changeStateProfessional');

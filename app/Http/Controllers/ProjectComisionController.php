@@ -37,16 +37,14 @@ class ProjectComisionController extends Controller
      */
     public function store(Request $request)
     {
-            ProjectComision::create([
-        'name' => $request->input('name'),
-        'description' => $request->input('description'),
-        'observacions' => $request->input('observacions'),
-        'move_uploaded_file' => $filePath,
-        'profesional_id' => $request->input('profesional_id'),
-        'center_id' => $request->input('center_id'),
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
+        ProjectComision::create([
+        'name' => request('name'),
+        'description' => request('description'),
+        'observations' => request('observations'), 
+        'type' => request('type'),
+        'responsible' => request('responsible'),
+        'center_id' => request('center_id'),
+        ]);
     }
 
     /**

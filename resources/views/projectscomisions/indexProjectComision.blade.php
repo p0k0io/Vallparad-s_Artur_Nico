@@ -29,13 +29,13 @@
                     <td>{{ $projectcomision->description }}</td>
                     <td>{{ $projectcomision->observation }}</td>
                     <td>{{ $projectcomision->type }}</td>
-                    <td>{{ $projectcomision->responsible }}</td>
-                    <td>{{ $projectcomision->center_id }}</td>
+                    <td>{{ $projectcomision->responsible}}</td>
+                    <td>{{ $projectcomision->center->name }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <a href="<?php echo route('projects_comisions.create')?>">Introduir nou Professional</a>
+    <a href="<?php echo route('projects_comisions.nouUniforme')?>">Crea nova commisio</a>
 </body>
 </html>
