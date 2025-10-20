@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TestExport;
+
 use App\Models\Uniforms;
 use Illuminate\Http\Request;
 use App\Models\Professional;
 
 
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
 
 use App\Exports\UniformsExport;
-use Maatwebsite\Excel\Facades\Excel;
 class UniformController extends Controller
 {
     /**
@@ -97,4 +101,17 @@ class UniformController extends Controller
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
+
+  public function exportTest()
+{
+    $data = [
+        ['ID', 'Name', 'Email'],
+        [1, 'John Doe', 'john@example.com'],
+        [2, 'Jane Smith', 'jane@example.com'],
+    ];
+
+    return Excel::download(new TestExport($data), 'test.xlsx');
+}
+
+
 }
