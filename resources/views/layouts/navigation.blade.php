@@ -26,7 +26,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('asd')">
-                        {{ __('Professionales') }}
+                        <a href="/professional">{{ __('Professionales') }}</a>
                     </x-nav-link>
 
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('asdd')">
