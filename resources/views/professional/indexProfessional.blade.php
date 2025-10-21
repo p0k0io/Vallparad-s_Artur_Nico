@@ -25,12 +25,12 @@
                 <tbody>
                     @foreach ($professionals as $professional)
                         @if($professional->status==1)
-                            <tr class="bg-white border border-yellow-400 rounded-xl shadow-sm hover:shadow-md transition flex items-center justify-between px-4 py-2 my-5">
+                            <tr class="bg-white border border-yellow-400 rounded-xl shadow-sm hover:border-orange-600 transition flex items-center justify-between px-4 py-2 my-5">
                         @else
-                            <tr class="bg-gray-300 border border-gray-400 rounded-xl shadow-sm hover:shadow-md transition flex items-center justify-between px-4 py-2 my-5">
+                            <tr class="bg-gray-300 border border-gray-400 rounded-xl flex items-center justify-between px-4 py-2 my-5">
                         @endif
                             <td class="text-lg font-medium text-gray-800">
-                                {{ $professional->name }} {{ $professional->surname1 }}
+                                {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
                             </td>
 
                             <td class="flex items-center gap-3">
@@ -50,7 +50,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <a href="<?php echo route('professional.create')?>">Introduir nou Professional</a>
+            <div class="flex justify-end">
+                <a class="bg-orange-500 text-white text-center text-2xl w-20 py-1 rounded-full hover:bg-orange-400 transition" href="<?php echo route('professional.create')?>">+</a>
+            </div>
         </div>
     </div>
 </div>

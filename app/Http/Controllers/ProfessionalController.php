@@ -47,7 +47,7 @@ class ProfessionalController extends Controller
             'linkStatus'=>request('linkStatus'),
             'keyCode'=>request('keyCode'),
             'center_id'=>request('center_id'),
-            'rol_id'=>request('rol_id'),
+            'role'=>request('role'),
             'cv_id'=>request('cv_id')
         ]);
     }

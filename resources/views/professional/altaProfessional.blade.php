@@ -19,7 +19,13 @@
         Estat: <input type="text" name="linkStatus" id="linkStatus"><br>
         Codi Clau: <input type="text" name="keyCode" id="keyCode"><br>
         ID Centre: <input type="number" name="center_id" id="center_id"><br>
-        ID Rol: <input type="number" name="rol_id" id="rol_id"><br>
+        Rol:
+        <Select name="role">
+            <option value="admin">Administrador</option>
+            <option value="gestor">Gestor</option>
+            <option value="user">Usuari</option>
+        </Select>
+        <br>
         ID Cv: <input type="number" name="cv_id" id="cv_id"><br>
         <button type="submit">Enviar</button>
     </form>

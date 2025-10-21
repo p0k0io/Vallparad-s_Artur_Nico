@@ -19,7 +19,14 @@ class ProjectComisionController extends Controller
         $professionals = Professional::all();
         $projectscomisions = ProjectComision::all();
         
-        return view('projectscomisions.indexProjectComision', compact('projectscomisions', 'professionals'));
+        return view('projectscomisions.indexProjectComision',
+            [
+                'professionals' => $professionals
+            ],
+            [
+                'projectscomisions'=> $projectscomisions
+            ]
+        );
     }
 
     /**
@@ -30,7 +37,14 @@ class ProjectComisionController extends Controller
         //
         $professionals = Professional::all();
         $centers = Center::all();
-        return view("projectscomisions.altaProjectComision", compact('professionals', 'centers'));
+        return view("projectscomisions.altaProjectComision",
+            [
+                'professionals' => $professionals
+            ],
+            [
+                'centers'=> $centers
+            ]
+        );
     }
 
     /**
@@ -61,7 +75,11 @@ class ProjectComisionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view("projectscomisions.editProjectComision",
+        [
+            "projectscomisions" => $projectscomisions
+        ]
+        );
     }
 
     /**
