@@ -16,9 +16,10 @@ class ProjectComisionController extends Controller
      */
     public function index()
     {
+        $professionals = Professional::all();
         $projectscomisions = ProjectComision::all();
         
-        return view('projectscomisions.indexProjectComision', compact('projectscomisions'));
+        return view('projectscomisions.indexProjectComision', compact('projectscomisions', 'professionals'));
     }
 
     /**

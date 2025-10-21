@@ -19,7 +19,10 @@ Route::prefix('uniforms')->group(function () {
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
 
+
+
 // Rutas de recursos
+Route::resource('projects_comisions', ProjectComisionController::class);
 Route::resource('center', CenterController::class);
 Route::resource('professional', ProfessionalController::class);
 Route::resource('cv', CvController::class);
