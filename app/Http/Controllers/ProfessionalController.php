@@ -50,6 +50,8 @@ class ProfessionalController extends Controller
             'role'=>request('role'),
             'cv_id'=>request('cv_id')
         ]);
+
+        return redirect()->route('professional.index');
     }
 
     /**
@@ -103,5 +105,17 @@ class ProfessionalController extends Controller
         $professional->update($request->all());
 
         return redirect()->route('professional.index');
+    }
+
+    public function getEdit(Professional $professional){
+        $name=$professional->name;
+        $surname1=$professional->surname1;
+        $surname2=$professional->surname2;
+
+        return response()->json([
+            'name'=>$name,
+            'surname1'=>$surname1,
+            'surname2'=>$surname2
+        ]);
     }
 }

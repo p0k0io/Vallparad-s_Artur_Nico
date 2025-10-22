@@ -11,15 +11,15 @@
         class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none z-0"
     />
 
-    <div class="w-2/4">
-
+    <div class="w-2/4" id="leftContent">
     </div>
-    <div class="flex w-2/4 bg-white bg-opacity-90 z-50 min-h-screen justify-center">
+    <div class="flex w-2/4 bg-white bg-opacity-95 z-50 min-h-screen justify-center rounded-xl mx-5 my-10">
         <div class="flex flex-col w-3/4">
-            <form class="flex flex-row w-full justify-between mt-32 mb-10" action="">
+            <form class="flex flex-row w-full justify-between mt-32 mb-10" action="" method="post">
                 <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="" id="" placeholder="Buscar Professional">
-                <input class="bg-white border-2 w-20 border-orange-400 rounded-3xl" type="button" value="">
-                <input class="bg-white border-2 w-20 border-orange-700 rounded-3xl" type="button" value="">
+                <button class="bg-white border-2 w-16 border-gray-400 rounded-3xl" type="submit">Lupa</button>
+                <input class="bg-white border-2 w-16 border-orange-400 rounded-3xl" type="button" value="">
+                <input class="bg-white border-2 w-16 border-orange-700 rounded-3xl" type="button" value="">
             </form>
             <table class="w-full border-separate border-spacing-y-2">
                 <tbody>
@@ -29,9 +29,9 @@
                         @else
                             <tr class="bg-gray-300 border border-gray-400 rounded-xl flex items-center justify-between px-4 py-2 my-5">
                         @endif
-                            <td class="text-lg font-medium text-gray-800">
+                            <td id="" class="text-lg font-medium text-gray-800">
                                 {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
-                            </td>
+                                                            </td>
 
                             <td class="flex items-center gap-3">
                                 <form action="{{ route('changeStateProfessional', $professional) }}" method="post">
@@ -42,9 +42,9 @@
                                     @else
                                         <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition">
                                     @endif
+                                    <input type="hidden" id="objectProfessional" name="objectProfessional" value="{{$professional}}">
                                 </form>
-
-                                <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Editar</a>
+                                <a id="edit" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Editar</a>
                             </td>
                         </tr>
                     @endforeach
@@ -56,5 +56,5 @@
         </div>
     </div>
 </div>
-
+@vite(['resources/js/editProfessional.js'])
 @endsection

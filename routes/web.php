@@ -47,5 +47,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Edit JavaScript
+
+Route::get('/getEdit',function(){
+    return view('views/professional.indexProfessional');
+});
+
+
 // Rutas de autenticación
 require __DIR__.'/auth.php';
