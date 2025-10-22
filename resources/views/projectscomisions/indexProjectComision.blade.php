@@ -32,8 +32,8 @@
                             <td class="px-6 py-3 text-gray-700">{{ $projectcomision->observation }}</td>
                             <td class="px-6 py-3">{{ $projectcomision->type }}</td>
                             <td class="px-6 py-3">
-    {{ optional($professionals->firstWhere('id', $projectcomision->responsible))->name ?? '—' }}
-</td>
+                                {{ optional($professionals->firstWhere('id', $projectcomision->responsible))->name ?? '—' }}
+                            </td>
                             <td class="px-6 py-3">{{ $projectcomision->center->name }}</td>
                         </tr>
                     @endforeach

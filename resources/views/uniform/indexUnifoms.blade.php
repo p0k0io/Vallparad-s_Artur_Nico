@@ -44,3 +44,57 @@
         Export to Excel
     </a>
 </div>
+
+
+
+
+
+<div class="w-full flex p-10 bg-slate-100 h-auto items-center justify-center">
+
+    <div class="w-5/6 h-auto bg-white rounded-3xl p-5 flex justify-center">
+
+        <div class="w-10/12 flex flex-col h-auto bg-white">
+
+            <div class="w-full flex">
+                <div class="w-1/3 bg-blue-300">
+                    <!-- título -->
+                </div>
+
+                <div class="w-2/3 bg-red-300 flex flex-row justify-between">
+                    <div class="w-8/12 bg-green-500">
+                        busqueda
+                    </div>
+                    <a href="{{ route('uniforms.export') }}"
+                        class="w-3/12 inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                        Export to Excel
+                    </a>
+                </div>
+            </div>
+
+            <!-- 🔴 Div rojo debajo del blanco -->
+            <div class="w-full h-96 rounded-3xl bg-red-500 mt-2 p-4 ">
+                <h1>
+                @foreach($uniforms as $uniform)
+                    @if($uniform->estat == 0)
+                        <div class="w-4/12 h-10 bg-white rounded-full flex flex-row     mt-4">
+                            <h1 class ="w-7/12">
+                                {{ $uniform->professional->name ?? 'N/A' }}
+                        {{ $uniform->professional->surname1 ?? '' }}
+                        {{ $uniform->professional->surname2 ?? '' }}                            
+                            </h1>
+
+                            <div class="flex flex-row justify-between w-4/12">
+                                {{$uniform->created_at->format('d/m/Y')}}
+                                <div class ="w-8 h-8 bg-yellow-400 rounded-full"></div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+                </h1>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

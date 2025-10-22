@@ -49,6 +49,9 @@ class UniformController extends Controller
             'shirtSize' => 'required|string|max:4',
             'pantsSize' => 'required|string|max:4',
             'shoeSize'  => 'required|integer',
+            'shirtAm' => 'required |integer',
+            'pantAm' => 'required| integer',
+            'shoeAm' => 'required|integer',
             'professional_id' => 'required|exists:professional,id',
             'lastUniform' => 'nullable|exists:uniforms,id',
         ]);
@@ -57,6 +60,10 @@ class UniformController extends Controller
             'shirtSize' => $request->shirtSize,
             'pantsSize' => $request->pantsSize,
             'shoeSize' => $request->shoeSize,
+            'shirtAm'=>$request->shirtAm,
+            'pantAm'=>$request->pantAm,
+            'shoeAm'=>$request->shoeAm,
+            'status'=> '0',
             'professional_id' => $request->professional_id,
             'lastUniform' => $request->lastUniform,
         ]);

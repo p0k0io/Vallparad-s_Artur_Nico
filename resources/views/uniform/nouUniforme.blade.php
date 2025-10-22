@@ -17,6 +17,32 @@
                     <label for="shoeSize" class="block text-sm font-medium text-gray-700">Tamaño de Zapato</label>
                     <input type="number" name="shoeSize" id="shoeSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
                 </div>
+
+
+
+
+
+
+                    <div>
+                    <label for="shirtAm" class="block text-sm font-medium text-gray-700">Cantidad camiseta</label>
+                    <input type="number" name="shirtAm" id="shirtAm" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+                                <div>
+                    <label for="pantAm" class="block text-sm font-medium text-gray-700">Tamaño de Zapato</label>
+                    <input type="number" name="pantAm" id="pantAm" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+                                <div>
+                    <label for="shoeAm" class="block text-sm font-medium text-gray-700">Tamaño de Zapato</label>
+                    <input type="number" name="shoeAm" id="shoeAm" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+
+
+
+
+
                 <div>
                     <label for="professional_id" class="block text-sm font-medium text-gray-700">Profesional</label>
                     <select name="professional_id" id="professional_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
