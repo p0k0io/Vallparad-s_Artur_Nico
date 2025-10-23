@@ -50,7 +50,7 @@
 
 
 
-<div class="w-full flex justify-center items-center p-10 bg-slate-100 min-h-screen">
+<div class="w-full flex flex-col gap-16 justify-center items-center p-10 bg-slate-100 min-h-screen">
   <div class="w-5/6 bg-white rounded-3xl shadow-lg p-8 flex flex-col gap-6" x-data="{ openCard: null }">
     
 
@@ -74,7 +74,6 @@
         </a>
       </div>
     </div>
-
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start mt-6">
       @foreach($uniforms as $index => $uniform)
@@ -111,20 +110,20 @@
           <div 
             x-ref="content{{ $index }}"
             x-bind:style="openCard === {{ $index }} ? 'max-height:' + $refs.content{{ $index }}.scrollHeight + 'px' : 'max-height: 0px'"
-            class="transition-all duration-500 ease-in-out overflow-hidden bg-orange-50/50"
+            class="transition-all duration-500 ease-in-out overflow-hidden"
           >
             <div class="p-5 space-y-4">
-              <h2 class="text-orange-500 font-semibold text-lg">Detalls de l'entrega</h2>
 
               <div class="flex flex-row  gap-3">
                 @if($uniform->shirtSize || $uniform->pantsSize || $uniform->shoeSize)
-                  <div class="flex flex-col gap-3 w-full">
+                  <div class="flex  flex-col lg:flex-row gap-3 w-full">
 
                     @if($uniform->shirtSize)
-                      <div class="flex items-center justify-between border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
+                      <div class="flex items-center flex-col border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
                         <div class="flex items-center gap-2">
-                 
-                          <span class="text-gray-600 text-sm">Samarreta</span>
+                            <x-lucide-shirt class="w-6 h-6 text-orange-500"/>
+
+                          <span class="text-gray-600 text-sm"></Shirt></span>
                           <span class="text-gray-500 text-sm">({{ $uniform->shirtSize }})</span>
                         </div>
                         <span class="font-semibold text-gray-800">{{ $uniform->shirtAm }}</span>
@@ -132,11 +131,11 @@
                     @endif
 
                     @if($uniform->pantsSize)
-                      <div class="flex items-center justify-between border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
+                      <div class="flex items-center flex-col border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
                         <div class="flex items-center gap-2">
                         
                           
-                          <span class="text-gray-600 text-sm">Pantalons</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="oklch(70.5% 0.213 47.604)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trousers-icon lucide-trousers"><path d="M4 6h16"/><path d="M6 22a2 2 0 0 1-2-2V3c0-.6.4-1 1-1h14c.6 0 1 .4 1 1v17a2 2 0 0 1-2 2h-3l-3-10-3 10Z"/><path d="m6 11-2 1"/><path d="M9 8.5V6"/><path d="M15 6v2.5"/><path d="m20 12-2-1"/><path d="M4 18h6"/><path d="M14 18h6"/></svg>
                           <span class="text-gray-500 text-sm">({{ $uniform->pantsSize }})</span>
                         </div>
                         <span class="font-semibold text-gray-800">{{ $uniform->pantAm }}</span>
@@ -144,9 +143,9 @@
                     @endif
 
                     @if($uniform->shoeSize)
-                      <div class="flex items-center justify-between border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
+                      <div class="flex items-center flex-col border border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
                         <div class="flex items-center gap-2">
-                          <span class="text-gray-600 text-sm">Sabates</span>
+                          <x-lucide-footprints class="w-6 h-6 text-orange-500"/>
                           <span class="text-gray-500 text-sm">({{ $uniform->shoeSize }})</span>
                         </div>
                         <span class="font-semibold text-gray-800">{{ $uniform->shoeAm }}</span>
@@ -179,6 +178,20 @@
       @endforeach
     </div>
   </div>
+
+      <div class="w-5/6 h-52 bg-white shadow-lg rounded-2xl">
+
+     <form action="">
+
+    <div class="flex gap-3">
+        <label for="Shirt">camisas</label>
+       <input type="number" class="rounded-lg w-24 justify-center items-center flex">
+    </div>
+
+      </form>
+
+
+      </div>
 </div>
 
 
