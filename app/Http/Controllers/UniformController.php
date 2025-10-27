@@ -22,9 +22,12 @@ class UniformController extends Controller
     public function index()
     {
         $uniforms = Uniforms::all();
+        $professionals = Professional::all();
+
 
         return view('uniform.indexUnifoms',[
-            'uniforms'=> $uniforms
+            'uniforms'=> $uniforms,
+            'professionals' => $professionals
         ]);
     }
 
