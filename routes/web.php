@@ -47,5 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Buscar Professionals Javascript
+//Get no serveix de res?
+Route::get('/search', function () {return view('index.professional');});
+Route::post('/search', [ProfessionalController::class, 'search']);
+
 // Rutas de autenticación
 require __DIR__.'/auth.php';

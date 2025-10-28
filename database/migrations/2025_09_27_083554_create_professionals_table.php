@@ -26,8 +26,7 @@ return new class extends Migration
             $table->string('keyCode',20);
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
-            $table->unsignedBigInteger('rol_id');
-            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->string('role',50);
             $table->unsignedBigInteger('cv_id');
             $table->foreign('cv_id')->references('id')->on('cv')->onDelete('cascade');
             $table->timestamps();

@@ -7,14 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Professional extends Model
 {
     protected $table = "professional";
-    protected $fillable = ['name','surname1','surname2','email','address','phone','locker','profession','linkStatus','status','keyCode','center_id','rol_id','cv_id'];
+    protected $fillable = ['name','surname1','surname2','email','address','phone','locker','profession','linkStatus','status','keyCode','center_id','role','cv_id'];
 
     public function cv(){
         return $this->belongsTo(Cv::class);
-    }
-
-    public function role(){
-        return $this->belongsTo(Role::class);
     }
 
     public function center(){

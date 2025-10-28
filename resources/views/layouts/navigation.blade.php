@@ -29,16 +29,16 @@
                         {{ __('Professionales') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('asdd')">
-                        {{ __('Incidencias') }}
+                    <x-nav-link :href="route('center.index')" :active="request()->routeIs('asdd')">
+                        {{ __('Centres') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Agenda') }}
+                    <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('Projectes i Comisions') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Agenda') }}
+                    <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('Uniformes') }}
                     </x-nav-link>
                 </div>
 

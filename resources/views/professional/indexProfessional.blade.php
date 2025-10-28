@@ -3,7 +3,7 @@
 @section('title','Professionals')
 
 @section('content')
-<div class="flex">
+<div class="flex justify-center">
 
     <img 
         src="{{ asset('images/asset_login_superpossed.png') }}" 
@@ -11,26 +11,48 @@
         class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none z-0"
     />
 
-    <div class="w-2/4">
 
+    <div class="" id="leftContent">
+        <div id="innerDiv" class=" bg-white z-10 bg-opacity-75 my-10 hidden">
+            <div class="">
+                <h1 id="leftContentH1" class="text-6xl text-orange-500"></h1>
+                <h3 id="leftContentH3" class="text-4xl text-gray-400"></h3>
+                <button class="bg-red-600">Tancar</button>
+            </div>
+            <div>
+                <p id="leftContentP"></p>
+            </div>
+        </div>
     </div>
-    <div class="flex w-2/4 bg-white bg-opacity-90 z-50 min-h-screen justify-center">
+
+
+    <div class="flex w-2/4 bg-white bg-opacity-95 z-50 min-h-screen justify-center rounded-xl mx-5 my-10">
         <div class="flex flex-col w-3/4">
-            <form class="flex flex-row w-full justify-between mt-32 mb-10" action="">
-                <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="" id="" placeholder="Buscar Professional">
-                <input class="bg-white border-2 w-20 border-orange-400 rounded-3xl" type="button" value="">
-                <input class="bg-white border-2 w-20 border-orange-700 rounded-3xl" type="button" value="">
+            <form class="flex flex-row w-full justify-between mt-32 mb-10" action="" method="post">
+                <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="searchP" id="searchP" placeholder="Buscar Professional">
+                <button class="bg-white border-2 w-16 border-gray-400 rounded-3xl" type="submit">Lupa</button>
+                <input class="bg-white border-2 w-16 border-orange-400 rounded-3xl" type="button" value="">
+                <input class="bg-white border-2 w-16 border-orange-700 rounded-3xl" type="button" value="">
             </form>
-            <table class="w-full border-separate border-spacing-y-2">
+            <table id="professionalTable" class="w-full border-separate border-spacing-y-2">
                 <tbody>
                     @foreach ($professionals as $professional)
                         @if($professional->status==1)
-                            <tr class="bg-white border border-yellow-400 rounded-xl shadow-sm hover:shadow-md transition flex items-center justify-between px-4 py-2 my-5">
+                            <tr class="bg-white border border-yellow-400 rounded-xl shadow-sm hover:border-orange-600 transition flex items-center justify-between px-4 py-2 my-5">
                         @else
-                            <tr class="bg-gray-300 border border-gray-400 rounded-xl shadow-sm hover:shadow-md transition flex items-center justify-between px-4 py-2 my-5">
+                            <tr class="bg-gray-300 border border-gray-400 rounded-xl flex items-center justify-between px-4 py-2 my-5">
                         @endif
-                            <td class="text-lg font-medium text-gray-800">
-                                {{ $professional->name }} {{ $professional->surname1 }}
+                            <td id="" class="text-lg font-medium text-gray-800">
+                                <a class="perfil">
+                                    {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
+                                    <input id="nameP" type="hidden" name="nameP" value="{{$professional->name}}">
+                                    <input id="surname1P" type="hidden" name="surname1P" value="{{$professional->surname1}}">
+                                    <input id="surname2P" type="hidden" name="surname2P" value="{{$professional->surname2}}">
+                                    <input id="emailP" type="hidden" name="emailP" value="{{$professional->email}}">
+                                    <input id="addressP" type="hidden" name="addressP" value="{{$professional->address}}">
+                                    <input id="phoneP" type="hidden" name="phoneP" value="{{$professional->phone}}">
+                                    <input id="professionP" type="hidden" name="professionP" value="{{$professional->profession}}">
+                                </a>
                             </td>
 
                             <td class="flex items-center gap-3">
@@ -43,16 +65,23 @@
                                         <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition">
                                     @endif
                                 </form>
-
-                                <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Editar</a>
+                                
+                                <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                    Editar
+                                </a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+                <div id="result">
+
+                </div>
             </table>
-            <a href="<?php echo route('professional.create')?>">Introduir nou Professional</a>
+            <div class="flex justify-end">
+                <a class="bg-orange-500 text-white text-center text-2xl w-20 py-1 rounded-full hover:bg-orange-400 transition" href="<?php echo route('professional.create')?>">+</a>
+            </div>
         </div>
     </div>
 </div>
-
+@vite(['resources/js/professional.js'])
 @endsection

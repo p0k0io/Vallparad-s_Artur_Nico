@@ -104,5 +104,4 @@
             </a>
         </div>
     </div>
-</body>
-</html>
+@endsection

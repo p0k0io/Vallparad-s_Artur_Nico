@@ -1,4 +1,8 @@
-@vite('resources/css/app.css')
+@extends('../layouts.app')
+
+@section('title','Uniformes')
+
+@section('content')
 <div class="overflow-x-auto bg-gray-50 p-6 rounded-lg shadow-lg">
     <table class="min-w-full table-auto bg-white border-collapse rounded-lg shadow-md">
         <thead>
@@ -44,3 +48,4 @@
         Export to Excel
     </a>
 </div>
+@endsection

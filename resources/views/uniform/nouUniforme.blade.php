@@ -7,19 +7,19 @@
             <div class="space-y-6">
                 <div>
                     <label for="shirtSize" class="block text-sm font-medium text-gray-700">Tamaño de Camisa</label>
-                    <input type="text" name="shirtSize" id="shirtSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    <input type="text" name="shirtSize" id="shirtSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" required maxlength="4">
                 </div>
                 <div>
                     <label for="pantsSize" class="block text-sm font-medium text-gray-700">Tamaño de Pantalón</label>
-                    <input type="text" name="pantsSize" id="pantsSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    <input type="text" name="pantsSize" id="pantsSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" required maxlength="4">
                 </div>
                 <div>
                     <label for="shoeSize" class="block text-sm font-medium text-gray-700">Tamaño de Zapato</label>
-                    <input type="number" name="shoeSize" id="shoeSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    <input type="number" name="shoeSize" id="shoeSize" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" required maxlength="2">
                 </div>
                 <div>
                     <label for="professional_id" class="block text-sm font-medium text-gray-700">Profesional</label>
-                    <select name="professional_id" id="professional_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    <select name="professional_id" id="professional_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" required>
                         <option value="">--Selecciona--</option>
                         @foreach($professionals as $prof)
                             <option value="{{ $prof->id }}">{{ $prof->name }} {{ $prof->surname1 }} {{ $prof->surname2 }}</option>

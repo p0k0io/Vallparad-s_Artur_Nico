@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Professional;
 
+use Illuminate\Support\Facades\DB;
+
 class ProfessionalController extends Controller
 {
     /**
@@ -47,9 +49,11 @@ class ProfessionalController extends Controller
             'linkStatus'=>request('linkStatus'),
             'keyCode'=>request('keyCode'),
             'center_id'=>request('center_id'),
-            'rol_id'=>request('rol_id'),
+            'role'=>request('role'),
             'cv_id'=>request('cv_id')
         ]);
+
+        return redirect()->route('professional.index');
     }
 
     /**
@@ -103,5 +107,29 @@ class ProfessionalController extends Controller
         $professional->update($request->all());
 
         return redirect()->route('professional.index');
+    }
+
+    public function search(Request $request){
+        $name = $request->input('search');
+
+        // Aquí fariem la consulta a la BBDD
+        $professionals = Professional::where('name',$name)->get();
+        dd($professionals->toArray());
+        /*
+        $usuari = [
+            'name' => $name
+        ];
+        */
+        if ($professionals->count() > 0) {
+            return response()->json([
+                'trobat' => true,
+                'professionals' => $professionals
+        ]);
+        } else {
+            return response()->json([
+                'trobat' => false,
+                'professionals' => []
+        ]);
+    }
     }
 }

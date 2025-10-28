@@ -1,12 +1,8 @@
-@vite('resources/css/app.css')
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projectes i Comisions</title>
-</head>
-<body class="bg-slate-50 text-gray-800 font-sans">
+@extends('../layouts.app')
+
+@section('title','Projectes i Comisions')
+
+@section('content')
     <div class="max-w-7xl mx-auto px-6 py-10">
         <h1 class="text-3xl font-bold text-orange-600 mb-8 text-center">Projectes i Comisions</h1>
 
@@ -33,7 +29,7 @@
                             <td class="px-6 py-3">{{ $projectcomision->type }}</td>
                             <td class="px-6 py-3">
     {{ optional($professionals->firstWhere('id', $projectcomision->responsible))->name ?? '—' }}
-</td>
+    </td>
                             <td class="px-6 py-3">{{ $projectcomision->center->name }}</td>
                         </tr>
                     @endforeach
@@ -48,5 +44,4 @@
             </a>
         </div>
     </div>
-</body>
-</html>
+@endsection

@@ -45,20 +45,12 @@ class UniformController extends Controller
      */
    public function store(Request $request)
     {
-        $request->validate([
-            'shirtSize' => 'required|string|max:4',
-            'pantsSize' => 'required|string|max:4',
-            'shoeSize'  => 'required|integer',
-            'professional_id' => 'required|exists:professional,id',
-            'lastUniform' => 'nullable|exists:uniforms,id',
-        ]);
-
         Uniforms::create([
-            'shirtSize' => $request->shirtSize,
-            'pantsSize' => $request->pantsSize,
-            'shoeSize' => $request->shoeSize,
-            'professional_id' => $request->professional_id,
-            'lastUniform' => $request->lastUniform,
+            'shirtSize' => request('shirtSize'),
+            'pantsSize' => request('pantsSize'),
+            'shoeSize' => request('shoeSize'),
+            'professional_id' => request('professional_id'),
+            'lastUniform' => request('lastUniform'),
         ]);
 
         return redirect()->route('uniforms.index')->with('success', 'Uniforme creado correctamente');
