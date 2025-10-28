@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const leftContentP=document.getElementById('leftContentP');
     //const edit = document.querySelectorAll('form a');
     
+    //Edit
     leftContentDiv.addEventListener('click',()=>{
         leftContent.classList.remove("w-2/4");
         leftContentDiv.classList.add("hidden");
@@ -46,4 +47,44 @@ document.addEventListener('DOMContentLoaded',()=>{
             leftContentP.innerHTML=emailP2+"<br>"+addressP2+"<br>"+phoneP2;
         });
     });
+
+    //Search
+    searchP.addEventListener('keyup', () => {
+        console.log("ola");
+       
+        const name = searchP ? searchP.value : '';
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        const token = meta ? meta.getAttribute('content') : '';
+
+        console.log(name);
+
+        fetch('search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            },
+                body: JSON.stringify({ name: name })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error del servidor');
+                console.log(response.name);
+                return response.json();
+            })
+            .then(response => {
+                if (response.trobat) {
+                result.innerHTML = `
+                <p><strong>Nom:</strong> ${response.name}</p>
+                `;
+            } else {
+                result.innerHTML = '<p class="text-red-600">Usuari no trobat</p>';
+            }
+            })
+                .catch(error => {
+                console.error('Error fetch:', error);
+                result.innerHTML = '<p class="text-red-600">Error en la consulta</p>';
+            });
+            
+    });
+
 });

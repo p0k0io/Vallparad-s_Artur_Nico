@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Professional;
 
+use Illuminate\Support\Facades\DB;
+
 class ProfessionalController extends Controller
 {
     /**
@@ -107,15 +109,27 @@ class ProfessionalController extends Controller
         return redirect()->route('professional.index');
     }
 
-    public function getEdit(Professional $professional){
-        $name=$professional->name;
-        $surname1=$professional->surname1;
-        $surname2=$professional->surname2;
+    public function search(Request $request){
+        $name = $request->input('search');
 
-        return response()->json([
-            'name'=>$name,
-            'surname1'=>$surname1,
-            'surname2'=>$surname2
+        // Aquí fariem la consulta a la BBDD
+        $professionals = Professional::where('name',$name)->get();
+        dd($professionals->toArray());
+        /*
+        $usuari = [
+            'name' => $name
+        ];
+        */
+        if ($professionals->count() > 0) {
+            return response()->json([
+                'trobat' => true,
+                'professionals' => $professionals
         ]);
+        } else {
+            return response()->json([
+                'trobat' => false,
+                'professionals' => []
+        ]);
+    }
     }
 }

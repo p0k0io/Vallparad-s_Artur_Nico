@@ -29,7 +29,7 @@
     <div class="flex w-2/4 bg-white bg-opacity-95 z-50 min-h-screen justify-center rounded-xl mx-5 my-10">
         <div class="flex flex-col w-3/4">
             <form class="flex flex-row w-full justify-between mt-32 mb-10" action="" method="post">
-                <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="" id="" placeholder="Buscar Professional">
+                <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="searchP" id="searchP" placeholder="Buscar Professional">
                 <button class="bg-white border-2 w-16 border-gray-400 rounded-3xl" type="submit">Lupa</button>
                 <input class="bg-white border-2 w-16 border-orange-400 rounded-3xl" type="button" value="">
                 <input class="bg-white border-2 w-16 border-orange-700 rounded-3xl" type="button" value="">
@@ -73,6 +73,9 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <div id="result">
+
+                </div>
             </table>
             <div class="flex justify-end">
                 <a class="bg-orange-500 text-white text-center text-2xl w-20 py-1 rounded-full hover:bg-orange-400 transition" href="<?php echo route('professional.create')?>">+</a>
@@ -80,5 +83,5 @@
         </div>
     </div>
 </div>
-@vite(['resources/js/editProfessional.js'])
+@vite(['resources/js/professional.js'])
 @endsection
