@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded',()=>{
     const leftContent=document.getElementById('leftContent');
-    const leftContentDiv=document.getElementById('innerDiv');
     const leftContentH1=document.getElementById('leftContentH1');
     const leftContentH3=document.getElementById('leftContentH3');
-    const leftContentP=document.getElementById('leftContentP');
+    const leftContentEmail=document.getElementById('leftContentMail');
+    const leftContentAddress=document.getElementById('leftContentAddress');
+    const leftContentPhone=document.getElementById('leftContentPhone');
     const leftContentButton=document.getElementById('leftContentButton');
     //const edit = document.querySelectorAll('form a');
     
@@ -30,24 +31,25 @@ document.addEventListener('DOMContentLoaded',()=>{
             const phoneP2=phoneP.value;
             const professionP2=professionP.value;
 
-
+            leftContent.classList.remove("hidden");
+            leftContent.classList.add("flex");
             leftContent.classList.add("w-2/4");
-            leftContentDiv.classList.remove("hidden");
 
             const meta = document.querySelector('meta[name="csrf-token"]');
             const token = meta ? meta.getAttribute('content') : '';
 
             leftContentH1.innerHTML=nameP2+" "+surname1P2+" "+surname2P2;
-            
             leftContentH3.innerHTML=professionP2;
-            
-            leftContentP.innerHTML=emailP2+"<br>"+addressP2+"<br>"+phoneP2;
+            leftContentEmail.innerHTML=emailP2;
+            leftContentAddress.innerHTML=addressP2;
+            leftContentPhone.innerHTML=phoneP2;
         });
     });
 
     leftContentButton.addEventListener('click',()=>{
+        leftContent.classList.remove("flex");
         leftContent.classList.remove("w-2/4");
-        leftContentDiv.classList.add("hidden");
+        leftContent.classList.add("hidden");
     });
 
     //Search
