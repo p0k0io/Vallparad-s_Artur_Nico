@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\ProjectComisionController;
 use App\Http\Controllers\UniformController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 // Página principal
@@ -19,6 +20,8 @@ Route::prefix('uniforms')->group(function () {
     Route::get('export', [UniformController::class, 'export'])->name('uniforms.export');
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
+
+Route::resource('course', CourseController::class );
 
 Route::resource('center', CenterController::class);
 

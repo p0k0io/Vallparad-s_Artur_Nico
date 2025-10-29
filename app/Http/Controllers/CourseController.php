@@ -11,7 +11,13 @@ class CourseController extends Controller
 {
     public function index()
     {
-        //
+        $centers = Center::all();
+        $professionals = Professional::all();
+
+        return view('course.indexCourse',[
+            'centers'=> $centers,
+            'professionals' => $professionals
+        ]);
     }
 
     /**
