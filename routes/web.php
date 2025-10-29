@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfessionalController;
@@ -19,15 +20,30 @@ Route::prefix('uniforms')->group(function () {
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
 
-
+Route::resource('center', CenterController::class);
 
 // Rutas de recursos
 Route::resource('projects_comisions', ProjectComisionController::class);
-Route::resource('center', CenterController::class);
+
+//--------------------------------------------------------------------------------------------------------------------------
 Route::resource('professional', ProfessionalController::class);
+
+//Avaluacio
+Route::get('/assessView/{professional}', [ProfessionalController::class, 'assessView'])->name('assessView.professional');
+Route::put('/assess/{professional}',[ProfessionalController::class,'assess'])->name('assess.professional');
+
+
+//Buscar Professionals Javascript
+//Get no serveix de res?
+Route::get('/search', function () {return view('index.professional');});
+Route::post('/search', [ProfessionalController::class, 'search']);
+//--------------------------------------------------------------------------------------------------------------------------
+
 Route::resource('cv', CvController::class);
 Route::resource('uniforms', UniformController::class);
 
+
+//--------------------------------------------------------------------------------------------------------------------------
 // Rutas para cambiar estado
 Route::put('/changeStateP/{professional}', [ProfessionalController::class, 'changeStateP'])
     ->name('changeStateProfessional');
@@ -47,10 +63,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Buscar Professionals Javascript
-//Get no serveix de res?
-Route::get('/search', function () {return view('index.professional');});
-Route::post('/search', [ProfessionalController::class, 'search']);
 
 // Rutas de autenticación
 require __DIR__.'/auth.php';

@@ -17,7 +17,7 @@
             <div class="">
                 <h1 id="leftContentH1" class="text-6xl text-orange-500"></h1>
                 <h3 id="leftContentH3" class="text-4xl text-gray-400"></h3>
-                <button class="bg-red-600">Tancar</button>
+                <button id ="leftContentButton" class="bg-red-600">Tancar</button>
             </div>
             <div>
                 <p id="leftContentP"></p>
@@ -65,7 +65,9 @@
                                         <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition">
                                     @endif
                                 </form>
-                                
+                                <a href="{{ route('assessView.professional', $professional) }}" id="avaluar" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                    Avaluar
+                                </a>
                                 <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
                                     Editar
                                 </a>
