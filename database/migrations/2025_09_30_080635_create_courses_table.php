@@ -16,14 +16,18 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->enum('mode', ['onsite', 'online'])->default('onsite');
-            $table->boolean('workshop')->default(false);
-            $table->boolean('seminar')->default(false);
-            $table->boolean('congress')->default(false);
-            $table->string('attendee',255);
+            $table->enum('event_type', ['workshop', 'seminar', 'congress'])->nullable();
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
+            
+            // Relación con centros
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
+
+            // Relación con profesionales
+            $table->unsignedBigInteger('professional_id');
+            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
