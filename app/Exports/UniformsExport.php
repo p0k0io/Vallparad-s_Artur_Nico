@@ -10,7 +10,6 @@ class UniformsExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        // Devuelve todos los registros
         return Uniforms::all();
     }
 

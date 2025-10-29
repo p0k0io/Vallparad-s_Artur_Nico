@@ -18,6 +18,12 @@ return new class extends Migration
     $table->string('pantsSize', 4);
     $table->integer('shoeSize');
 
+    $table->integer('shirtAm');
+    $table->integer('pantAm');
+    $table->integer('shoeAm');
+
+    $table->integer('status');
+
     // Cambiamos 'lastUniform' de date a unsignedBigInteger
     $table->unsignedBigInteger('lastUniform')->nullable(); // puede ser nulo si no hay uniforme anterior
 

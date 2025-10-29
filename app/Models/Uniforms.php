@@ -8,7 +8,7 @@ class Uniforms extends Model
 {
     //
     protected $table = "uniforms";
-    protected $fillable = ['shirtSize','pantsSize','shoeSize', 'professional_id'];
+    protected $fillable = ['shirtSize','pantsSize','shoeSize','shirtAm','pantAm','shoeAm', 'status','professional_id'];
     
     
     public function professional()

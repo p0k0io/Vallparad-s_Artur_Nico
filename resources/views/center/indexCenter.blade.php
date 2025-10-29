@@ -46,7 +46,7 @@
                                 type="button"
                                 @click="selectedCenter = {{ Js::from($center) }}"
                                 :class="selectedCenter && selectedCenter.id === {{ $center->id }}
-                                    ? 'border-2 border-orange-500 text-orange-600 font-semibold rounded-full px-4 py-2 w-full text-left'
+                                    ? 'border-2 border-orange-500 text-orange-600 font-bold rounded-full px-4 py-2 w-full text-left'
                                     : 'text-gray-700 hover:text-orange-600 px-4 py-2 w-full text-left rounded-full transition'"
                             >
                                 {{ $center->name }}
@@ -67,7 +67,7 @@
             <div class="md:col-span-2" x-show="selectedCenter">
                 <div class="bg-white rounded-2xl shadow-md p-6 relative">
                     <div class="flex justify-between items-start">
-                        <h2 class="text-2xl font-bold text-orange-600" x-text="selectedCenter.name"></h2>
+                        <h2 class="text-xl font-bold text-orange-600" x-text="selectedCenter.name"></h2>
                         <span
                             class="'bg-green-100 text-green-700 inline-flex items-center gap-2 text-sm font-semibold px-3 py-1 rounded-full"
                             :class="selectedCenter.status == 1 
@@ -88,15 +88,20 @@
 
                     <div class="mt-6">
                         <a :href="`/center/${selectedCenter.id}/edit`"
-                           class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-2 rounded-lg shadow">
+                           class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-2 rounded-xl shadow">
                            Editar Centro
                         </a>
                     </div>
+                        <img 
+        src="{{ asset('images/logoa_noticia.3.png') }}" 
+        alt="Decorative background"
+        class="absolute bottom-0 right-0 w-auto h- object-cover pointer-events-none select-none rotate-180"
+    />
                 </div>
             </div>
         </div>
 
-        {{-- BOTÓN PARA CREAR NUEVO CENTRO --}}
+
         <div class="text-center mt-10">
             <a href="{{ route('center.create') }}"
                class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition">
@@ -104,4 +109,11 @@
             </a>
         </div>
     </div>
-@endsection
+
+        <img 
+        src="{{ asset('images/asset_login_superpossed.png') }}" 
+        alt="Decorative background"
+        class="absolute bottom-0 left-0 w-full h- object-cover pointer-events-none select-none"
+    />
+</body>
+</html>
