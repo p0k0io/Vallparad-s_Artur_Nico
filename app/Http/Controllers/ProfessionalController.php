@@ -95,6 +95,8 @@ class ProfessionalController extends Controller
          
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     //Change Professional State Actiu-Desactivat
     public function changeStateP(Request $request, Professional $professional)
     {
@@ -109,6 +111,22 @@ class ProfessionalController extends Controller
         return redirect()->route('professional.index');
     }
 
+    //Valorar professionals
+    public function assessView(Professional $professional)
+    {
+        return view("professional.assessProfessional",
+        [
+            "professional" => $professional
+        ]
+        );
+    }
+    public function assess(Request $request, Professional $professional)
+    {
+        return redirect()->route('professional.index');
+    }
+
+
+    //Funcio search amb javascript, no funca
     public function search(Request $request){
         $name = $request->input('search');
 

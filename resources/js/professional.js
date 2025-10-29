@@ -4,13 +4,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     const leftContentH1=document.getElementById('leftContentH1');
     const leftContentH3=document.getElementById('leftContentH3');
     const leftContentP=document.getElementById('leftContentP');
+    const leftContentButton=document.getElementById('leftContentButton');
     //const edit = document.querySelectorAll('form a');
     
-    //Edit
-    leftContentDiv.addEventListener('click',()=>{
-        leftContent.classList.remove("w-2/4");
-        leftContentDiv.classList.add("hidden");
-    });
+    
 
     document.querySelectorAll('#professionalTable a.perfil').forEach(edit => {
         console.log(edit);
@@ -46,6 +43,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             
             leftContentP.innerHTML=emailP2+"<br>"+addressP2+"<br>"+phoneP2;
         });
+    });
+
+    leftContentButton.addEventListener('click',()=>{
+        leftContent.classList.remove("w-2/4");
+        leftContentDiv.classList.add("hidden");
     });
 
     //Search
