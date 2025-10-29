@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('assessment', function (Blueprint $table) {
             $table->id();
             $table->integer('P1');
+            $table->integer('P2');
+            $table->integer('average');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professionals')->onDelete('cascade');
             $table->timestamps();

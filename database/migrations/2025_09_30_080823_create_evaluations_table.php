@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->json('questions');
+            $table->integer('P1');
+            $table->integer('P2');
             $table->unsignedBigInteger('evaluated');
             $table->foreign('evaluated')->references('id')->on('professional')->onDelete('cascade');
             $table->unsignedBigInteger('evaluator');
