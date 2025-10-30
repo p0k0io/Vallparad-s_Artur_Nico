@@ -17,7 +17,7 @@
         />
 
         <div class="min-h-screen flex items-center justify-center bg-white bg-opacity-95 z-10 w-2/4">
-        <form action="{{ route('professional.store') }}" method="POST" class="p-10 w-full flex flex-col">
+        <form action="{{ route('professional.search') }}" method="POST" class="p-10 w-full flex flex-col">
             @csrf
 
             <h2 class="text-3xl font-semibold text-center text-orange-600 my-10">

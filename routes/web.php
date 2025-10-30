@@ -46,6 +46,10 @@ Route::resource('cv', CvController::class);
 Route::resource('uniforms', UniformController::class);
 
 
+//Buscador 
+Route::get('/professionals/search', [ProfessionalController::class, 'search'])
+     ->name('professional.search');
+
 //--------------------------------------------------------------------------------------------------------------------------
 // Rutas para cambiar estado
 Route::put('/changeStateP/{professional}', [ProfessionalController::class, 'changeStateP'])

@@ -128,26 +128,17 @@ class ProfessionalController extends Controller
 
     //Funcio search amb javascript, no funca
     public function search(Request $request){
-        $name = $request->input('search');
+        $query = $request -> get('query');
 
-        // Aquí fariem la consulta a la BBDD
-        $professionals = Professional::where('name',$name)->get();
-        dd($professionals->toArray());
-        /*
-        $usuari = [
-            'name' => $name
-        ];
-        */
-        if ($professionals->count() > 0) {
-            return response()->json([
-                'trobat' => true,
-                'professionals' => $professionals
-        ]);
-        } else {
-            return response()->json([
-                'trobat' => false,
-                'professionals' => []
-        ]);
-    }
+        $usuarios = \App\Models\Professional::where('name', 'like', "%{$query}%")
+        ->orWhere('surname1', 'like', "%{$query}%")
+        ->orWhere('surname2', 'like', "%{$query}%")
+        ->orWhere('profession', 'like', "%{$query}")
+        ->limit(10)
+        ->get(['id', 'name', 'surname1', 'profession', 'email']);
+
+
+        return response()->json($usuarios);
+
     }
 }
