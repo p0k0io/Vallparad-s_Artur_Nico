@@ -19,25 +19,26 @@
             </tr>
             <tr>
                 <td id="P1">Realitza una correcta atenció a l'usuari</td>
+                <td><input type="radio" name="P1" id="" value="0"></td>
                 <td><input type="radio" name="P1" id="" value="1"></td>
                 <td><input type="radio" name="P1" id="" value="2"></td>
                 <td><input type="radio" name="P1" id="" value="3"></td>
-                <td><input type="radio" name="P1" id="" value="4"></td>
             </tr>
-<!--
+
             <tr>
                 <td>Es preocupa per satisfer les seves necessitats dins dels recursos dels que disposa</td>
+                <td><input type="radio" name="P2" id="" value="0"></td>
                 <td><input type="radio" name="P2" id="" value="1"></td>
                 <td><input type="radio" name="P2" id="" value="2"></td>
                 <td><input type="radio" name="P2" id="" value="3"></td>
-                <td><input type="radio" name="P2" id="" value="4"></td>
             </tr>
+<!--
             <tr>
                 <td>S'ha integrat dins l'equip de treball i participa i coopera sense dificultats</td>
+                <td><input type="radio" name="P3" id="" value="0"></td>
                 <td><input type="radio" name="P3" id="" value="1"></td>
                 <td><input type="radio" name="P3" id="" value="2"></td>
                 <td><input type="radio" name="P3" id="" value="3"></td>
-                <td><input type="radio" name="P3" id="" value="4"></td>
             </tr>
             <tr>
                 <td>Pot treballar amb altres equips diferents al seu si es necessita</td>

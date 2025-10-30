@@ -21,10 +21,6 @@ class Professional extends Model
         return $this->hasMany(ProjectComission::class);
     }
 
-    //public function assessment(){
-    //    return $this->hasMany(Assessment::class);
-    //}
-
     public function evaluator(){
         return $this->hasMany(Assessment::class, 'evaluator');
     }

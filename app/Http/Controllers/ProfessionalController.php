@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Professional;
+use App\Models\Evaluation;
 
 use Illuminate\Support\Facades\DB;
 
@@ -112,6 +113,7 @@ class ProfessionalController extends Controller
     }
 
     //Valorar professionals
+
     public function assessView(Professional $professional)
     {
         return view("professional.assessProfessional",
@@ -122,11 +124,42 @@ class ProfessionalController extends Controller
     }
     public function assess(Request $request, Professional $professional)
     {
+        Evaluation::create([
+            'P1'=>request('P1'),
+            'P2'=>request('P2'),
+            'evaluated'=>$professional->id,
+            'evaluator'=>$professional->id
+        ]);
         return redirect()->route('professional.index');
     }
 
+    public function getAssessment(Request $request){
+        $id=$request->input('idP2');
+        $id=(int) $id;
+        $evaluations= Evaluation::where('evaluated',$id)->get();
+        $P1=0;
+        $P2=0;
+        $medianCounter=0;
+        $median=0;
+
+        foreach($evaluations as $evaluation){
+            $P1+=$evaluation->P1;
+            $P2+=$evaluation->P2;
+            $medianCounter+=2;
+        }
+
+        $median=($P1+$P2)/$medianCounter;
+
+        return response()->json([
+                'trobat' => true,
+                'median' => $median
+        ]);
+    }
+
+
 
     //Funcio search amb javascript, no funca
+
     public function search(Request $request){
         $name = $request->input('search');
 

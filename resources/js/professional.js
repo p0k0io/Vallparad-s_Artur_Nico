@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const leftContentAddress=document.getElementById('leftContentAddress');
     const leftContentPhone=document.getElementById('leftContentPhone');
     const leftContentButton=document.getElementById('leftContentButton');
+    const leftContentEvaluation=document.getElementById('leftContentEvaluation');
+    
     //const edit = document.querySelectorAll('form a');
     
     
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             console.log('this:', this);
             console.log('event.target:', event.target); 
             
+            const idP=this.querySelector('#idP');
             const nameP=this.querySelector('#nameP');
             const surname1P=this.querySelector('#surname1P');
             const surname2P=this.querySelector('#surname2P');
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             const addressP=this.querySelector('#addressP');
             const phoneP=this.querySelector('#phoneP');
             const professionP=this.querySelector('#professionP');
+            const idP2=idP.value;
             const nameP2=nameP.value;
             const surname1P2=surname1P.value;
             const surname2P2=surname2P.value;
@@ -43,7 +47,29 @@ document.addEventListener('DOMContentLoaded',()=>{
             leftContentEmail.innerHTML=emailP2;
             leftContentAddress.innerHTML=addressP2;
             leftContentPhone.innerHTML=phoneP2;
-        });
+
+            fetch('getAssessment.professional',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({ idP2: idP2 })
+                })
+                .then(resposta => {
+                    console.log(resposta.median);
+                    if (resposta.trobat) {
+                        leftContentEvaluation.innerHTML=resposta.median;
+                    } else {
+                        leftContentEvaluation.innerHTML = '<p class="">Aquest Usuari no te ninguna valoracio</p>'+resposta.median;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetch:', error);
+                    leftContentEvaluation.innerHTML = '<p class="text-red-600">Error en la consulta</p>';
+                });
+            });
+            
     });
 
     leftContentButton.addEventListener('click',()=>{
@@ -51,6 +77,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         leftContent.classList.remove("w-2/4");
         leftContent.classList.add("hidden");
     });
+
+
+
 
     //Search
     searchP.addEventListener('keyup', () => {

@@ -44,6 +44,10 @@
                         <h3 class="text-2xl text-gray-400 border-b-2">Telèfon</h3>
                         <p id="leftContentPhone"></p>
                     </div>
+                    <div>
+                        <h3 class="text-2xl text-gray-400 border-b-2">Avaluació</h3>
+                        <p id="leftContentEvaluation"></p>
+                    </div>
                 </div>
             </div>
 
@@ -67,6 +71,7 @@
                                     <td id="" class="text-lg font-medium text-gray-800">
                                         <a class="perfil">
                                             {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
+                                            <input id="idP" type="hidden" name="idP" value="{{$professional->id}}">
                                             <input id="nameP" type="hidden" name="nameP" value="{{$professional->name}}">
                                             <input id="surname1P" type="hidden" name="surname1P" value="{{$professional->surname1}}">
                                             <input id="surname2P" type="hidden" name="surname2P" value="{{$professional->surname2}}">
