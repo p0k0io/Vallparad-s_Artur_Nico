@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             leftContentAddress.innerHTML=addressP2;
             leftContentPhone.innerHTML=phoneP2;
 
-            fetch('getAssessment.professional',{
+            fetch(getAssessmentUrl,{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -56,12 +56,16 @@ document.addEventListener('DOMContentLoaded',()=>{
                     },
                     body: JSON.stringify({ idP2: idP2 })
                 })
-                .then(resposta => {
-                    console.log(resposta.median);
+                .then(response => {
+                    if (!response.ok) throw new Error('Error del servidor');
+                    return response.json();
+                })
+                .then(resposta =>{
                     if (resposta.trobat) {
-                        leftContentEvaluation.innerHTML=resposta.median;
+                        const mitja=(resposta.median*10)/3;
+                        leftContentEvaluation.innerHTML=mitja;
                     } else {
-                        leftContentEvaluation.innerHTML = '<p class="">Aquest Usuari no te ninguna valoracio</p>'+resposta.median;
+                        leftContentEvaluation.innerHTML = '<p class="">Aquest Usuari no te ninguna valoracio</p>';
                     }
                 })
                 .catch(error => {

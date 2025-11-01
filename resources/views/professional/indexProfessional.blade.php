@@ -14,6 +14,11 @@
         <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
+    <script>
+        const getAssessmentUrl = "{{ route('getAssessment.professional') }}";
+        const csrfToken = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ asset('js/professional.js') }}"></script>
     <body class="font-sans antialiased bg-slate-50"> 
         <img 
                 src="{{ asset('images/asset_login_superpossed.png') }}" 

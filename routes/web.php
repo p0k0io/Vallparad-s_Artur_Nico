@@ -33,7 +33,8 @@ Route::resource('professional', ProfessionalController::class);
 Route::get('/assessView/{professional}', [ProfessionalController::class, 'assessView'])->name('assessView.professional');
 Route::put('/assess/{professional}',[ProfessionalController::class,'assess'])->name('assess.professional');
 
-Route::get('/getAssessment',[ProfessionalController::class,'getAssessment'])->name('getAssessment.professional');
+//Route::get('/getAssessment',[ProfessionalController::class,'getAssessment'])->name('getAssessment.professional');
+Route::post('/getAssessment', [ProfessionalController::class, 'getAssessment'])->name('getAssessment.professional');
 
 //Buscar Professionals Javascript
 //Get no serveix de res?

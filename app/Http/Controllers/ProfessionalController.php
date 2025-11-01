@@ -127,6 +127,24 @@ class ProfessionalController extends Controller
         Evaluation::create([
             'P1'=>request('P1'),
             'P2'=>request('P2'),
+            'P3'=>request('P3'),
+            'P4'=>request('P4'),
+            'P5'=>request('P5'),
+            'P6'=>request('P6'),
+            'P7'=>request('P7'),
+            'P8'=>request('P8'),
+            'P9'=>request('P9'),
+            'P10'=>request('P10'),
+            'P11'=>request('P11'),
+            'P12'=>request('P12'),
+            'P13'=>request('P13'),
+            'P14'=>request('P14'),
+            'P15'=>request('P15'),
+            'P16'=>request('P16'),
+            'P17'=>request('P17'),
+            'P18'=>request('P18'),
+            'P19'=>request('P19'),
+            'P20'=>request('P20'),
             'evaluated'=>$professional->id,
             'evaluator'=>$professional->id
         ]);
@@ -137,23 +155,66 @@ class ProfessionalController extends Controller
         $id=$request->input('idP2');
         $id=(int) $id;
         $evaluations= Evaluation::where('evaluated',$id)->get();
-        $P1=0;
-        $P2=0;
-        $medianCounter=0;
-        $median=0;
+        if($evaluations->count()> 0){
+            $P1=0;
+            $P2=0;
+            $P3=0;
+            $P4=0;
+            $P5=0;
+            $P6=0;
+            $P7=0;
+            $P8=0;
+            $P9=0;
+            $P10=0;
+            $P11=0;
+            $P12=0;
+            $P13=0;
+            $P14=0;
+            $P15=0;
+            $P16=0;
+            $P17=0;
+            $P18=0;
+            $P19=0;
+            $P20=0;
+            $medianCounter=0;
+            $median=0;
 
-        foreach($evaluations as $evaluation){
-            $P1+=$evaluation->P1;
-            $P2+=$evaluation->P2;
-            $medianCounter+=2;
+            foreach($evaluations as $evaluation){
+                $P1+=$evaluation->P1;
+                $P2+=$evaluation->P2;
+                $P3+=$evaluation->P3;
+                $P4+=$evaluation->P4;
+                $P5+=$evaluation->P5;
+                $P6+=$evaluation->P6;
+                $P7+=$evaluation->P7;
+                $P8+=$evaluation->P8;
+                $P9+=$evaluation->P9;
+                $P10+=$evaluation->P10;
+                $P11+=$evaluation->P11;
+                $P12+=$evaluation->P12;
+                $P13+=$evaluation->P13;
+                $P14+=$evaluation->P14;
+                $P15+=$evaluation->P15;
+                $P16+=$evaluation->P16;
+                $P17+=$evaluation->P17;
+                $P18+=$evaluation->P18;
+                $P19+=$evaluation->P19;
+                $P20+=$evaluation->P20;
+                $medianCounter+=20;
+            }
+
+            $median=($P1+$P2+$P3+$P4+$P5+$P6+$P7+$P8+$P9+$P10+$P11+$P12+$P13+$P14+$P15+$P16+$P17+$P18+$P19+$P20)/$medianCounter;
+
+            return response()->json([
+                    'trobat' => true,
+                    'median' => $median
+            ]);
         }
-
-        $median=($P1+$P2)/$medianCounter;
-
-        return response()->json([
-                'trobat' => true,
-                'median' => $median
-        ]);
+        else{
+            return response()->json([
+                    'trobat' => false
+            ]);
+        }
     }
 
 
