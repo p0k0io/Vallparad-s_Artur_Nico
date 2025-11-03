@@ -17,7 +17,10 @@ return new class extends Migration
             $table->integer('P2');
             $table->integer('average');
             $table->unsignedBigInteger('professional_id');
-            $table->foreign('professional_id')->references('id')->on('professionals')->onDelete('cascade');
+            $table->foreign('professional_id')
+      ->references('id')
+      ->on('professional')
+      ->onDelete('cascade');
             $table->timestamps();
         });
     }

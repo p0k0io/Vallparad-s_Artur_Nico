@@ -26,7 +26,7 @@ class ProfessionalSeeder extends Seeder
                 'status' => 1,
                 'keyCode' => 'ABC123',
                 'center_id' => 1,
-                'rol_id' => 1,
+                'role' => 1,
                 'cv_id' => 1,
             ],
             [
@@ -42,7 +42,7 @@ class ProfessionalSeeder extends Seeder
                 'status' => 1,
                 'keyCode' => 'XYZ789',
                 'center_id' => 1,
-                'rol_id' => 1,
+                'role' => 1,
                 'cv_id' => 1,
             ],
             [
@@ -58,7 +58,7 @@ class ProfessionalSeeder extends Seeder
                 'status' => 1,
                 'keyCode' => 'LMN456',
                 'center_id' => 1,
-                'rol_id' => 1,
+                'role' => 1,
                 'cv_id' => 1,
             ],
         ]);

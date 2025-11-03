@@ -21,6 +21,11 @@ Route::prefix('uniforms')->group(function () {
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
 
+
+Route::post('/enrolled-in', [\App\Http\Controllers\EnrolledInController::class, 'store']);
+Route::post('/course', [CourseController::class, 'store']);
+
+
 Route::resource('course', CourseController::class );
 
 Route::resource('center', CenterController::class);

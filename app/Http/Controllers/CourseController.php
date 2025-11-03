@@ -7,16 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Professional;
 use App\Models\Center;
 
+use App\Models\Course;
 class CourseController extends Controller
 {
-    public function index()
+   public function index()
     {
         $centers = Center::all();
         $professionals = Professional::all();
+        $courses = Course::all(); // Traemos los cursos
 
-        return view('course.indexCourse',[
-            'centers'=> $centers,
-            'professionals' => $professionals
+        return view('course.indexCourse', [
+            'centers' => $centers,
+            'professionals' => $professionals,
+            'courses' => $courses
         ]);
     }
 
@@ -25,7 +28,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view();
+        
     }
 
     /**
@@ -33,9 +36,25 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        Cv::create([
-            'path'=>request('path')
+        
+        $validated = $request->validate([
+            'name'            => 'required|string|max:255',
+            'description'     => 'nullable|string',
+            'mode'            => 'required|in:onsite,online',
+            'event_type'      => 'nullable|in:workshop,seminar,congress',
+            'attendee'        => 'nullable|integer',
+            'startDate'       => 'nullable|date',
+            'endDate'         => 'nullable|date|after_or_equal:startDate',
+            'center_id'       => 'required|exists:centers,id',
+            'professional_id' => 'required|exists:professional,id',
         ]);
+
+        $validated['attendee'] = $validated['attendee'] ?? 0;
+
+        $course = Course::create($validated);
+
+       return redirect()->route('professional.index');
+    
     }
 
     /**

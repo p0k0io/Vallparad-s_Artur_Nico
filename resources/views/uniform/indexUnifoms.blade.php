@@ -121,7 +121,7 @@
                     @if($uniform->shirtSize)
                       <div class="flex items-center flex-col border-2 border-orange-200 rounded-xl px-3 py-2 bg-white shadow-sm">
                         <div class="flex items-center gap-2">
-                            <x-lucide-shirt class="w-6 h-6 text-orange-500"/>
+                            
 
                           <span class="text-gray-600 text-sm"></Shirt></span>
                           <span class="text-gray-500 text-sm">({{ $uniform->shirtSize }})</span>
