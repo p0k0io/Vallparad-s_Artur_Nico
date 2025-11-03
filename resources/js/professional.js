@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const leftContentButton=document.getElementById('leftContentButton');
     const leftContentEvaluation=document.getElementById('leftContentEvaluation');
     
-    //const edit = document.querySelectorAll('form a');
+    const seguiments=document.getElementById('seguiments');
     
     
 

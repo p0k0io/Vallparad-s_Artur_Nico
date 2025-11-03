@@ -43,5 +43,11 @@
                Crea nova comissió
             </a>
         </div>
+        <div class="text-center mt-8">
+            <a href="{{ route('projects_comisions.create') }}"
+               class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition">
+               Assignar Professionals
+            </a>
+        </div>
     </div>
 @endsection

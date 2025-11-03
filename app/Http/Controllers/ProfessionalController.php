@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfessionalTracking;
 use Illuminate\Http\Request;
 use App\Models\Professional;
 use App\Models\Evaluation;
@@ -110,6 +111,33 @@ class ProfessionalController extends Controller
         $professional->update($request->all());
 
         return redirect()->route('professional.index');
+    }
+
+    //Seguiment professionals
+
+    public function trackingView(Professional $professional)
+    {
+        return view("professional.trackingProfessional",
+        [
+            "professional" => $professional
+        ]
+        );
+    }
+
+    public function track(Professional $professional)
+    {
+        ProfessionalTracking::create([
+            'type'=>request('type'),
+            'subject'=>request('subject'),
+            'description'=>request('description'),
+            'tracked'=>$professional->id,
+            'tracker'=>$professional->id
+        ]);
+        return redirect()->route('professional.index');
+    }
+
+    public function getTracking(Request $request){
+        
     }
 
     //Valorar professionals

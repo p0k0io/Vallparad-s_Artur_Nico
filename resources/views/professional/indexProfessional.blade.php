@@ -19,6 +19,7 @@
         const csrfToken = "{{ csrf_token() }}";
     </script>
     <script src="{{ asset('js/professional.js') }}"></script>
+    
     <body class="font-sans antialiased bg-slate-50"> 
         <img 
                 src="{{ asset('images/asset_login_superpossed.png') }}" 
@@ -53,8 +54,13 @@
                         <h3 class="text-2xl text-gray-400 border-b-2">Avaluació</h3>
                         <p id="leftContentEvaluation"></p>
                     </div>
+                    <div>
+                        <h3 class="text-2xl text-gray-400 border-b-2">Seguiment</h3>
+                        <p id="leftContentTracking"></p>
+                    </div>
                 </div>
             </div>
+
 
 
             <div class="flex w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10">
@@ -88,6 +94,18 @@
                                     </td>
 
                                     <td class="flex items-center gap-3">
+                                        <a id="seguiments" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                            Seguiments
+                                        </a>
+                                        <a href="{{ route('trackingView.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                            Seguiment
+                                        </a>
+                                        <a href="{{ route('assessView.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                            Avaluar
+                                        </a>
+                                        <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                            Editar
+                                        </a>
                                         <form action="{{ route('changeStateProfessional', $professional) }}" method="post">
                                             @csrf
                                             @method('PUT')
@@ -97,12 +115,6 @@
                                                 <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition">
                                             @endif
                                         </form>
-                                        <a href="{{ route('assessView.professional', $professional) }}" id="avaluar" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Avaluar
-                                        </a>
-                                        <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Editar
-                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

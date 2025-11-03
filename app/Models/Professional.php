@@ -22,9 +22,12 @@ class Professional extends Model
     }
 
     public function evaluator(){
-        return $this->hasMany(Assessment::class, 'evaluator');
+        return $this->hasMany(Evaluation::class, 'evaluator');
     }
     public function evaluated(){
-        return $this->hasMany(Assessment::class, 'evaluated');
+        return $this->hasMany(Evaluation::class, 'evaluated');
+    }
+    public function tracking(){
+        return $this->hasMany(ProfessionalTracking::class);
     }
 }
