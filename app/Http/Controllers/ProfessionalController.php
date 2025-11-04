@@ -115,6 +115,18 @@ class ProfessionalController extends Controller
 
     //Seguiment professionals
 
+    public function trackingViewProfessional(Professional $professional)
+    {
+        $trackings= ProfessionalTracking::where('tracked',$professional->id)->get();
+        return view("professional.trackingViewProfessional",
+        [
+            "professional" => $professional,
+            "trackings" => $trackings
+        ]
+        );
+    }
+
+
     public function trackingView(Professional $professional)
     {
         return view("professional.trackingProfessional",
@@ -150,6 +162,18 @@ class ProfessionalController extends Controller
         ]
         );
     }
+
+    public function assessViewProfessional(Professional $professional)
+    {
+        $evaluations= Evaluation::where('evaluated',$professional->id)->get();
+        return view("professional.assessViewProfessional",
+        [
+            "professional" => $professional,
+            "evaluations" => $evaluations
+        ]
+        );
+    }
+
     public function assess(Request $request, Professional $professional)
     {
         Evaluation::create([

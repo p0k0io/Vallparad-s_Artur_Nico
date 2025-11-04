@@ -19,6 +19,7 @@
         const csrfToken = "{{ csrf_token() }}";
     </script>
     <script src="{{ asset('js/professional.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     
     <body class="font-sans antialiased bg-slate-50"> 
         <img 
@@ -92,9 +93,43 @@
                                             <input id="professionP" type="hidden" name="professionP" value="{{$professional->profession}}">
                                         </a>
                                     </td>
-
+                                    
                                     <td class="flex items-center gap-3">
-                                        <a id="seguiments" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                                        <el-dropdown class="inline-block">
+                                            <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50">
+                                                Opcions
+                                                <x-lucide-chevron-down class="-mr-1 size-5 text-orange-500"/>
+                                            </button>
+
+                                            <el-menu anchor="bottom end" popover class="m-0 w-52 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                <div class="py-1">
+                                                    <a href="{{ route('assessViewProfessional.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <x-lucide-file-badge class="mr-2 size-5 text-orange-500"/>
+                                                        Veure Valoracions
+                                                    </a>
+                                                    <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <x-lucide-file-text class="mr-2 size-5 text-orange-500"/>
+                                                        Veure Seguiments
+                                                    </a>
+                                                </div>
+                                                <div class="py-1">
+                                                    <a href="{{ route('trackingView.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <x-lucide-file-pen-line class="mr-2 size-5 text-orange-500"/>
+                                                        Fer Seguiment
+                                                    </a>
+                                                    <a href="{{ route('assessView.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <x-lucide-user-pen class="mr-2 size-5 text-orange-500"/>
+                                                        Avaluar Professional
+                                                    </a>
+                                                    <a href="{{ route('professional.edit', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <x-lucide-square-pen class="mr-2 size-5 text-orange-500"/>
+                                                        Editar Professional
+                                                    </a>
+                                                </div>
+                                            </el-menu>
+                                        </el-dropdown>
+                                        <!--
+                                        <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
                                             Seguiments
                                         </a>
                                         <a href="{{ route('trackingView.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
@@ -106,6 +141,7 @@
                                         <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
                                             Editar
                                         </a>
+                                        -->
                                         <form action="{{ route('changeStateProfessional', $professional) }}" method="post">
                                             @csrf
                                             @method('PUT')
@@ -116,6 +152,7 @@
                                             @endif
                                         </form>
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

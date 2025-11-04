@@ -30,11 +30,14 @@ Route::resource('projects_comisions', ProjectComisionController::class);
 Route::resource('professional', ProfessionalController::class);
 
 //Seguiment
+Route::get('/trackingViewProfessional/{professional}', [ProfessionalController::class, 'trackingViewProfessional'])->name('trackingViewProfessional.professional');
+
 Route::get('/trackingView/{professional}', [ProfessionalController::class, 'trackingView'])->name('trackingView.professional');
 Route::post('/track/{professional}', [ProfessionalController::class, 'track'])->name('track.professional');
 
 
 //Avaluacio
+Route::get('/assessViewProfessional/{professional}', [ProfessionalController::class, 'assessViewProfessional'])->name('assessViewProfessional.professional');
 Route::get('/assessView/{professional}', [ProfessionalController::class, 'assessView'])->name('assessView.professional');
 Route::put('/assess/{professional}',[ProfessionalController::class,'assess'])->name('assess.professional');
 
