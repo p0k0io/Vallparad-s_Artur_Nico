@@ -17,7 +17,7 @@ class Course extends Model
         "startDate",
         "endDate",
         "center_id",
-        "professional_id" // Añadido para la relación
+        "professional_id" 
     ];
 
     // Relación con Center
