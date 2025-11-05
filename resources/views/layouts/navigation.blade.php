@@ -25,19 +25,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('professional.index')" :active="request()->routeIs('asd')">
+                    <x-nav-link :href="route('professional.index')" :active="request()->routeIs('professional')">
                         {{ __('Professionales') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('center.index')" :active="request()->routeIs('asdd')">
+                    <x-nav-link :href="route('center.index')" :active="request()->routeIs('center')">
                         {{ __('Centres') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('projects_comisions')">
                         {{ __('Projectes i Comisions') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('uniforms')">
                         {{ __('Uniformes') }}
                     </x-nav-link>
                 </div>

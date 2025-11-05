@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('professional_tracking', function (Blueprint $table) {
             $table->id();
-            $table->string('type',255);
+            $table->enum('type', ['obert', 'restringit','fi de la vinculacio'])->default('obert');
             $table->string('subject',255);
             $table->text('description');
-            $table->unsignedBigInteger('evaluated');
-            $table->foreign('evaluated')->references('id')->on('professional')->onDelete('cascade');
-            $table->unsignedBigInteger('evaluator');
-            $table->foreign('evaluator')->references('id')->on('professional')->onDelete('cascade');
+            $table->unsignedBigInteger('tracked');
+            $table->foreign('tracked')->references('id')->on('professional')->onDelete('cascade');
+            $table->unsignedBigInteger('tracker');
+            $table->foreign('tracker')->references('id')->on('professional')->onDelete('cascade');
             $table->timestamps();
         });
     }
