@@ -9,7 +9,9 @@ class EnrolledInController extends Controller
 {
     public function index()
     {
-        return EnrolledIn::with(['professional', 'course'])->get();
+            $enrollments = EnrolledIn::with(['professional', 'course'])->get();
+
+            return view('course.indexCourse', compact('enrollments'));
     }
 
     public function store(Request $request)

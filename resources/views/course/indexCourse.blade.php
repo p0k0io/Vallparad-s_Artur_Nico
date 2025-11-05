@@ -120,6 +120,21 @@
                                 <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($course->event_type ?? 'No especificado') }}</li>
                                 <li><b class="text-orange-500">Centro:</b> {{ $course->center->name ?? 'No asignado' }}</li>
                                 <li><b class="text-orange-500">Profesional:</b> {{ $course->professional->name ?? 'No asignado' }}</li>
+                            
+                            <div class="container bg-slate-300">
+                                <h1>Lista de Inscripciones</h1>
+                                @forelse($enrollments as $enrollment)
+                                    @if($enrollment->course_id == $course->id)
+                                        <li>
+                                            {{ ($enrollment->professional->name ?? '') . ' ' . ($enrollment->professional->surname1 ?? '') }}
+
+                                        </li>
+                                    @endif
+                                @empty
+                                <li>No hay inscripciones registradas.</li>
+                            @endforelse
+
+                            </div>
                             </ul>
 
                             <ul class="assigned-professionals text-xs font-medium text-gray-700 mt-3 space-y-1"></ul>
@@ -159,6 +174,11 @@
                 </ul>
             </div>
         </div>
+
+
+
+
+
 
     </div>
 

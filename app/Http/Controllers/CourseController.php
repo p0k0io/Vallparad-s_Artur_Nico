@@ -8,6 +8,7 @@ use App\Models\Professional;
 use App\Models\Center;
 
 use App\Models\Course;
+use App\Models\EnrolledIn;
 class CourseController extends Controller
 {
    public function index()
@@ -15,11 +16,12 @@ class CourseController extends Controller
         $centers = Center::all();
         $professionals = Professional::all();
         $courses = Course::all(); // Traemos los cursos
-
+        $enrollments =  EnrolledIn::all();
         return view('course.indexCourse', [
             'centers' => $centers,
             'professionals' => $professionals,
-            'courses' => $courses
+            'courses' => $courses,
+            'enrollments' => $enrollments
         ]);
     }
 

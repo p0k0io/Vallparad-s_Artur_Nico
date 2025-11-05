@@ -25,6 +25,7 @@ Route::prefix('uniforms')->group(function () {
 Route::post('/enrolled-in', [\App\Http\Controllers\EnrolledInController::class, 'store']);
 Route::post('/course', [CourseController::class, 'store']);
 
+Route::get('course', [EnrolledInController::class, 'index']);
 
 Route::resource('course', CourseController::class );
 
