@@ -109,7 +109,7 @@ class UniformController extends Controller
 
     public function export()
     {
-        return Excel::download(new UniformsExport, 'uniforms.xlsx');
+        return Excel::download(new UniformsExport, 'uniforms.csv');
     }
 
   public function exportTest()

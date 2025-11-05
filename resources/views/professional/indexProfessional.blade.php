@@ -1,32 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('../layouts.app')
 
-        <title>@yield('title','Vallparadis')</title>
+@section('title','Valoracio Professionals')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <!-- Scripts -->
-        <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <script>
-        const getAssessmentUrl = "{{ route('getAssessment.professional') }}";
-        const csrfToken = "{{ csrf_token() }}";
-    </script>
-    <script src="{{ asset('js/professional.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    
-    <body class="font-sans antialiased bg-slate-50"> 
-        <img 
-                src="{{ asset('images/asset_login_superpossed.png') }}" 
-                alt="Decorative background"
-                class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none z-0"
-        />
+@section('content')
         <div class="flex justify-center min-h-screen">
             <div class="hidden w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10 " id="leftContent">
                 <div class="w-full m-10">
@@ -167,5 +143,5 @@
             </div>
         </div>
         @vite(['resources/js/professional.js'])
-    </body>
-</html>
+
+@endsection
