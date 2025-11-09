@@ -21,23 +21,30 @@
         <h2 class="text-3xl font-semibold text-center text-orange-600">
             Segiuments de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h2>
-        <div id="seguiments">
+        <ul id="seguiments">
             @foreach($trackings as $tracking)
-                <div 
-                    x-data="{ open: false }"
-                    class="bg-orange-300 my-3 rounded-xl flex"
-
-                    @click="open= !open"
-                >
-                    <p class="text-white pl-5 text-xl font-bold">
-                        {{$tracking->subject}} 
-                    </p>
-                    <p x-show="open" class="text-white text-xl font-bold">
-                        {{$tracking->tracker}}
-                    </p>
-                </div>
+                <li x-data="{ open: false }" class="border border-orange-300 rounded-xl my-2">
+                    <button
+                        @click="open=!open"
+                        class="bg-orange-50 hover:bg-orange-200 rounded-xl w-full text-left transition "
+                    >
+                        <div class="flex justify-between">
+                            <p class="text-orange-500 pl-5 text-xl">
+                                {{$tracking->subject}} 
+                            </p>
+                            <p class="text-lg pr-5 text-orange-400">
+                                ({{$tracking->created_at}})
+                            </p>
+                        </div>
+                    </button>
+                    <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100 rounded-b-xl">
+                        <p>
+                            {{ $tracking->description }}
+                        </p>
+                    </div>
+                </li>
             @endforeach
-        </div>
+        </ul>
     </div>
 </body>
 </html>

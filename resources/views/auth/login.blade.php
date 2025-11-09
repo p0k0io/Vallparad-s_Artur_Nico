@@ -71,7 +71,6 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
                 <button 
                     type="submit" 
                     class="w-4/5 bg-orange-500 hover:bg-orange-600 transition rounded-full px-8 py-3 text-white font-bold shadow-md"
