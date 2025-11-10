@@ -159,17 +159,22 @@
               </div>
 
 
-              <div class="flex justify-end items-center pt-3">
+            <div class="flex justify-end items-center pt-3">
+                <form action="{{ route('uniforms.changeState', $uniform->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button 
+                        type="submit"
+                        class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold rounded-full px-4 py-2 flex items-center gap-1 transition-all"
+                    >
+                        Confirmar
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
 
-                <button 
-                  class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold rounded-full px-4 py-2 flex items-center gap-1 transition-all"
-                >
-                  Confirmar
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </button>
-              </div>
 
             </div>
           </div>
@@ -191,10 +196,9 @@
   <form action="{{ route('uniforms.store') }}" method="POST" class="space-y-12">
     @csrf
 
-    <!-- Sección 1: Cantidades -->
     <section class="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 shadow-inner flex flex-col md:flex-row items-center justify-around gap-10">
       
-      <!-- Camisetas -->
+
       <div class="flex flex-col items-center gap-4">
         <div class="p-5 rounded-2xl border-2 border-orange-400 bg-white flex items-center justify-center shadow-sm hover:shadow-md hover:bg-orange-100 transition-all duration-300">
           <x-lucide-shirt class="w-10 h-10 text-orange-500" />
@@ -203,7 +207,7 @@
         <input type="number" min="0" name="shirtAm" id="shirtAm" placeholder="0" class="text-center text-lg font-medium border-gray-300 rounded-xl w-24 py-2 focus:ring-2 focus:ring-orange-400 focus:outline-none transition-all">
       </div>
 
-      <!-- Pantalones -->
+
       <div class="flex flex-col items-center gap-4">
         <div class="p-5 rounded-2xl border-2 border-orange-400 bg-white flex items-center justify-center shadow-sm hover:shadow-md hover:bg-orange-100 transition-all duration-300">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="oklch(70.5% 0.213 47.604)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -215,7 +219,6 @@
         <input type="number" min="0" name="pantAm" id="pantAm" placeholder="0" class="text-center text-lg font-medium border-gray-300 rounded-xl w-24 py-2 focus:ring-2 focus:ring-orange-400 focus:outline-none transition-all">
       </div>
 
-      <!-- Zapatos -->
       <div class="flex flex-col items-center gap-4">
         <div class="p-5 rounded-2xl border-2 border-orange-400 bg-white flex items-center justify-center shadow-sm hover:shadow-md hover:bg-orange-100 transition-all duration-300">
           <x-lucide-footprints class="w-10 h-10 text-orange-500" />
@@ -226,9 +229,8 @@
 
     </section>
 
-    <!-- Sección 2: Tallas -->
     <section class="grid md:grid-cols-3 gap-8">
-      <!-- Camisa -->
+
       <div>
         <label for="shirtSize" class="block text-sm font-medium text-gray-700 mb-2">Talla de Camisa</label>
         <select name="shirtSize" id="shirtSize" class="w-full rounded-xl px-4 py-3 border-gray-300 shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all">
@@ -239,7 +241,6 @@
         </select>
       </div>
 
-      <!-- Pantalón -->
       <div>
         <label for="pantsSize" class="block text-sm font-medium text-gray-700 mb-2">Talla de Pantalón</label>
         <select name="pantsSize" id="pantsSize" class="w-full rounded-xl px-4 py-3 border-gray-300 shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all">
@@ -250,7 +251,7 @@
         </select>
       </div>
 
-      <!-- Zapato -->
+
       <div>
         <label for="shoeSize" class="block text-sm font-medium text-gray-700 mb-2">Talla de Zapato</label>
         <select name="shoeSize" id="shoeSize" class="w-full rounded-xl px-4 py-3 border-gray-300 shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all">
@@ -262,7 +263,6 @@
       </div>
     </section>
 
-    <!-- Sección 3: Profesional y último uniforme -->
     <section class="grid md:grid-cols-2 gap-8">
       <div>
         <label for="professional_id" class="block text-sm font-medium text-gray-700 mb-2">Profesional</label>
@@ -284,7 +284,7 @@
       </div>
     </section>
 
-    <!-- Sección 4: Botón -->
+
     <div class="flex justify-end">
       <button type="submit" class="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
         Crear Uniforme

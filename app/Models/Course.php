@@ -20,15 +20,20 @@ class Course extends Model
         "professional_id" 
     ];
 
-    // Relación con Center
+
     public function center()
     {
         return $this->belongsTo(Center::class);
     }
 
-    // Relación con Professional
     public function professional()
     {
         return $this->belongsTo(Professional::class);
     }
+
+        public function enrolledIn()
+    {
+        return $this->hasMany(EnrolledIn::class, 'course_id');
+    }
+
 }

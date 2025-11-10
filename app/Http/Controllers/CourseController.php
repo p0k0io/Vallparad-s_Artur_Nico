@@ -14,7 +14,7 @@ class CourseController extends Controller
     {
         $centers = Center::all();
         $professionals = Professional::all();
-        $courses = Course::all(); // Traemos los cursos
+        $courses = Course::all(); 
 
         return view('course.indexCourse', [
             'centers' => $centers,

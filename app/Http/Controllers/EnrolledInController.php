@@ -37,24 +37,31 @@ class EnrolledInController extends Controller
         return EnrolledIn::with(['professional', 'course'])->findOrFail($id);
     }
 
-    public function update(Request $request, $id)
-    {
-        $enrollment = EnrolledIn::findOrFail($id);
-
+   public function update(Request $request, $id)
+{
+    try {
+        $enrolled_in =EnrolledIn::findOrFail($id);
         $data = $request->validate([
-            'mode' => 'sometimes|string',
+            'mode' => 'required|in:enrolled,completed,cancelled'
         ]);
+        $enrolled_in->update($data);
 
-        $enrollment->update($data);
-
-        return $enrollment;
+        return response()->json([
+            'success' => true,
+            'message' => 'Estado actualizado correctamente.',
+            'data' => $enrolled_in
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Error: ' . $e->getMessage(),
+        ], 500);
     }
+}
 
-    public function destroy($id)
-    {
-        EnrolledIn::findOrFail($id)->delete();
 
-        return response()->json(['message' => 'Deleted successfully']);
-    }
+
+    
+
 }
 
