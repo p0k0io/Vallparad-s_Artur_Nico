@@ -33,7 +33,9 @@ Route::resource('center', CenterController::class);
 // Rutas de recursos
 Route::resource('projects_comisions', ProjectComisionController::class);
 
-//--------------------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------Professionals------------------------------------------------------------------------
+
 
 Route::resource('professional', ProfessionalController::class);
 
@@ -57,7 +59,9 @@ Route::post('/getAssessment', [ProfessionalController::class, 'getAssessment'])-
 Route::get('/search', function () {return view('index.professional');});
 Route::post('/search', [ProfessionalController::class, 'search']);
 
+
 //--------------------------------------------------------------------------------------------------------------------------
+
 
 Route::resource('cv', CvController::class);
 Route::resource('uniforms', UniformController::class);

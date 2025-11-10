@@ -23,21 +23,21 @@
         </h2>
         <ul id="seguiments">
             @foreach($trackings as $tracking)
-                <li x-data="{ open: false }" class="border border-orange-300 rounded-xl my-2">
+                <li x-data="{ open: false }" class="border border-orange-300 rounded-xl my-2 overflow-hidden">
                     <button
                         @click="open=!open"
-                        class="bg-orange-50 hover:bg-orange-200 rounded-xl w-full text-left transition "
+                        class="bg-orange-50 hover:bg-orange-200 w-full text-left transition py-1"
                     >
                         <div class="flex justify-between">
                             <p class="text-orange-500 pl-5 text-xl">
                                 {{$tracking->subject}} 
                             </p>
                             <p class="text-lg pr-5 text-orange-400">
-                                ({{$tracking->created_at}})
+                                {{$tracking->professional->name}} {{$tracking->professional->surname1}} {{$tracking->professional->surname2}}  ({{$tracking->created_at}})
                             </p>
                         </div>
                     </button>
-                    <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100 rounded-b-xl">
+                    <div x-show="open" class="bg-white px-6 py-4 border-t border-orange-100 rounded-b-xl">
                         <p>
                             {{ $tracking->description }}
                         </p>
