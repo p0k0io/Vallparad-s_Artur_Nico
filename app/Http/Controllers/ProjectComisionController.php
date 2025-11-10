@@ -56,9 +56,10 @@ class ProjectComisionController extends Controller
         'description' => request('description'),
         'observations' => request('observations'), 
         'type' => request('type'),
-        'responsible' => request('responsible'),
+        'professional_id' => request('professional_id'),
         'center_id' => request('center_id'),
         ]);
+        return redirect()->route('projects_comisions.index');
     }
 
     /**

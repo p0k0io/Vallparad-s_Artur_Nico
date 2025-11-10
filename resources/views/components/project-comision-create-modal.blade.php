@@ -97,7 +97,7 @@
                     
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Profesional</label>
-                        <select name="responsible" required
+                        <select name="professional_id" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                         

@@ -34,7 +34,7 @@
     }
 
  
-    function assignProfessional(course_id, event) {
+    function assignProfessional(project_comision_id, event) {
         const professional_id = event.dataTransfer.getData('professional_id');
 
         if (!professional_id) {
@@ -42,7 +42,7 @@
             return;
         }
 
-        fetch('/enrolled-in', {
+        fetch('/assigned-in', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,16 +51,16 @@
             },
             body: JSON.stringify({
                 professional_id: professional_id,
-                course_id: course_id,
-                mode: 'enrolled'
+                project_comision_id: project_comision_id,
+                mode: 'assigned'
             })
         })
         .then(res => res.json())
         .then(data => {
             showBladeAlert('Profesional asignado correctamente');
 
-            const course = event.currentTarget;
-            const list = course.querySelector('.assigned-professionals');
+            const projectComision = event.currentTarget;
+            const list = projectComision.querySelector('.assigned-professionals');
 
             if (list) {
                 const li = document.createElement('li');
