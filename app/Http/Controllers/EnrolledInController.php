@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\EnrolledIn;
 use Illuminate\Http\Request;
+use App\Exports\CourseExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class EnrolledInController extends Controller
 {
@@ -16,7 +20,7 @@ class EnrolledInController extends Controller
     {
         
         $data = $request->validate([
-            'professional_id' => 'required|exists:professional,id', // tabla singular
+            'professional_id' => 'required|exists:professional,id', 
             'course_id' => 'required|exists:courses,id',
             'mode' => 'required|string',
         ]);
@@ -61,7 +65,10 @@ class EnrolledInController extends Controller
 
 
 
-    
+    public function export()
+    {
+        return Excel::download(new CourseExport, 'CourseExport.csv');
+    } 
 
 }
 

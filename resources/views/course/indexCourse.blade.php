@@ -116,6 +116,9 @@
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-orange-500 mb-6">Cursos disponibles</h2>
                 <x-course-create-modal />
+                 <a href="{{ route('inscritos.export') }}" class="btn btn-success bg-green-500 text-white  flex-row gap-3 px-4 py-3 rounded-full flex items-center justify-center">
+                    <x-lucide-file-spreadsheet class="h-4 w-4"/>Exportar
+                </a>
             </div>
             <ul class="space-y-4">
                 @forelse($courses as $course)
@@ -211,7 +214,7 @@
                     </li>
                 @empty
                     <li class="bg-gray-100 p-4 rounded-xl text-gray-500 text-center">
-                        No hay cursos disponibles.
+                        No hay cursos.
                     </li>
                 @endforelse
             </ul>
@@ -232,7 +235,7 @@
                             <h1>{{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}</h1>
                         </li>
                     @empty
-                        <li class="text-gray-500 text-center">No hay profesionales registrados.</li>
+                        <li class="text-gray-500 text-center">No hay profesionales .</li>
                     @endforelse
                 </ul>
             </div>
