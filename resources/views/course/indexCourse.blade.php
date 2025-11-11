@@ -14,7 +14,7 @@
             px-4 py-3 rounded-xl shadow-xl backdrop-blur
             animate-fade-in-up border border-white/20
             bg-green-500
-        `;Respuesta del servidor
+        `;
         toast.innerHTML = `<span>${message}</span>`;
         document.getElementById('toast-container').appendChild(toast);
         setTimeout(() => {
@@ -69,7 +69,7 @@
         body: JSON.stringify({ mode: mode })
     })
     .then(async res => {
-        console.log('Debug:', res);
+        console.log('Respuesta del servidor:', res);
         const data = await res.json().catch(err => {
             return null;
         });
@@ -152,10 +152,15 @@
                             <p class="text-gray-600 text-sm mb-3">{{ $course->description }}</p>
 
                             <ul class="text-sm space-y-1 text-gray-700 mb-4">
-                                <li><b class="text-orange-500">Inscritos:</b> {{ $course->enrolledIn->count() }}</li>
-                                <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($course->event_type) }}</li>
-                                <li><b class="text-orange-500">Centro:</b> {{ $course->center->name }}</li>
-                                <li><b class="text-orange-500">Responsable:</b> {{ $course->professional->name }}</li>
+                                <li><b 
+
+
+    public function export()
+    {
+class="text-orange-500">Inscritos:</b> {{ $course->enrolledIn->count() }}</li>
+                                <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($course->event_type ?? 'No especificado') }}</li>
+                                <li><b class="text-orange-500">Centro:</b> {{ $course->center->name ?? 'No asignado' }}</li>
+                                <li><b class="text-orange-500">Responsable:</b> {{ $course->professional->name ?? 'No asignado' }}</li>
                             </ul>
 
                             @if($course->enrolledIn->isNotEmpty())
@@ -173,10 +178,10 @@
                                             @foreach($course->enrolledIn as $enrollment)
                                                 <tr class="border-b hover:bg-orange-50 transition">
                                                     <td class="px-4 py-2">
-                                                        {{ $enrollment->professional->name }}
+                                                        {{ $enrollment->professional->name ?? 'Sin nombre' }}
                                                     </td>
                                                     <td class="px-4 py-2">
-                                                        {{ $enrollment->professional->surname1}} {{ $enrollment->professional->surname2 }}
+                                                        {{ $enrollment->professional->surname1 ?? '' }} {{ $enrollment->professional->surname2 ?? '' }}
                                                     </td>
                                                     <td class="px-4 py-2 capitalize">
                                                         <span class="px-2 py-1 rounded-full text-xs font-semibold
@@ -242,3 +247,4 @@
         </div>
     </div>
 </div>
+

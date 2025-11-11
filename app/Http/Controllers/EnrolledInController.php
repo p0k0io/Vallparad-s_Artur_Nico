@@ -9,11 +9,6 @@ use App\Exports\CourseExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-use App\Exports\CourseExport;
-
-use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\Concerns\FromCollection;
-
 class EnrolledInController extends Controller
 {
     public function index()
@@ -72,13 +67,6 @@ class EnrolledInController extends Controller
     {
         return Excel::download(new CourseExport, 'CourseExport.csv');
     }
-
-
-
-    public function export()
-    {
-        return Excel::download(new CourseExport, 'CourseExport.csv');
-    } 
 
 }
 
