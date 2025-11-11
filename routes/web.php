@@ -9,6 +9,8 @@ use App\Http\Controllers\ProjectComisionController;
 use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnrolledInController;
+
 
 // Página principal
 Route::get('/', function () {
@@ -22,7 +24,16 @@ Route::prefix('uniforms')->group(function () {
 });
 
 
+Route::put('/uniforms/{uniform}/confirm', [UniformController::class, 'changeState'])
+    ->name('uniforms.changeState');
+
+Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
+
 Route::post('/enrolled-in', [\App\Http\Controllers\EnrolledInController::class, 'store']);
+Route::resource('enrolled-in', EnrolledInController::class);
+
+
+
 Route::post('/course', [CourseController::class, 'store']);
 
 
