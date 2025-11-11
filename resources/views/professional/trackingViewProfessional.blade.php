@@ -45,6 +45,11 @@
                 </li>
             @endforeach
         </ul>
+        <div class="flex justify-center">
+            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
+            <a href="{{ route('trackingView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nou Seguiment</a>
+            <a href="{{ route('assessViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Veure Valoracions</a>
+        </div>
     </div>
 </body>
 </html>

@@ -24,7 +24,7 @@
 
         <div>
             <label for="type" class="block text-sm font-medium text-gray-700">Tipus</label>
-            <select name="type" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+            <select name="type" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3" required>
                 <option value="obert">Obert</option>
                 <option value="restringit">Restringit</option>
                 <option value="fi de la vinculacio">Fi de la vinculacio</option>
@@ -33,12 +33,12 @@
 
         <div>
             <label for="role" class="block text-sm font-medium text-gray-700">Subjecte</label>
-            <input type="text" name="subject" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3" maxlength="75">
+            <input type="text" name="subject" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3" maxlength="75" required>
         </div>
 
         <div>
             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Descripció</label>
-            <textarea name="description" id="" rows="5" class="block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition"></textarea>
+            <textarea name="description" id="" rows="5" class="block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" required></textarea>
         </div>
 
         <div class="pt-6">
