@@ -142,8 +142,8 @@ class ProfessionalController extends Controller
             'type'=>request('type'),
             'subject'=>request('subject'),
             'description'=>request('description'),
-            'tracked'=>$professional->id,
-            'tracker'=>$professional->id
+            'tracked'=>1,
+            'tracker'=>1
         ]);
         return redirect()->route('trackingViewProfessional.professional', $professional);
     }
@@ -200,7 +200,7 @@ class ProfessionalController extends Controller
             'evaluated'=>$professional->id,
             'evaluator'=>$professional->id
         ]);
-        return redirect()->route('professional.index');
+        return redirect()->route('assessViewProfessional.professional', $professional);
     }
 
     public function getAssessment(Request $request){
