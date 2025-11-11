@@ -13,8 +13,21 @@
         <!-- Scripts -->
         <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!--Professionals-->
+
+        <script>
+            const getAssessmentUrl = "{{ route('getAssessment.professional') }}";
+            const csrfToken = "{{ csrf_token() }}";
+        </script>
+        <script src="{{ asset('js/professional.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+
+        <!--Professionals-->
     </head>
+    <x-bg-img/>
     <body class="font-sans antialiased">
+        
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

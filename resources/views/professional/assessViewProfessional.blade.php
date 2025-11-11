@@ -15,17 +15,35 @@
     />
 
     <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-3/4 flex flex-col space-y-4 z-10">
-        <h2 class="text-3xl font-semibold text-center text-orange-600">
+        <h2 class="text-3xl font-semibold text-orange-600 text-center">
             Avaluacions de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h2>
         <div id="seguiments" class="overflow-x-auto rounded-xl shadow-md mt-6">
             <table class="min-w-full border-collapse text-sm text-center">
-                <thead class="bg-orange-500 text-white">
+                <thead class="bg-orange-300 text-white">
                     <tr>
-                        @for ($i = 1; $i <= 20; $i++)
-                            <th class="w-20 py-2 border border-orange-400">P{{ $i }}</th>
-                        @endfor
-                        <th class="px-3 py-2 border border-orange-400">Avaluador</th>
+                        <th class="w-20 py-2 border border-orange-200">P1</th>
+
+                        <th class="w-20 py-2 border border-orange-200">P2</th>
+                        <th class="w-20 py-2 border border-orange-200">P3</th>
+                        <th class="w-20 py-2 border border-orange-200">P4</th>
+                        <th class="w-20 py-2 border border-orange-200">P5</th>
+                        <th class="w-20 py-2 border border-orange-200">P6</th>
+                        <th class="w-20 py-2 border border-orange-200">P7</th>
+                        <th class="w-20 py-2 border border-orange-200">P8</th>
+                        <th class="w-20 py-2 border border-orange-200">P9</th>
+                        <th class="w-20 py-2 border border-orange-200">P10</th>
+                        <th class="w-20 py-2 border border-orange-200">P11</th>
+                        <th class="w-20 py-2 border border-orange-200">P12</th>
+                        <th class="w-20 py-2 border border-orange-200">P13</th>
+                        <th class="w-20 py-2 border border-orange-200">P14</th>
+                        <th class="w-20 py-2 border border-orange-200">P15</th>
+                        <th class="w-20 py-2 border border-orange-200">P16</th>
+                        <th class="w-20 py-2 border border-orange-200">P17</th>
+                        <th class="w-20 py-2 border border-orange-200">P18</th>
+                        <th class="w-20 py-2 border border-orange-200">P19</th>
+                        <th class="w-20 py-2 border border-orange-200">P20</th>
+                        <th class="px-3 py-2 border border-orange-200">Avaluador</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -49,6 +67,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="flex justify-center">
+            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
+            <a href="{{ route('assessView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nova Avaluacio</a>
+            <a href="{{ route('trackingViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Veure Seguiments</a>
         </div>
     </div>
 </body>

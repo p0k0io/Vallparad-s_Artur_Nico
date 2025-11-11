@@ -145,7 +145,7 @@ class ProfessionalController extends Controller
             'tracked'=>$professional->id,
             'tracker'=>$professional->id
         ]);
-        return redirect()->route('professional.index');
+        return redirect()->route('trackingViewProfessional.professional', $professional);
     }
 
     public function getTracking(Request $request){

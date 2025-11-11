@@ -10,7 +10,7 @@ class ProfessionalTracking extends Model
     protected $fillable = ['type','subject','description','tracked','tracker'];
 
     public function professional(){
-        return $this->belongsTo(Professional::class);
+        return $this->belongsTo(Professional::class, 'id');
     }
     public function tracked(){
         return $this->belongsTo(Professional::class, 'id');

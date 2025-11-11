@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Seguiment Professional</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
 
@@ -14,19 +17,38 @@
         class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none z-0"
     />
 
-    <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-full max-w-4xl flex flex-col space-y-4 z-10">
+    <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-3/4 flex flex-col space-y-4 z-10">
         <h2 class="text-3xl font-semibold text-center text-orange-600">
             Segiuments de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h2>
-        <div id="seguiments">
+        <ul id="seguiments">
             @foreach($trackings as $tracking)
-                <div>
-                    <p>{{$tracking->type}}</p>
-                    <p>{{$tracking->subject}}</p>
-                    <p>{{$tracking->description}}</p>
-                    <p>{{$tracking->tracker}}</p>
-                </div>
+                <li x-data="{ open: false }" class="border border-orange-300 rounded-xl my-2 overflow-hidden">
+                    <button
+                        @click="open=!open"
+                        class="bg-orange-50 hover:bg-orange-200 w-full text-left transition py-1"
+                    >
+                        <div class="flex justify-between">
+                            <p class="text-orange-500 pl-5 text-xl">
+                                {{$tracking->subject}} 
+                            </p>
+                            <p class="text-lg pr-5 text-orange-400">
+                                {{$tracking->professional->name}} {{$tracking->professional->surname1}} {{$tracking->professional->surname2}}  ({{$tracking->created_at}})
+                            </p>
+                        </div>
+                    </button>
+                    <div x-show="open" class="bg-white px-6 py-4 border-t border-orange-100 rounded-b-xl">
+                        <p>
+                            {{ $tracking->description }}
+                        </p>
+                    </div>
+                </li>
             @endforeach
+        </ul>
+        <div class="flex justify-center">
+            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
+            <a href="{{ route('trackingView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nou Seguiment</a>
+            <a href="{{ route('assessViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Veure Valoracions</a>
         </div>
     </div>
 </body>
