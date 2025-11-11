@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\EnrolledIn;
 use Illuminate\Http\Request;
 
+use App\Exports\CourseExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
 class EnrolledInController extends Controller
 {
     public function index()
@@ -16,7 +21,7 @@ class EnrolledInController extends Controller
     {
         
         $data = $request->validate([
-            'professional_id' => 'required|exists:professional,id', // tabla singular
+            'professional_id' => 'required|exists:professional,id', 
             'course_id' => 'required|exists:courses,id',
             'mode' => 'required|string',
         ]);
@@ -37,24 +42,36 @@ class EnrolledInController extends Controller
         return EnrolledIn::with(['professional', 'course'])->findOrFail($id);
     }
 
-    public function update(Request $request, $id)
-    {
-        $enrollment = EnrolledIn::findOrFail($id);
-
+   public function update(Request $request, $id)
+{
+    try {
+        $enrolled_in =EnrolledIn::findOrFail($id);
         $data = $request->validate([
-            'mode' => 'sometimes|string',
+            'mode' => 'required|in:enrolled,completed,cancelled'
         ]);
+        $enrolled_in->update($data);
 
-        $enrollment->update($data);
-
-        return $enrollment;
+        return response()->json([
+            'success' => true,
+            'message' => 'Estado actualizado correctamente.',
+            'data' => $enrolled_in
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Error: ' . $e->getMessage(),
+        ], 500);
     }
+}
 
-    public function destroy($id)
+    public function export()
     {
-        EnrolledIn::findOrFail($id)->delete();
-
-        return response()->json(['message' => 'Deleted successfully']);
+        return Excel::download(new CourseExport, 'CourseExport.csv');
     }
+
+
+
+    
+
 }
 

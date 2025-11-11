@@ -19,17 +19,19 @@ class UniformController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $uniforms = Uniforms::all();
-        $professionals = Professional::all();
+        public function index()
+        {
+            $uniforms = Uniforms::where('status', 0)->get();
 
 
-        return view('uniform.indexUnifoms',[
-            'uniforms'=> $uniforms,
-            'professionals' => $professionals
-        ]);
-    }
+            $professionals = Professional::all();
+
+            return view('uniform.indexUnifoms', [
+                'uniforms' => $uniforms,
+                'professionals' => $professionals
+            ]);
+        }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +43,15 @@ class UniformController extends Controller
         $uniforms = Uniforms::all(); 
         return view('uniform.nouUniforme', compact('professionals', 'uniforms'));
 
+    }
+
+        public function changeState(Request $request, Uniforms $uniform)
+    {
+
+        $uniform->status = 1;
+        $uniform->save();
+
+        return redirect()->back()->with('success', 'Uniforme entregado');
     }
 
     /**
