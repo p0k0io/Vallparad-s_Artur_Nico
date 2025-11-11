@@ -24,11 +24,15 @@ Route::prefix('uniforms')->group(function () {
 });
 
 
+Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
+
+
+
 Route::put('/uniforms/{uniform}/confirm', [UniformController::class, 'changeState'])
     ->name('uniforms.changeState');
 
 
-Route::post('/enrolled-in', [\App\Http\Controllers\EnrolledInController::class, 'store']);
+Route::post('/enrolled-in', [EnrolledInController::class, 'store']);
 Route::resource('enrolled-in', EnrolledInController::class);
 
 

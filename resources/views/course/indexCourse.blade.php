@@ -14,7 +14,7 @@
             px-4 py-3 rounded-xl shadow-xl backdrop-blur
             animate-fade-in-up border border-white/20
             bg-green-500
-        `;
+        `;Respuesta del servidor
         toast.innerHTML = `<span>${message}</span>`;
         document.getElementById('toast-container').appendChild(toast);
         setTimeout(() => {
@@ -69,7 +69,7 @@
         body: JSON.stringify({ mode: mode })
     })
     .then(async res => {
-        console.log('Respuesta del servidor:', res);
+        console.log('Debug:', res);
         const data = await res.json().catch(err => {
             return null;
         });
@@ -116,6 +116,9 @@
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-orange-500 mb-6">Cursos disponibles</h2>
                 <x-course-create-modal />
+                <a href="{{ route('inscritos.export') }}" class="btn btn-success bg-green-500 text-white  flex-row gap-3 px-4 py-3 rounded-full flex items-center justify-center">
+                    <x-lucide-file-spreadsheet class="h-4 w-4"/>Exportar
+                </a>
             </div>
             <ul class="space-y-4">
                 @forelse($courses as $course)
@@ -150,9 +153,9 @@
 
                             <ul class="text-sm space-y-1 text-gray-700 mb-4">
                                 <li><b class="text-orange-500">Inscritos:</b> {{ $course->enrolledIn->count() }}</li>
-                                <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($course->event_type ?? 'No especificado') }}</li>
-                                <li><b class="text-orange-500">Centro:</b> {{ $course->center->name ?? 'No asignado' }}</li>
-                                <li><b class="text-orange-500">Responsable:</b> {{ $course->professional->name ?? 'No asignado' }}</li>
+                                <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($course->event_type) }}</li>
+                                <li><b class="text-orange-500">Centro:</b> {{ $course->center->name }}</li>
+                                <li><b class="text-orange-500">Responsable:</b> {{ $course->professional->name }}</li>
                             </ul>
 
                             @if($course->enrolledIn->isNotEmpty())
@@ -170,10 +173,10 @@
                                             @foreach($course->enrolledIn as $enrollment)
                                                 <tr class="border-b hover:bg-orange-50 transition">
                                                     <td class="px-4 py-2">
-                                                        {{ $enrollment->professional->name ?? 'Sin nombre' }}
+                                                        {{ $enrollment->professional->name }}
                                                     </td>
                                                     <td class="px-4 py-2">
-                                                        {{ $enrollment->professional->surname1 ?? '' }} {{ $enrollment->professional->surname2 ?? '' }}
+                                                        {{ $enrollment->professional->surname1}} {{ $enrollment->professional->surname2 }}
                                                     </td>
                                                     <td class="px-4 py-2 capitalize">
                                                         <span class="px-2 py-1 rounded-full text-xs font-semibold
@@ -232,7 +235,7 @@
                             <h1>{{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}</h1>
                         </li>
                     @empty
-                        <li class="text-gray-500 text-center">No hay profesionales registrados.</li>
+                        <li class="text-gray-500 text-center">No hay profesionales</li>
                     @endforelse
                 </ul>
             </div>
