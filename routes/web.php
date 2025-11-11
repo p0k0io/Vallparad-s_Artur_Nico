@@ -33,6 +33,7 @@ Route::resource('center', CenterController::class);
 
 // Rutas de recursos
 Route::post('/assigned-in', [ProjectComissionAssignedController::class, 'store']);
+
 Route::resource('projects_comisions', ProjectComisionController::class);
 
 

@@ -64,6 +64,7 @@ class ProjectComissionAssignedController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*
         $assignment = ProjectComissionAssigned::findOrFail($id);
 
         $data = $request->validate([
@@ -73,6 +74,7 @@ class ProjectComissionAssignedController extends Controller
         $assignment->update($data);
 
         return $assignment;
+        */
     }
 
     /**
@@ -80,8 +82,10 @@ class ProjectComissionAssignedController extends Controller
      */
     public function destroy($id)
     {
+        /*
         ProjectComissionAssigned::findOrFail($id)->delete();
 
         return response()->json(['message' => 'Deleted successfully']);
+        */
     }
 }

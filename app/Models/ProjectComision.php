@@ -17,4 +17,8 @@ class ProjectComision extends Model
         return $this->belongsTo(Center::class, 'id');
     }
 
+    public function projectcomisionAssigned(){
+        return $this->hasMany(ProjectComisionAssigned::class);
+    }
+
 }

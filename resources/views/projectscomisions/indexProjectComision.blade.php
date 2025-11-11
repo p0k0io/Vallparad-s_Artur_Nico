@@ -51,8 +51,7 @@
             },
             body: JSON.stringify({
                 professional_id: professional_id,
-                project_comision_id: project_comision_id,
-                mode: 'assigned'
+                project_comision_id: project_comision_id
             })
         })
         .then(res => res.json())

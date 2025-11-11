@@ -75,11 +75,13 @@ class ProjectComisionController extends Controller
      */
     public function edit(ProjectComision $project_comision)
     {
-        return view("projectscomisions.editProjectComision",
+        dd($project_comision);
+       
+       /* return view("projectscomisions.editProjectComision", 
         [
             "project_comision" => $project_comision
         ]
-        );
+        );*/
     }
 
     /**

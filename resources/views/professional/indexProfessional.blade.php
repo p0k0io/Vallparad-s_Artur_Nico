@@ -4,7 +4,7 @@
 
 @section('content')
         <div class="flex justify-center min-h-screen">
-            <div class="hidden w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10 " id="leftContent">
+            <div class="hidden w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10 shadow-md" id="leftContent">
                 <div class="w-full m-10">
                     <div id="topLeftContent" class="text-right mb-10">
                         <button id ="leftContentButton"><x-lucide-x class="w-8 h-8 text-orange-500"/></button>
@@ -40,11 +40,11 @@
 
 
 
-            <div class="flex w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10">
+            <div class="flex w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10 shadow-md">
                 <div class="flex flex-col w-3/4">
-                    <form class="flex flex-row w-full justify-between mt-32 mb-10" action="" method="post">
+                    <form class="flex flex-row w-full justify-between mt-20 mb-10" action="" method="post">
                         <input class="bg-white border-2 w-2/3 border-grey-400 rounded-xl" type="text" name="searchP" id="searchP" placeholder="Buscar Professional">
-                        <button class="bg-white border-2 w-16 border-gray-400 rounded-3xl" type="submit">Lupa</button>
+                        <button class="flex justify-center" type="submit"><x-lucide-search class="size-7 text-gray-500 m-auto"/></button>
                         <input class="bg-white border-2 w-16 border-orange-400 rounded-3xl" type="button" value="">
                         <input class="bg-white border-2 w-16 border-orange-700 rounded-3xl" type="button" value="">
                     </form>
@@ -77,27 +77,27 @@
                                                 <x-lucide-chevron-down class="-mr-1 size-5 text-orange-500"/>
                                             </button>
 
-                                            <el-menu anchor="bottom end" popover class="m-0 w-52 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                            <el-menu anchor="bottom end" popover class="border-solid border-2 border-gray-50 m-0 w-52 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                                                 <div class="py-1">
-                                                    <a href="{{ route('assessViewProfessional.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <a href="{{ route('assessViewProfessional.professional', $professional) }}" class="w-full inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                                                         <x-lucide-file-badge class="mr-2 size-5 text-orange-500"/>
                                                         Veure Valoracions
                                                     </a>
-                                                    <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="w-full inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                                                         <x-lucide-file-text class="mr-2 size-5 text-orange-500"/>
                                                         Veure Seguiments
                                                     </a>
                                                 </div>
                                                 <div class="py-1">
-                                                    <a href="{{ route('trackingView.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <a href="{{ route('trackingView.professional', $professional) }}" class="w-full inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                                                         <x-lucide-file-pen-line class="mr-2 size-5 text-orange-500"/>
                                                         Fer Seguiment
                                                     </a>
-                                                    <a href="{{ route('assessView.professional', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <a href="{{ route('assessView.professional', $professional) }}" class="w-full inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                                                         <x-lucide-user-pen class="mr-2 size-5 text-orange-500"/>
                                                         Avaluar Professional
                                                     </a>
-                                                    <a href="{{ route('professional.edit', $professional) }}" class="inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <a href="{{ route('professional.edit', $professional) }}" class="w-full inline-flex px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                                                         <x-lucide-square-pen class="mr-2 size-5 text-orange-500"/>
                                                         Editar Professional
                                                     </a>
