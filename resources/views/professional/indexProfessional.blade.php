@@ -39,7 +39,6 @@
             </div>
 
 
-
             <div class="flex w-2/4 bg-white bg-opacity-95 z-50 justify-center rounded-xl mx-5 my-10 shadow-md">
                 <div class="flex flex-col w-3/4">
                     <form class="flex flex-row w-full justify-between mt-20 mb-10" action="" method="post">

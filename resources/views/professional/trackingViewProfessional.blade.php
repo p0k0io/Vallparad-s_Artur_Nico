@@ -33,7 +33,7 @@
                                 {{$tracking->subject}} 
                             </p>
                             <p class="text-lg pr-5 text-orange-400">
-                                {{$tracking->professional->name}} {{$tracking->professional->surname1}} {{$tracking->professional->surname2}}  ({{$tracking->created_at}})
+                                {{$tracking->tracker}} ({{$tracking->created_at}})
                             </p>
                         </div>
                     </button>
