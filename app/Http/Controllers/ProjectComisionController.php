@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Center;
-
 use Illuminate\Http\Request;
 use App\Models\ProjectComision;
 use App\Models\Professional;
@@ -16,14 +15,14 @@ class ProjectComisionController extends Controller
      */
     public function index()
     {
+        $centers = Center::all();
         $professionals = Professional::all();
         $projectscomisions = ProjectComision::all();
         
         return view('projectscomisions.indexProjectComision',
             [
-                'professionals' => $professionals
-            ],
-            [
+                'centers' => $centers,
+                'professionals' => $professionals,
                 'projectscomisions'=> $projectscomisions
             ]
         );
@@ -57,9 +56,10 @@ class ProjectComisionController extends Controller
         'description' => request('description'),
         'observations' => request('observations'), 
         'type' => request('type'),
-        'responsible' => request('responsible'),
+        'professional_id' => request('professional_id'),
         'center_id' => request('center_id'),
         ]);
+        return redirect()->route('projects_comisions.index');
     }
 
     /**
@@ -73,13 +73,15 @@ class ProjectComisionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ProjectComision $project_comision)
     {
-        return view("projectscomisions.editProjectComision",
+        dd($project_comision);
+       
+       /* return view("projectscomisions.editProjectComision", 
         [
-            "projectscomisions" => $projectscomisions
+            "project_comision" => $project_comision
         ]
-        );
+        );*/
     }
 
     /**

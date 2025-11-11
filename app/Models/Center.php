@@ -14,6 +14,6 @@ class Center extends Model
     }
 
     public function projectcomission(){
-        return $this->hasOne(ProjectComission::class);
+        return $this->hasOne(ProjectComission::class, 'center_id');
     }
 }

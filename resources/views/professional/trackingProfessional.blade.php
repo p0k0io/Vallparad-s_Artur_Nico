@@ -32,8 +32,8 @@
         </div>
 
         <div>
-            <label for="role" class="block text-sm font-medium text-gray-700">Tipus</label>
-            <input type="text" name="subject" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3" maxlength="255">
+            <label for="role" class="block text-sm font-medium text-gray-700">Subjecte</label>
+            <input type="text" name="subject" id="" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3" maxlength="75">
         </div>
 
         <div>

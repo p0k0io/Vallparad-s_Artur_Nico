@@ -20,12 +20,12 @@
         </h2>
         <div id="seguiments" class="overflow-x-auto rounded-xl shadow-md mt-6">
             <table class="min-w-full border-collapse text-sm text-center">
-                <thead class="bg-orange-500 text-white">
+                <thead class="bg-orange-300 text-white">
                     <tr>
                         @for ($i = 1; $i <= 20; $i++)
-                            <th class="w-20 py-2 border border-orange-400">P{{ $i }}</th>
+                            <th class="w-20 py-2 border border-orange-200">P{{ $i }}</th>
                         @endfor
-                        <th class="px-3 py-2 border border-orange-400">Avaluador</th>
+                        <th class="px-3 py-2 border border-orange-200">Avaluador</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">

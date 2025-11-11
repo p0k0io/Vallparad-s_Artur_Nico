@@ -6,6 +6,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\ProjectComisionController;
+use App\Http\Controllers\ProjectComissionAssignedController;
 use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
@@ -45,9 +46,13 @@ Route::resource('course', CourseController::class );
 Route::resource('center', CenterController::class);
 
 // Rutas de recursos
+Route::post('/assigned-in', [ProjectComissionAssignedController::class, 'store']);
+
 Route::resource('projects_comisions', ProjectComisionController::class);
 
-//--------------------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------Professionals------------------------------------------------------------------------
+
 
 Route::resource('professional', ProfessionalController::class);
 
@@ -71,7 +76,9 @@ Route::post('/getAssessment', [ProfessionalController::class, 'getAssessment'])-
 Route::get('/search', function () {return view('index.professional');});
 Route::post('/search', [ProfessionalController::class, 'search']);
 
+
 //--------------------------------------------------------------------------------------------------------------------------
+
 
 Route::resource('cv', CvController::class);
 Route::resource('uniforms', UniformController::class);

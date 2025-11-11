@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             const phoneP2=phoneP.value;
             const professionP2=professionP.value;
 
+            //Part que apareix a la esquerra "Perfil"
+
             leftContent.classList.remove("hidden");
             leftContent.classList.add("flex");
             leftContent.classList.add("w-2/4");
@@ -47,6 +49,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             leftContentEmail.innerHTML=emailP2;
             leftContentAddress.innerHTML=addressP2;
             leftContentPhone.innerHTML=phoneP2;
+
+            //Valoracions
 
             fetch(getAssessmentUrl,{
                     method: 'POST',
