@@ -24,38 +24,54 @@
     }
 
     function assignProfessional(course_id, event) {
-        const professional_id = event.dataTransfer.getData('professional_id');
-        if (!professional_id) {
-            showBladeAlert('No se pudo obtener el profesional.', 'error');
+    event.preventDefault();
+
+    const professional_id = event.dataTransfer.getData('professional_id');
+    if (!professional_id) {
+        showBladeAlert('No se pudo obtener el profesional.', 'error');
+        return;
+    }
+
+    fetch('/enrolled-in', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({
+            professional_id: professional_id,
+            course_id: course_id,
+            mode: 'enrolled'
+        })
+    })
+    .then(async res => {
+        const data = await res.json().catch(() => null);
+        return { ok: res.ok, status: res.status, data };
+    })
+    .then(result => {
+        if (!result.ok) {
+            if (result.status === 409) {
+                showBladeAlert(result.data?.message || 'Ya está inscrito', 'error');
+            } else {
+                showBladeAlert(result.data?.message || 'Error al asignar profesional', 'error');
+            }
             return;
         }
-        fetch('/enrolled-in', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify({
-                professional_id: professional_id,
-                course_id: course_id,
-                mode: 'enrolled'
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            showBladeAlert('Profesional asignado correctamente');
-            const course = event.currentTarget;
-            const list = course.querySelector('.assigned-professionals');
-            if (list) {
-                const li = document.createElement('li');
-                li.textContent = `Profesional ${professional_id}`;
-                li.className = "px-2 py-1 bg-orange-100 rounded-md text-orange-700 text-xs";
-                list.appendChild(li);
-            }
-        })
-        .catch(err => console.error(err));
-    }
+
+        showBladeAlert(result.data?.message || 'Profesional asignado correctamente');
+
+      
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
+    })
+    .catch(err => {
+        console.error('Error en fetch assignProfessional:', err);
+        showBladeAlert('Error de red al asignar profesional', 'error');
+    });
+}
+
 
     function updateEnrollmentMode(id, mode, button) {
 
@@ -247,4 +263,3 @@ class="text-orange-500">Inscritos:</b> {{ $course->enrolledIn->count() }}</li>
         </div>
     </div>
 </div>
-

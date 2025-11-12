@@ -9,6 +9,7 @@ use App\Exports\CourseExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
+
 class EnrolledInController extends Controller
 {
     public function index()
@@ -16,25 +17,26 @@ class EnrolledInController extends Controller
         return EnrolledIn::with(['professional', 'course'])->get();
     }
 
-    public function store(Request $request)
-    {
-        
-        $data = $request->validate([
-            'professional_id' => 'required|exists:professional,id', 
-            'course_id' => 'required|exists:courses,id',
-            'mode' => 'required|string',
-        ]);
+   public function store(Request $request)
+{
+    $data = $request->validate([
+        'professional_id' => 'required|exists:professional,id',
+        'course_id' => 'required|exists:courses,id',
+        'mode' => 'required|string',
+    ]);
 
-        
-        $enrollment = EnrolledIn::create($data);
+    // Si no existe, crearla
+    $enrollment = EnrolledIn::create($data);
 
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'Profesional asignado correctamente',
-            'data' => $enrollment
-        ]);
-    }
+    return response()->json([
+        'success' => true,
+        'message' => 'Profesional asignado correctamente',
+        'data' => $enrollment
+    ]);
+
+    return redirect()->route('course')->with('success', 'Uniforme creado correctamente');
+}
+
 
     public function show($id)
     {
@@ -63,10 +65,11 @@ class EnrolledInController extends Controller
     }
 }
 
+
     public function export()
     {
         return Excel::download(new CourseExport, 'CourseExport.csv');
-    }
+    } 
 
 }
 

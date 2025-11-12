@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->enum('mode', ['enrolled', 'completed','cancelled'])->default('enrolled');
             $table->timestamps();
+            $table->unique(['professional_id', 'course_id']);
         });
     }
 

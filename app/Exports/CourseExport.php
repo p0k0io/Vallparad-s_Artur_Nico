@@ -10,11 +10,19 @@ class CourseExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return EnrolledIn::select('professional_id', 'course_id', 'mode')->get();
+        return EnrolledIn::with(['professional', 'course'])->get()->map(function ($enrollment) {
+            return [
+                'professional' => $enrollment->professional->name ?? 'Sin nombre',
+                'surname' => $enrollment->professional->surname1,
+                'course'       => $enrollment->course->name ?? 'Sin curso',
+                'status'       => $enrollment->mode,
+            ];
+        });
     }
+    
 
     public function headings(): array
     {
-        return ['Professional', 'Curso', 'Status'];
+        return ['Nombre','Apellidos', 'Curso', 'Status'];
     }
 }
