@@ -1,4 +1,8 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@extends('../layouts.app')
+
+@section('title','Projectes i comisions')
+
+@section('content')
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -161,3 +165,5 @@
 
     </div>
 </div>
+
+@endsection

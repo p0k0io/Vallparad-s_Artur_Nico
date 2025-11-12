@@ -1,6 +1,5 @@
 <div x-data="{ openCreate:false }">
 
-
     <button 
         @click="openCreate = true"
         class="flex items-center gap-2 px-4 h-11 rounded-full bg-orange-400/90 hover:bg-orange-500 text-white font-medium shadow-sm transition-all"
@@ -8,8 +7,6 @@
         <x-lucide-plus class="w-5 h-5"/>
         Nou curs
     </button>
-
-
 
     <div 
         x-show="openCreate" 

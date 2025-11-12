@@ -69,9 +69,10 @@
             </table>
         </div>
         <div class="flex justify-center">
-            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
-            <a href="{{ route('assessView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nova Avaluacio</a>
-            <a href="{{ route('trackingViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Veure Seguiments</a>
+            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Tornar</a>
+            <a href="{{ route('assessView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Nova Avaluacio</a>
+            <a href="{{ route('trackingViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Veure Seguiments</a>
+            <x-assess-questions-modal class="mx-2"/>
         </div>
     </div>
 </body>

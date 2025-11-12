@@ -45,6 +45,9 @@
                 </li>
             @endforeach
         </ul>
+        <div class="mb-5">
+                {{$trackings->links('pagination::tailwind')}}
+        </div>
         <div class="flex justify-center">
             <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
             <a href="{{ route('trackingView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nou Seguiment</a>

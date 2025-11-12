@@ -37,6 +37,10 @@
                         {{ __('Projectes i Comisions') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('course.index')" :active="request()->routeIs('courses')">
+                        {{ __('Cursos') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('uniforms')">
                         {{ __('Uniformes') }}
                     </x-nav-link>

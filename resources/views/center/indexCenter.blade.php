@@ -1,14 +1,8 @@
-@vite('resources/css/app.css')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Centros</title>
-    {{-- Cargar Alpine.js correctamente --}}
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-</head>
-<body class="bg-slate-50 text-gray-800 font-sans">
+@extends('../layouts.app')
+
+@section('title','Centres')
+
+@section('content')
     <div class="max-w-6xl mx-auto px-6 py-10" x-data="{ selectedCenter:null}">
 
         <h1 class="text-3xl font-bold text-orange-600 mb-8 text-center">Lista de Centros</h1>
@@ -115,5 +109,4 @@
         alt="Decorative background"
         class="absolute bottom-0 left-0 w-full h- object-cover pointer-events-none select-none"
     />
-</body>
-</html>
+@endsection

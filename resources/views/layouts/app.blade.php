@@ -28,7 +28,7 @@
     <x-bg-img/>
     <body class="font-sans antialiased">
         
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 z-10">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

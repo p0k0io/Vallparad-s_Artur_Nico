@@ -103,27 +103,13 @@
                                                 </div>
                                             </el-menu>
                                         </el-dropdown>
-                                        <!--
-                                        <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Seguiments
-                                        </a>
-                                        <a href="{{ route('trackingView.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Seguiment
-                                        </a>
-                                        <a href="{{ route('assessView.professional', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Avaluar
-                                        </a>
-                                        <a href="{{ route('professional.edit', $professional) }}" class="px-3 py-1 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                                            Editar
-                                        </a>
-                                        -->
                                         <form action="{{ route('changeStateProfessional', $professional) }}" method="post">
                                             @csrf
                                             @method('PUT')
                                             @if($professional->status==1)
-                                                <input type="submit" value="Desactivar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition">
+                                                <input type="submit" value="Desactivar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-red-400 hover:bg-red-500 rounded-lg transition">
                                             @else
-                                                <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition">
+                                                <input type="submit" value="Activar" class="px-3 py-1 w-28 text-sm font-semibold text-white bg-green-400 hover:bg-green-500 rounded-lg transition">
                                             @endif
                                         </form>
                                     </td>
@@ -135,8 +121,11 @@
 
                         </div>
                     </table>
+                    <div class="mb-5">
+                        {{$professionals->links('pagination::tailwind')}}
+                    </div>
                     <div class="flex justify-end">
-                        <a class="bg-orange-500 text-white text-center text-2xl w-20 py-1 rounded-full hover:bg-orange-400 transition" href="<?php echo route('professional.create')?>">+</a>
+                        <a class="bg-orange-400/90 text-white text-center text-2xl w-20 py-1 rounded-full hover:bg-orange-400 transition" href="<?php echo route('professional.create')?>">+</a>
                     </div>
                 </div>
             </div>
