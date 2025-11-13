@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Seguiment Professional</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+@extends('../layouts.app')
 
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+@section('title','Seguiment de Professionals')
 
-    <img 
-        src="{{ asset('images/asset_login_superpossed.png') }}" 
-        alt="Decorative background"
-        class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none z-0"
-    />
+@section('content')
 
-    <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-3/4 flex flex-col space-y-4 z-10">
+<div class="flex justify-center items-center min-h-screen relative">
+
+    <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-2/4 flex flex-col space-y-4 z-10">
         <h2 class="text-3xl font-semibold text-center text-orange-600">
             Segiuments de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h2>
@@ -45,11 +34,14 @@
                 </li>
             @endforeach
         </ul>
+        <div class="mb-5">
+                {{$trackings->links('pagination::tailwind')}}
+        </div>
         <div class="flex justify-center">
             <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mr-2 w-44 rounded-lg py-1">Tornar</a>
             <a href="{{ route('trackingView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Nou Seguiment</a>
             <a href="{{ route('assessViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 ml-2 w-44 rounded-lg py-1">Veure Valoracions</a>
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

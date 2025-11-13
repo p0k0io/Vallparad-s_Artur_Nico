@@ -16,7 +16,9 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
-        $professionals = Professional::all();
+        $professionals = Professional::paginate(6);
+
+        
         
         return view('professional.indexProfessional', 
                     [
@@ -117,7 +119,7 @@ class ProfessionalController extends Controller
 
     public function trackingViewProfessional(Professional $professional)
     {
-        $trackings= ProfessionalTracking::where('tracked',$professional->id)->get();
+        $trackings= ProfessionalTracking::where('tracked',$professional->id)->orderBy('id','desc')->paginate(5);
         return view("professional.trackingViewProfessional",
         [
             "professional" => $professional,
@@ -256,6 +258,8 @@ class ProfessionalController extends Controller
             }
 
             $median=($P1+$P2+$P3+$P4+$P5+$P6+$P7+$P8+$P9+$P10+$P11+$P12+$P13+$P14+$P15+$P16+$P17+$P18+$P19+$P20)/$medianCounter;
+
+            $median=round($median, 2);
 
             return response()->json([
                     'trobat' => true,

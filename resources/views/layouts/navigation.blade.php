@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 w-screen z-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -35,6 +35,10 @@
 
                     <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('projects_comisions')">
                         {{ __('Projectes i Comisions') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('course.index')" :active="request()->routeIs('courses')">
+                        {{ __('Cursos') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('uniforms')">
