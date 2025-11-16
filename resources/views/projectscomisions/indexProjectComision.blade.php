@@ -4,79 +4,7 @@
 
 @section('content')
 
-<head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
 
-
-<div id="toast-container" class="fixed top-5 right-5 space-y-3 z-[9999]"></div>
-
-<script>
-
-    function showBladeAlert(message, type = 'success') {
-        const toast = document.createElement('div');
-
-
-        toast.className = `
-            flex gap-2 items-center text-white font-medium
-            px-4 py-3 rounded-xl shadow-xl backdrop-blur
-            animate-fade-in-up border border-white/20
-            bg-green-500
-        `;
-
-        toast.innerHTML = `
-           
-            <span>${message}</span>
-        `;
-
-        document.getElementById('toast-container').appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.add('animate-fade-out');
-            setTimeout(() => toast.remove(), 350);
-        }, 3000);
-    }
-
- 
-    function assignProfessional(project_comision_id, event) {
-        const professional_id = event.dataTransfer.getData('professional_id');
-
-        if (!professional_id) {
-            showBladeAlert('No se pudo obtener el profesional.', 'error');
-            return;
-        }
-
-        fetch('/assigned-in', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify({
-                professional_id: professional_id,
-                project_comision_id: project_comision_id
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            showBladeAlert('Profesional asignado correctamente');
-
-            const projectComision = event.currentTarget;
-            const list = projectComision.querySelector('.assigned-professionals');
-
-            if (list) {
-                const li = document.createElement('li');
-                li.textContent = `Profesional ${professional_id}`;
-                li.className = "px-2 py-1 bg-orange-100 rounded-md text-orange-700 text-xs";
-                list.appendChild(li);
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        });
-    }
-</script>
 
 <div class="min-h-screen bg-slate-50 flex flex-col items-center justify-start py-10 px-6">
     <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-10">
@@ -92,7 +20,6 @@
                     <li
                         x-data="{ open: false }"
                         class="border border-orange-300 rounded-2xl shadow hover:shadow-md transition overflow-hidden bg-white"
-                        @dragover.prevent
                         @drop="assignProfessional('{{ $project_comision->id }}', $event)"
                     >
                         <button 
@@ -167,3 +94,73 @@
 </div>
 
 @endsection
+
+
+<!--
+<script>
+
+    function showBladeAlert(message, type = 'success') {
+        const toast = document.createElement('div');
+
+
+        toast.className = `
+            flex gap-2 items-center text-white font-medium
+            px-4 py-3 rounded-xl shadow-xl backdrop-blur
+            animate-fade-in-up border border-white/20
+            bg-green-500
+        `;
+
+        toast.innerHTML = `
+           
+            <span>${message}</span>
+        `;
+
+        document.getElementById('toast-container').appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.add('animate-fade-out');
+            setTimeout(() => toast.remove(), 350);
+        }, 3000);
+    }
+
+ 
+    function assignProfessional(project_comision_id, event) {
+        const professional_id = event.dataTransfer.getData('professional_id');
+
+        if (!professional_id) {
+            showBladeAlert('No se pudo obtener el profesional.', 'error');
+            return;
+        }
+
+        fetch('/assigned-in', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                professional_id: professional_id,
+                project_comision_id: project_comision_id
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            showBladeAlert('Profesional asignado correctamente');
+
+            const projectComision = event.currentTarget;
+            const list = projectComision.querySelector('.assigned-professionals');
+
+            if (list) {
+                const li = document.createElement('li');
+                li.textContent = `Profesional ${professional_id}`;
+                li.className = "px-2 py-1 bg-orange-100 rounded-md text-orange-700 text-xs";
+                list.appendChild(li);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    }
+</script>
+-->
