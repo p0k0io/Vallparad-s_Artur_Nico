@@ -20,7 +20,6 @@
             const getAssessmentUrl = "{{ route('getAssessment.professional') }}";
             const csrfToken = "{{ csrf_token() }}";
         </script>
-        <script src="{{ asset('js/professional.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
         <!--Professionals-->

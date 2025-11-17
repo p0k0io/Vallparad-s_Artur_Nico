@@ -6,7 +6,7 @@
 
 
 
-<div class="min-h-screen bg-slate-50 flex flex-col items-center justify-start py-10 px-6">
+<div id="test" class="min-h-screen bg-slate-50 flex flex-col items-center justify-start py-10 px-6">
     <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-10">
 
         
@@ -15,13 +15,13 @@
                 <h2 class="text-2xl font-bold text-orange-500 mb-6 ">Projectes/Comisions disponibles</h2>
                 <x-project-comision-create-modal :centers="$centers" :professionals="$professionals"/> <!--esta igual que cursos i no funciona, Chat GPT m'ha dit que fiqui aixo, ni idea pero funciona,-->
             </div>
-            <ul class="space-y-4">
+            <ul id="projectesComisions" class="space-y-4">
                 @forelse($projectscomisions as $project_comision)
                     <li
                         x-data="{ open: false }"
                         class="border border-orange-300 rounded-2xl shadow hover:shadow-md transition overflow-hidden bg-white"
-                        @drop="assignProfessional('{{ $project_comision->id }}', $event)"
                     >
+                        <input type="number" name="num" id="idPrCo" hidden>
                         <button 
                             @click="open = !open"
                             class="w-full flex justify-between items-center px-5 py-4 bg-orange-50 hover:bg-orange-200 transition"
@@ -69,20 +69,15 @@
             <h2 class="text-2xl font-bold text-orange-500 mb-3">Profesionales</h2>
 
             <div class="h-80 overflow-y-auto rounded-xl border border-orange-300 p-4 bg-slate-50">
-                <ul class="space-y-3 text-gray-800">
+                <ul id="professionals" class="space-y-3 text-gray-800">
                     @forelse($professionals as $professional)
-                        <li 
-                            class="p-3 bg-white rounded-lg  flex justify-center items-center gap-10 border border-orange-200 hover:bg-orange-100 cursor-move font-medium shadow-sm"
-                            draggable="true"
-                            x-data
-                            @dragstart="event.dataTransfer.setData('professional_id', {{ $professional->id }})"
-                        >
-                         <x-lucide-user class="h-5 text-orange-500"/> 
-                         <h1>
-                             {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
-                        </h1>
-                         
-                            </li>
+                        <li draggable="true" class="p-3 bg-white rounded-lg  flex justify-center items-center gap-10 border border-orange-200 hover:bg-orange-100 cursor-move font-medium shadow-sm">
+                            <x-lucide-user class="h-5 text-orange-500"/> 
+                            <h1>
+                                {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
+                            </h1>
+                            <input type="number" name="num" id="idP" hidden>
+                        </li>
                     @empty
                         <li class="text-gray-500 text-center">No hay profesionales registrados.</li>
                     @endforelse
@@ -91,8 +86,10 @@
         </div>
 
     </div>
+    
 </div>
 
+@vite(['resources/js/project-comisions.js'])
 @endsection
 
 
