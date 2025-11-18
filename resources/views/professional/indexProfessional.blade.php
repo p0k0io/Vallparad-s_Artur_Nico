@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         // Animar ancho del modal y mover lista a la izquierda
-        rightModal.style.width = '40%';
+        rightModal.style.width = '55%';
         professionalsList.classList.remove('items-center');
         professionalsList.classList.add('items-start');
     };

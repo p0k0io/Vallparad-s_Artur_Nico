@@ -11,8 +11,8 @@
             <!-- Menú Opcions -->
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
-                        class="inline-flex items-center gap-1 md:gap-2 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold text-slate-800 bg-gray-100 hover:bg-gray-200 transition">
-                    Opcions
+                        class="inline-flex items-center gap-1 md:gap-2 rounded-full  border-orange-500 px-3 py-2 text-xs md:text-sm font-semibold text-slate-800 border-2 hover:bg-gray-200 transition ">
+                    <p class="">Opcions</p>
                     <x-lucide-chevron-down class="text-orange-600 size-4 md:size-5"/>
                 </button>
 
