@@ -30,8 +30,8 @@ class ProjectComissionAssignedController extends Controller
     {
         $data = $request->validate([
             'name' => request('name'),
-            'description' => request('project_comission_id'),
-            'observations' => request('professional_id'), 
+            'project_comision_id' => request('project_comision_id'),
+            'professional_id' => request('professional_id'), 
         ]);
         $assignment = ProjectComissionAssigned::create($data);
 

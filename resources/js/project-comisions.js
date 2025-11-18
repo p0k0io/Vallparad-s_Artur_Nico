@@ -1,34 +1,54 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-    document.querySelectorAll("#projectesComisions li").forEach(pC=> {
-        console.log(pC)
-        pC.addEventListener('drop',assignProfessional);
-
+    document.querySelectorAll("#projectesComisions li button").forEach(btn=>{
+        btn.addEventListener('dragover', function(e){
+            e.preventDefault();
+        });
+        btn.addEventListener('drop', assignProfessional);
     });
 
     document.querySelectorAll("#professionals li").forEach(prof=> {
-        console.log(prof)
-        prof.addEventListener('dragstart', gestionarDragStart)
-
-        const idP=this.querySelector('#idP');
+        prof.addEventListener('dragstart', gestionarDragStart);
     });
 
-
     function gestionarDragStart(e){
-        e.dataTransfer
+        e.dataTransfer.setData("id",e.target.id);
     }
 
-    function assignProfessional(id,e){
-        const bg=document.getElementById("test");
+    function assignProfessional(e){
         e.preventDefault();
-        if(e.type=="drop"){
-            console.log(id);
-            bg.classList.remove("bg-slate-50");
-            bg.classList.add("bg-red-500");
-            console.log("Adeu");
-        }
-        else{
-            console.log("Adeu");
-        }
+
+        const idProf=e.dataTransfer.getData("id");
+
+        const liProj=e.target.closest("li");
+        const idProj=liProj.getAttribute("id");
+
+        console.log(idProj);
+
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        const token = meta ? meta.getAttribute('content') : '';
+        
+        fetch('/storeProj',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            },
+            body:JSON.stringify({
+                professional_id:idProf,
+                project_comision_id:idProj
+            })
+        })
+        .then(resposta =>{
+            if (resposta.trobat) {
+                console.log(message);
+                console.log(data);
+            }
+            else{
+                console.log("No va")
+            }
+        })
+        
+        
     }
 });

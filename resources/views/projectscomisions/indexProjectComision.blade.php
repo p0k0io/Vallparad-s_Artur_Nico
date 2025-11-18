@@ -18,6 +18,7 @@
             <ul id="projectesComisions" class="space-y-4">
                 @forelse($projectscomisions as $project_comision)
                     <li
+                        id="{{$project_comision->id}}"
                         x-data="{ open: false }"
                         class="border border-orange-300 rounded-2xl shadow hover:shadow-md transition overflow-hidden bg-white"
                     >
@@ -71,7 +72,7 @@
             <div class="h-80 overflow-y-auto rounded-xl border border-orange-300 p-4 bg-slate-50">
                 <ul id="professionals" class="space-y-3 text-gray-800">
                     @forelse($professionals as $professional)
-                        <li draggable="true" class="p-3 bg-white rounded-lg  flex justify-center items-center gap-10 border border-orange-200 hover:bg-orange-100 cursor-move font-medium shadow-sm">
+                        <li draggable="true" id="{{$professional->id}}" class="p-3 bg-white rounded-lg  flex justify-center items-center gap-10 border border-orange-200 hover:bg-orange-100 cursor-move font-medium shadow-sm">
                             <x-lucide-user class="h-5 text-orange-500"/> 
                             <h1>
                                 {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}

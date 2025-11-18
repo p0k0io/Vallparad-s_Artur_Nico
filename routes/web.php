@@ -47,9 +47,11 @@ Route::resource('course', CourseController::class );
 Route::resource('center', CenterController::class);
 
 // Rutas de recursos
-Route::post('/assigned-in', [ProjectComissionAssignedController::class, 'store']);
 
 Route::resource('projects_comisions', ProjectComisionController::class);
+
+Route::post('/storeProj', [ProjectComissionAssignedController::class, 'store']);
+Route::resource('project_comision_assignment', ProjectComissionAssignedController::class);
 
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
