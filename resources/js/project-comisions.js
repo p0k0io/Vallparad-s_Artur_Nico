@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute('content') : '';
         
-        fetch('/storeProj',{
+        
+        fetch('storeProj',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,15 +40,19 @@ document.addEventListener('DOMContentLoaded',()=>{
                 project_comision_id:idProj
             })
         })
-        .then(resposta =>{
-            if (resposta.trobat) {
+        .then(response => response.json())
+        .then(response =>{
+            if (response.success) {
                 console.log(message);
                 console.log(data);
             }
             else{
-                console.log("No va")
+                console.log("resposta no bona")
             }
         })
+        .catch(error => {
+            console.error('Error Gran',error);
+        });
         
         
     }

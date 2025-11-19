@@ -8,7 +8,6 @@
 
 <div id="test" class="min-h-screen bg-slate-50 flex flex-col items-center justify-start py-10 px-6">
     <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-10">
-
         
         <div class="bg-white w-full lg:w-1/2 rounded-2xl shadow-lg p-6 border border-orange-200">
             <div class="flex items-center justify-between mb-6">

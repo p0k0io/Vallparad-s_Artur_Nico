@@ -106,25 +106,25 @@ document.addEventListener('DOMContentLoaded',()=>{
                 'X-CSRF-TOKEN': token
             },
                 body: JSON.stringify({ name: name })
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Error del servidor');
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Error del servidor');
                 console.log(response.name);
                 return response.json();
             })
-            .then(response => {
-                if (response.trobat) {
+        .then(response => {
+            if (response.trobat) {
                 result.innerHTML = `
                 <p><strong>Nom:</strong> ${response.name}</p>
                 `;
             } else {
                 result.innerHTML = '<p class="text-red-600">Usuari no trobat</p>';
             }
-            })
-                .catch(error => {
-                console.error('Error fetch:', error);
-                result.innerHTML = '<p class="text-red-600">Error en la consulta</p>';
-            });
+        })
+            .catch(error => {
+            console.error('Error fetch:', error);
+            result.innerHTML = '<p class="text-red-600">Error en la consulta</p>';
+        });
             
     });
 

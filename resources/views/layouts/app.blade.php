@@ -28,6 +28,7 @@
     <x-bg-img/>
 -->
     <body class="font-sans antialiased">
+        {!! file_get_contents(resource_path('svg/icons.svg')) !!}
         <div class="min-h-screen bg-gray-100 z-10">
             @include('layouts.navigation')
 

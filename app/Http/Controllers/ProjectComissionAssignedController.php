@@ -27,19 +27,17 @@ class ProjectComissionAssignedController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {       
         $data = $request->validate([
-            'name' => request('name'),
             'project_comision_id' => request('project_comision_id'),
-            'professional_id' => request('professional_id'), 
+            'professional_id' => request('professional_id')
         ]);
-        $assignment = ProjectComissionAssigned::create($data);
-
+        
+        ProjectComissionAssigned::create($data);
         
         return response()->json([
             'success' => true,
             'message' => 'Profesional asignado correctamente',
-            'data' => $assignment
         ]);
     }
 
