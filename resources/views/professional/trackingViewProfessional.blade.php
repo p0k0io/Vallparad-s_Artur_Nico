@@ -21,7 +21,7 @@
                             <p class="text-orange-500 pl-5 text-xl">
                                 {{$tracking->subject}} 
                             </p>
-                            <p class="text-lg pr-5 text-orange-400">
+                            <p class="text-lg pr-5 text-orange-400 bg-orange-100">
                                 {{$tracking->tracker}} ({{$tracking->created_at}})
                             </p>
                         </div>

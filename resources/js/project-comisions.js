@@ -11,6 +11,33 @@ document.addEventListener('DOMContentLoaded',()=>{
         prof.addEventListener('dragstart', gestionarDragStart);
     });
 
+    function showBladeAlert(message,success) {
+        const toast = document.createElement('div');
+        if(success==true){
+            toast.className = `
+            flex gap-2 items-center text-white font-medium
+            px-4 py-3 rounded-xl shadow-xl backdrop-blur
+            animate-fade-in-up border border-white/20
+            bg-green-500
+            `;
+        }
+        else{
+            toast.className = `
+            flex gap-2 items-center text-white font-medium
+            px-4 py-3 rounded-xl shadow-xl backdrop-blur
+            animate-fade-in-up border border-white/20
+            bg-red-500
+        `;
+        }
+        
+        toast.innerHTML = `<span>${message}</span>`;
+        document.getElementById('toast-container').appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('animate-fade-out');
+            setTimeout(() => toast.remove(), 350);
+        }, 3000);
+    }
+
     function gestionarDragStart(e){
         e.dataTransfer.setData("id",e.target.id);
     }
@@ -23,6 +50,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         const liProj=e.target.closest("li");
         const idProj=liProj.getAttribute("id");
 
+        console.log(idProf);
         console.log(idProj);
 
         const meta = document.querySelector('meta[name="csrf-token"]');
@@ -42,13 +70,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
         .then(response => response.json())
         .then(response =>{
-            if (response.success) {
-                console.log(message);
-                console.log(data);
+            if (response.success==true) {
+                console.log(response.message);
             }
             else{
-                console.log("resposta no bona")
+                console.log(response.message);
             }
+            showBladeAlert(response.message,response.success);
         })
         .catch(error => {
             console.error('Error Gran',error);

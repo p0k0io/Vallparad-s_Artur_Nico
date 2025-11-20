@@ -29,15 +29,28 @@ class ProjectComissionAssignedController extends Controller
     public function store(Request $request)
     {       
         $data = $request->validate([
-            'project_comision_id' => request('project_comision_id'),
-            'professional_id' => request('professional_id')
+            'project_comision_id' => 'required|integer|exists:projects_comisions,id',
+            'professional_id' => 'required|integer|exists:professional,id'
         ]);
+
+        $projectId = $data['project_comision_id'];
+        $professionalId = $data['professional_id'];
+
+        $professionalAssignation= ProjectComissionAssigned::where('project_comision_id',$projectId)->where('professional_id',$professionalId);
         
-        ProjectComissionAssigned::create($data);
+        if($professionalAssignation->count() < 1){
+            $success=true;
+            $message="Professional assignat correctament";
+            ProjectComissionAssigned::create($data);
+        }
+        else{
+            $success=false;
+            $message="Aquest professional ja estava assignat";
+        }
         
         return response()->json([
-            'success' => true,
-            'message' => 'Profesional asignado correctamente',
+            'success' => $success,
+            'message' => $message,
         ]);
     }
 

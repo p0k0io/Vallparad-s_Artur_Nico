@@ -4,7 +4,7 @@
 
 @section('content')
 
-
+<div id="toast-container" class="fixed top-5 right-5 space-y-3 z-[9999]"></div>
 
 <div id="test" class="min-h-screen bg-slate-50 flex flex-col items-center justify-start py-10 px-6">
     <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-10">

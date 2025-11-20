@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectComissionAssigned extends Model
 {
-    protected $table = "project_comision_assignment";
+    protected $table = "project_comision_assignments";
     protected $fillable = ['project_comision_id','professional_id'];
 
     public function professional(){
