@@ -75,13 +75,11 @@ class ProjectComisionController extends Controller
      */
     public function edit(ProjectComision $project_comision)
     {
-        dd($project_comision);
-       
-       /* return view("projectscomisions.editProjectComision", 
+       return view("projectscomisions.editProjectComision", 
         [
             "project_comision" => $project_comision
         ]
-        );*/
+        );
     }
 
     /**
@@ -99,4 +97,6 @@ class ProjectComisionController extends Controller
     {
         //
     }
+
+    
 }

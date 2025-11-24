@@ -53,6 +53,8 @@ Route::resource('projects_comisions', ProjectComisionController::class);
 Route::post('/storeProj', [ProjectComissionAssignedController::class, 'store']);
 Route::resource('project_comision_assignment', ProjectComissionAssignedController::class);
 
+Route::get('/exportar-assignats', [ProjectComissionAssignedController::class, 'exportAssigned'])->name('assigned.export');
+
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
 

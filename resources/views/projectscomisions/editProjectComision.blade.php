@@ -17,7 +17,6 @@
     <form action="" method="POST" class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-full max-w-4xl flex flex-col space-y-8 z-10">
         @csrf
         @method('PUT')
-        {{dd($project_comision)}}
 
         <h2 class="text-3xl font-semibold text-center text-orange-600">
             Editar Projecte/Comisio

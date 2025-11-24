@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ProjectComissionAssigned;
 use Illuminate\Http\Request;
+use App\Exports\ProjectComissionExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ProjectComissionAssignedController extends Controller
 {
@@ -93,10 +97,11 @@ class ProjectComissionAssignedController extends Controller
      */
     public function destroy($id)
     {
-        /*
-        ProjectComissionAssigned::findOrFail($id)->delete();
 
-        return response()->json(['message' => 'Deleted successfully']);
-        */
+    }
+
+    public function exportAssigned()
+    {
+        return Excel::download(new ProjectComissionExport, 'ProjectesIComisionsAsignats.csv');
     }
 }

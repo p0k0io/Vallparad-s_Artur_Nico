@@ -13,6 +13,9 @@
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-orange-500 mb-6 ">Projectes/Comisions disponibles</h2>
                 <x-project-comision-create-modal :centers="$centers" :professionals="$professionals"/> <!--esta igual que cursos i no funciona, Chat GPT m'ha dit que fiqui aixo, ni idea pero funciona,-->
+                <a href="{{ route('assigned.export') }}" class="btn btn-success bg-green-500 text-white  flex-row gap-3 px-4 py-3 rounded-full flex items-center justify-center">
+                    <x-lucide-file-spreadsheet class="h-4 w-4"/>Exportar
+                </a>
             </div>
             <ul id="projectesComisions" class="space-y-4">
                 @forelse($projectscomisions as $project_comision)
