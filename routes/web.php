@@ -11,6 +11,7 @@ use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
+use App\Http\Controllers\CenterManagementDocumentController;
 
 
 // Página principal
@@ -105,6 +106,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Documentacion interna centro
+Route::get('/', function () {
+    return redirect()->route('documents.index');
+});
 
+Route::post('/documents', [CenterManagementDocumentController::class, 'store'])->name('documents.store');
+
+// Rutas para los documentos
+Route::prefix('documents')->group(function () {
+    Route::get('/', [CenterManagementDocumentController::class, 'index'])->name('documents.index');
+    Route::get('/{id}', [CenterManagementDocumentController::class, 'show'])->name('documents.show');
+    Route::get('/create', [CenterManagementDocumentController::class, 'create'])->name('documents.create'); // opcional si haces formulario
+    Route::post('/', [CenterManagementDocumentController::class, 'store'])->name('documents.store');
+    Route::get('/{id}/edit', [CenterManagementDocumentController::class, 'edit'])->name('documents.edit'); // opcional
+    Route::put('/{id}', [CenterManagementDocumentController::class, 'update'])->name('documents.update');
+    Route::delete('/{id}', [CenterManagementDocumentController::class, 'destroy'])->name('documents.destroy');
+});
 // Rutas de autenticación
 require __DIR__.'/auth.php';
