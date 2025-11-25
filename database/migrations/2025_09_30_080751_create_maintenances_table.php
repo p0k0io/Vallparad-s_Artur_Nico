@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->string('date',255);
             $table->string('context',255);
             $table->text('description');
             $table->string('path',255);

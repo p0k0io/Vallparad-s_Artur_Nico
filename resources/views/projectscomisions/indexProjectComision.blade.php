@@ -18,6 +18,7 @@
                 </a>
             </div>
             <ul id="projectesComisions" class="space-y-4">
+           
                 @forelse($projectscomisions as $project_comision)
                     <li
                         id="{{$project_comision->id}}"

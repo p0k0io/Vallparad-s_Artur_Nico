@@ -9,6 +9,8 @@ use App\Http\Controllers\ProjectComisionController;
 use App\Http\Controllers\ProjectComissionAssignedController;
 use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\IncidentController;
+use App\Http\Controllers\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 
@@ -18,19 +20,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//--------------------------------------------------Incidents------------------------------------------------------------------------
+Route::resource('incident', IncidentController::class);
+
+//--------------------------------------------------Manteniment------------------------------------------------------------------
+Route::resource('maintenance', MaintenanceController::class);
+
+
+//--------------------------------------------------Uniformes------------------------------------------------------------------------
+
 // Rutas de exportación de Uniforms (antes del resource para evitar conflictos)
+Route::resource('uniforms', UniformController::class);
+
 Route::prefix('uniforms')->group(function () {
     Route::get('export', [UniformController::class, 'export'])->name('uniforms.export');
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
 
-
-Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
-
-
-
 Route::put('/uniforms/{uniform}/confirm', [UniformController::class, 'changeState'])
     ->name('uniforms.changeState');
+
+
+//--------------------------------------------------Cursos------------------------------------------------------------------------
 
 Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
 
@@ -46,7 +58,7 @@ Route::resource('course', CourseController::class );
 
 Route::resource('center', CenterController::class);
 
-// Rutas de recursos
+//--------------------------------------------------Projectes i Comisions------------------------------------------------------------------------
 
 Route::resource('projects_comisions', ProjectComisionController::class);
 
@@ -82,17 +94,14 @@ Route::get('/search', function () {return view('index.professional');});
 Route::post('/search', [ProfessionalController::class, 'search']);
 
 
-//--------------------------------------------------------------------------------------------------------------------------
-
-
 Route::resource('cv', CvController::class);
-Route::resource('uniforms', UniformController::class);
 
-
-//--------------------------------------------------------------------------------------------------------------------------
 // Rutas para cambiar estado
 Route::put('/changeStateP/{professional}', [ProfessionalController::class, 'changeStateP'])
     ->name('changeStateProfessional');
+
+
+//--------------------------------------------------Centres------------------------------------------------------------------------
 
 Route::put('/changeStateC/{center}', [CenterController::class, 'changeStateC'])
     ->name('changeStateCenter');

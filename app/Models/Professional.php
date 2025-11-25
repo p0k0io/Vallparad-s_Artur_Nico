@@ -17,6 +17,10 @@ class Professional extends Model
         return $this->belongsTo(Center::class);
     }
 
+    public function incidents(){
+        return $this->hasMany(Incident::class);
+    }
+
     public function projectcomision(){
         return $this->hasMany(ProjectComision::class);
     }

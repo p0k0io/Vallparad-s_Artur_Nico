@@ -73,11 +73,11 @@ class ProjectComisionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProjectComision $project_comision)
+    public function edit(ProjectComision $projects_comision)
     {
        return view("projectscomisions.editProjectComision", 
         [
-            "project_comision" => $project_comision
+            "projects_comision" => $projects_comision
         ]
         );
     }
@@ -85,9 +85,11 @@ class ProjectComisionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Request $projects_comision)
     {
-        //
+        $projects_comision->update($request->all());
+
+        return redirect()->route('projects_comisions.index');
     }
 
     /**
