@@ -58,16 +58,21 @@
         <input type="text" name="description" id= "description">
         <input type="text" name="manager" id="manager">
         <input type="email" name="email" id="email">
+        <input type="text" name="address" id="address">
+        <input type="tel" name="phone" id="phone">
 
         <select name="center_id" id="center_id">
             @foreach($centers as $center)
             <option value="{{ $center->id }}">{{ $center->name }}</option>
             @endforeach
         </select>
-
         
-        
+        <button type="submit" class="px-6 py-2 rounded-lg bg-orange-500 text-white font-medium hover:bg-orange-600 transition">
+                    Guardar
+                </button>
         </form>
+
+         
     </div>
 </div>
 @endsection
