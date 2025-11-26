@@ -1,14 +1,14 @@
 <div class="bg-gradient-to-r from-white to-orange-50 rounded-2xl w-full shadow-md border border-orange-300/50 hover:border-orange-400 transition-all duration-300 relative">
     <div class="p-3 flex flex-col md:flex-row items-center justify-between gap-3">
 
-        <!-- Nombre del profesional -->
+        
         <h1 class="font-semibold text-lg md:text-xl text-gray-900 text-center md:text-left leading-snug">
             {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h1>
 
         <div class="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
 
-            <!-- Menú Opcions -->
+           
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                         class="inline-flex items-center gap-1 md:gap-2 rounded-full  border-orange-500 px-3 py-2 text-xs md:text-sm font-semibold text-slate-800 border-2 hover:bg-gray-200 transition ">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <!-- Botón Activar/Desactivar -->
+           
             <form @click.stop action="{{ route('changeStateProfessional', $professional) }}" method="post">
                 @csrf
                 @method('PUT')

@@ -7,7 +7,7 @@
             <p class="truncate"><span class="font-medium">Tipo:</span> {{ $document->type->type }}</p>
         </div>
 
-        <a href="{{ $document->path }}" 
+        <a href="{{ route('documents.download', $document->id) }}" 
            class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-orange-500/70 backdrop-blur-md border border-orange-500 text-white rounded-lg font-medium hover:bg-orange-500/50 hover:shadow-md transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download">
                 <path d="M12 15V3"/>

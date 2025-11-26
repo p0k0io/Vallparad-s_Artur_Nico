@@ -123,5 +123,8 @@ Route::prefix('documents')->group(function () {
     Route::put('/{id}', [CenterManagementDocumentController::class, 'update'])->name('documents.update');
     Route::delete('/{id}', [CenterManagementDocumentController::class, 'destroy'])->name('documents.destroy');
 });
+Route::get('/documents/{id}/download', [CenterManagementDocumentController::class, 'download'])
+    ->name('documents.download');
+
 // Rutas de autenticación
 require __DIR__.'/auth.php';

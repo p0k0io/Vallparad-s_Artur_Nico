@@ -11,9 +11,11 @@
     }
 </script>
 
+
+
 <div class="min-h-screen bg-gray-50 flex items-start justify-center py-12 px-6">
     <div class="w-full max-w-4xl bg-white rounded-3xl shadow-lg flex flex-col gap-6 p-8">
-        <!-- Header -->
+        
         <div class="flex justify-between items-center border-b border-gray-200 pb-4">
             <h1 class="text-2xl font-semibold text-gray-800">Documentos</h1>
             <button 
@@ -23,7 +25,7 @@
             </button>
         </div>
 
-        <!-- Lista de documentos -->
+        
         <div class="flex flex-col gap-4 mt-4">
             @foreach($documents as $document)
                 <x-show-documents :document="$document" />
@@ -32,13 +34,21 @@
     </div>
 </div>
 
-<!-- Modal -->
+
+
+
+
+
+
+
+
+
 <div id="create-modal" class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden z-50">
     <div class="bg-white rounded-3xl shadow-xl w-full max-w-lg p-8 flex flex-col gap-6 relative">
         <h2 class="text-xl font-semibold text-gray-800">Crear nuevo documento</h2>
         <hr class="border-gray-200">
 
-        <form action="{{ route('documents.store') }}" method="POST" class="flex flex-col gap-4">
+        <form action="{{ route('documents.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
             @csrf
             <div class="flex flex-col gap-1">
                 <label for="description" class="text-gray-700 font-medium">Descripción</label>
@@ -47,7 +57,7 @@
 
             <div class="flex flex-col gap-1">
                 <label for="path" class="text-gray-700 font-medium">Ruta del documento</label>
-                <input type="text" name="path" id="path" class="p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                <input type="file" name="archivo">
             </div>
 
             <div class="flex flex-col gap-1">
@@ -68,7 +78,7 @@
                 </select>
             </div>
 
-            <!-- Botones -->
+            
             <div class="flex justify-end gap-3 mt-4">
                 <button type="button" onclick="closeModal()" class="px-6 py-2 rounded-lg bg-gray-300 text-gray-800 font-medium hover:bg-gray-400 transition">
                     Cancelar
