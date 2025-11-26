@@ -12,6 +12,7 @@ use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
+use App\Http\Controllers\ExternalContactController;
 
 
 // Página principal
@@ -125,6 +126,14 @@ Route::prefix('documents')->group(function () {
 });
 Route::get('/documents/{id}/download', [CenterManagementDocumentController::class, 'download'])
     ->name('documents.download');
+
+//Rutas contactos externos
+Route::get('/externalContact', [ExternalContactController::class, 'index'])
+    ->name('externalContact.indexExternalContacts');
+
+Route::post('/externalContact', [ExternalContactController::class, 'store'])
+    ->name('externalContact.store');
+
 
 // Rutas de autenticación
 require __DIR__.'/auth.php';
