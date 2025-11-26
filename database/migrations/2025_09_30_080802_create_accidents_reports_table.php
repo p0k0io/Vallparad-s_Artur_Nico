@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('accidents_reports', function (Blueprint $table) {
             $table->id();
             $table->string('type',255);
-            $table->string('date',255);
             $table->string('context',255);
             $table->text('description');
-            $table->string('path',255);
+            $table->unsignedBigInteger('professional_id');
+            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->unsignedBigInteger('incident_id');
             $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
             $table->timestamps();

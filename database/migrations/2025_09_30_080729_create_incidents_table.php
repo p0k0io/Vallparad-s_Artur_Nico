@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->string('type',255);
+            $table->enum('type', ['maintenance', 'rrhh','accidentability'])->default('maintenance');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->timestamps();

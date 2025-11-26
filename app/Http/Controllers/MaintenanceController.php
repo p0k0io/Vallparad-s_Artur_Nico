@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Incident;
+use App\Models\Maintenance;
+
 
 class MaintenanceController extends Controller
 {
@@ -27,7 +30,23 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Incident::create([
+            'type'=>'maintenance',
+            'professional_id'=>1
+        ]);
+        
+        $incident= Incident::latest()->first();
+
+        Maintenance::create([
+            'context'=>request('context'),
+            'description'=>request('description'),
+            'path'=>request('path'),
+            'incident_id'=> $incident->id,
+            'status'=> 'pendent'
+
+        ]);
+
+        return redirect()->route('incident.index');
     }
 
     /**

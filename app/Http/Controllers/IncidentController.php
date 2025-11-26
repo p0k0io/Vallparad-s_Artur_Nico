@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Incident;
+use App\Models\Maintenance;
+
 
 class IncidentController extends Controller
 {
@@ -11,7 +14,15 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        return view('incident.indexIncidents');
+        $incidents = Incident::all();
+        $maintenances = Maintenance::all();
+
+        return view('incident.indexIncidents', 
+            [
+                'incidents' => $incidents,
+                'maintenances' => $maintenances
+            ]
+        );
     }
 
     /**

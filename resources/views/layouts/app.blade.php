@@ -24,12 +24,14 @@
 
         <!--Professionals-->
     </head>
-    <!--
-    <x-bg-img/>
--->
-    <body class="font-sans antialiased">
+    
+    
+    
+    <body class="font-sans antialiased bg-gray-100">
+        <x-bg-img/>
         {!! file_get_contents(resource_path('svg/icons.svg')) !!}
-        <div class="min-h-screen bg-gray-100 z-10">
+        <div class="min-h-screen ">
+           
             @include('layouts.navigation')
 
             <main>

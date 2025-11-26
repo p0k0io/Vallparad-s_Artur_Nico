@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('path',255);
             $table->unsignedBigInteger('incident_id');
             $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
+            $table->enum('status', ['pendent','resolt'])->default('pendent');
             $table->timestamps();
         });
     }
