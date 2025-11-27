@@ -53,16 +53,16 @@
             </div>
 
             <div id="accidentabilityForm" class="hidden">
-                <form action="" method="POST" class="space-y-4">
+                <form action="{{route('accidentability.store')}}" method="POST" class="space-y-4">
                 @csrf
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus de Baixa</label>
-                    <select name="type" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
-                        <option value="seminar">Amb Baixa</option>
-                        <option value="congress" selected>Sense Baixa</option>
+                    <select id="baixaSelect" name="type" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
+                        <option value="baixa">Amb Baixa</option>
+                        <option value="sense_baixa" selected>Sense Baixa</option>
                     </select>
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>
-                        <input type="text" name="name" required
+                        <input type="text" name="context" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                     </div>
@@ -71,6 +71,12 @@
                         <textarea name="description" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         ></textarea>
+                    </div>
+                    <div id="durationInput" class="hidden">
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Durada</label>
+                        <input type="text" name="duration"
+                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                        >
                     </div>
                     <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
                         Crear

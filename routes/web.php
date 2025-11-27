@@ -11,6 +11,7 @@ use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\AccidentabilityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 
@@ -21,11 +22,14 @@ Route::get('/', function () {
 });
 
 
-//--------------------------------------------------Incidents------------------------------------------------------------------------
+//--------------------------------------------------Incidents--------------------------------------------------------------------
 Route::resource('incident', IncidentController::class);
 
 //--------------------------------------------------Manteniment------------------------------------------------------------------
 Route::resource('maintenance', MaintenanceController::class);
+
+//--------------------------------------------------Accidentability--------------------------------------------------------------
+Route::resource('accidentability', AccidentabilityController::class);
 
 
 //--------------------------------------------------Uniformes------------------------------------------------------------------------

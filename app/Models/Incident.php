@@ -17,4 +17,8 @@ class Incident extends Model
     public function maintenance(){
         return $this->hasMany(Maintenance::class);
     }
+
+    public function accidentability(){
+        return $this->hasMany(Accidentability::class);
+    }
 }

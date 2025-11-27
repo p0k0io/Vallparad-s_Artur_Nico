@@ -4,28 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Incident;
-use App\Models\Maintenance;
 use App\Models\Accidentability;
 
 
-class IncidentController extends Controller
+class AccidentabilityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $incidents = Incident::all();
-        $maintenances = Maintenance::all();
-        $accidents = Accidentability::all();
-
-        return view('incident.indexIncidents', 
-            [
-                'incidents' => $incidents,
-                'maintenances' => $maintenances,
-                'accidents' => $accidents
-            ]
-        );
+        //
     }
 
     /**
@@ -41,7 +30,23 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Incident::create([
+            'type'=>'accidentability',
+            'professional_id'=>1
+        ]);
+        
+        $incident= Incident::latest()->first();
+
+        Accidentability::create([
+            'type'=>request('type'),
+            'context'=>request('context'),
+            'description'=>request('description'),
+            'duration'=>request('duration'),
+            'professional_id'=>1,
+            'incident_id'=>$incident->id,
+        ]);
+
+        return redirect()->route('incident.index');
     }
 
     /**

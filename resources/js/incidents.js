@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     const maintForm=document.getElementById('maintenanceForm');
     const rrhhForm=document.getElementById('rrhhForm');
     const accForm=document.getElementById('accidentabilityForm');
-
+    
+    // Accidentabilitat
+    const duration=document.getElementById("durationInput");
+    const selectBaixa=document.getElementById("baixaSelect");
+    /////////////////////////////////////////////////////////////
 
     const btMaintenance=document.querySelector('#btMaintenance');
     btMaintenance.addEventListener('click',btMaintenanceClick);
@@ -13,6 +17,19 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const btAccidentability=document.querySelector('#btAccidentability');
     btAccidentability.addEventListener('click',btAccidentabilityClick);
+
+    // Accidentabilitat
+    selectBaixa.addEventListener('change',changeBaixaState);
+
+    function changeBaixaState(){
+        if(selectBaixa.value === "baixa"){
+            duration.classList.remove("hidden");
+        }
+        else{
+            duration.classList.add("hidden");
+        }
+    }
+    //////////////////////////////////////////////////////////////////
 
     //border-orange-500
 
