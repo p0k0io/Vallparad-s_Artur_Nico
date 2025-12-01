@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('pending_hr_issues', function (Blueprint $table) {
             $table->id();
             $table->string('asignedTo',255);
+            $table->text('description');
+            $table->unsignedBigInteger('professional_afectat');
+            $table->foreign('professional_afectat')->references('id')->on('professional')->onDelete('cascade');
+            $table->unsignedBigInteger('professional_derivat');
+            $table->foreign('professional_derivat')->references('id')->on('professional')->onDelete('cascade');
             $table->unsignedBigInteger('incident_id');
             $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
             $table->timestamps();

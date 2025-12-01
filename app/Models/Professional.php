@@ -39,7 +39,18 @@ class Professional extends Model
         return $this->hasMany(ProfessionalTracking::class, 'tracker');
     }
 
+
+    public function maintenance(){
+        return $this->hasMany(Maintenance::class);
+    }
+
     public function accidentability(){
         return $this->hasMany(Accidentability::class);
     }
+
+    /*
+    public function rrhh(){
+        return $this->hasMany(RRHH::class);
+    }
+    */
 }

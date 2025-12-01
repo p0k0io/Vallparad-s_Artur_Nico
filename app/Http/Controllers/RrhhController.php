@@ -3,26 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Incident;
-use App\Models\Maintenance;
 
-
-class MaintenanceController extends Controller
+class RrhhController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    
     public function index()
     {
-        $maintenances = Maintenance::all();
-
-        return view('maintenance.indexMaintenance', 
-            [
-                'maintenances' => $maintenances
-            ]
-        );
-    
+        //
     }
 
     /**
@@ -38,16 +27,7 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        Maintenance::create([
-            'context'=>request('context'),
-            'description'=>request('description'),
-            'path'=>request('path'),
-            'professional_id'=> 1,
-            'status'=> 'pendent'
-
-        ]);
-
-        return redirect()->route('maintenance.index');
+        //
     }
 
     /**

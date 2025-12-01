@@ -14,7 +14,13 @@ class AccidentabilityController extends Controller
      */
     public function index()
     {
-        //
+        $accidents = Accidentability::all();
+
+        return view('accidentability.indexAccidentability', 
+            [
+                'accidents' => $accidents
+            ]
+        );
     }
 
     /**
@@ -30,23 +36,17 @@ class AccidentabilityController extends Controller
      */
     public function store(Request $request)
     {
-        Incident::create([
-            'type'=>'accidentability',
-            'professional_id'=>1
-        ]);
-        
-        $incident= Incident::latest()->first();
-
         Accidentability::create([
             'type'=>request('type'),
             'context'=>request('context'),
             'description'=>request('description'),
             'duration'=>request('duration'),
-            'professional_id'=>1,
-            'incident_id'=>$incident->id,
+            'startDate'=>request('startDate'),
+            'endDate'=>request('endDate'),
+            'professional_id'=>1
         ]);
 
-        return redirect()->route('incident.index');
+        return redirect()->route('accidentability.index');
     }
 
     /**

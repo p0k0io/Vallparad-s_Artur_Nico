@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     // Accidentabilitat
     const duration=document.getElementById("durationInput");
+    const startDate=document.getElementById("startDate");
+    const endDate=document.getElementById("endDate");
     const selectBaixa=document.getElementById("baixaSelect");
     /////////////////////////////////////////////////////////////
 
@@ -24,9 +26,18 @@ document.addEventListener('DOMContentLoaded',()=>{
     function changeBaixaState(){
         if(selectBaixa.value === "baixa"){
             duration.classList.remove("hidden");
+            startDate.classList.add("hidden");
+            endDate.classList.add("hidden");
+        }
+        else if (selectBaixa.value === "baixa_llarga") {
+            duration.classList.add("hidden");
+            startDate.classList.remove("hidden");
+            endDate.classList.remove("hidden");
         }
         else{
             duration.classList.add("hidden");
+            startDate.classList.add("hidden");
+            endDate.classList.add("hidden");
         }
     }
     //////////////////////////////////////////////////////////////////

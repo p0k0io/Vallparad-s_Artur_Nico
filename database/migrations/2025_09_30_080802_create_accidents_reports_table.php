@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('accidents_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('type',255);
+            $table->enum('type', ['sense_baixa','baixa','baixa_llarga'])->default('sense_baixa');
             $table->string('context',255);
             $table->text('description');
             $table->text('duration')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
-            $table->unsignedBigInteger('incident_id');
-            $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
             $table->timestamps();
         });
     }
