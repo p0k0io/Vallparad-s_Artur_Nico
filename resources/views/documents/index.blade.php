@@ -13,8 +13,16 @@
 
 
 
+
 <div class="min-h-screen bg-gray-50 flex items-start justify-center py-12 px-6">
-    <div class="w-full max-w-4xl bg-white rounded-3xl shadow-lg flex flex-col gap-6 p-8">
+<div>
+            <x-buscador :objecto="$documents" />
+
+
+
+
+        </div>
+<div class="w-full max-w-4xl bg-white rounded-3xl shadow-lg flex flex-col gap-6 p-8">
         
         <div class="flex justify-between items-center border-b border-gray-200 pb-4">
             <h1 class="text-2xl font-semibold text-gray-800">Documentos</h1>
@@ -31,6 +39,8 @@
                 <x-show-documents :document="$document" />
             @endforeach
         </div>
+
+        
     </div>
 </div>
 
