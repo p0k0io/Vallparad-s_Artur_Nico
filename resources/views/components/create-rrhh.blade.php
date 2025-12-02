@@ -3,7 +3,7 @@
         @click="openCreate = true"
         class="bg-orange-400 text-white text-lg px-20 py-2 font-bold rounded-full shadow-md transition-all"
     >
-        Fer Incidencia
+        Fer RRHH
     </button>
 
     <div 
@@ -14,17 +14,11 @@
         <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200"
             @click.outside="openCreate=false"
         >
-            <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">Fer Accidentabilitat</h1>
-
-            <div id="accidentabilityForm">
-                <form action="{{route('accidentability.store')}}" method="POST" class="space-y-4">
+            <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">Fer RRHH</h1>
+            
+            <div id="rrhhForm">
+                <form action="{{route('rrhh.store')}}" method="POST" class="space-y-4">
                 @csrf
-                    <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus de Baixa</label>
-                    <select id="baixaSelect" name="type" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
-                        <option value="Sense Baixa" selected>Sense Baixa</option>
-                        <option value="Amb Baixa">Amb Baixa</option>
-                        <option value="Baixa Llarga">Baixa Llarga</option>
-                    </select>
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>
                         <input type="text" name="context" required
@@ -37,23 +31,25 @@
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         ></textarea>
                     </div>
-                    <div id="durationInput" class="hidden">
-                        <label class="block text-sm text-orange-600 mb-1 font-medium">Durada</label>
-                        <input type="text" name="duration"
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Profesional afectat</label>
+                        <select name="professional_afectat" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
+                            @foreach($professionals as $professional)
+                                <option value="{{ $professional->id }}">{{ $professional->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div id="startDate" class="hidden">
-                        <label class="block text-sm text-orange-600 mb-1 font-medium">Data Inici</label>
-                        <input type="date" name="startDate"
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Profesional derivat</label>
+                        <select name="professional_derivat" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
-                    </div>
-                    <div id="endDate" class="hidden">
-                        <label class="block text-sm text-orange-600 mb-1 font-medium">Data Final</label>
-                        <input type="date" name="endDate"
-                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
-                        >
+                            @foreach($professionals as $professional)
+                                <option value="{{ $professional->id }}">{{ $professional->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
                         Crear
@@ -62,5 +58,4 @@
             </div>
         </div>
     </div>
-
 </div>

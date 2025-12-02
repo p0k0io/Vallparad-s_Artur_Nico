@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RRHH;
+use App\Models\Professional;
 
 class RrhhController extends Controller
 {
@@ -11,7 +13,15 @@ class RrhhController extends Controller
      */
     public function index()
     {
-        //
+        $rrhhs = RRHH::all();
+        $professionals = Professional::all();
+
+        return view('rrhh.indexRrhh', 
+            [
+                'rrhhs' => $rrhhs,
+                'professionals' =>$professionals
+            ]
+        );
     }
 
     /**
@@ -27,7 +37,15 @@ class RrhhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        RRHH::create([
+            'context'=>request('context'),
+            'description'=>request('description'),
+            'professional_id'=>1,
+            'professional_afectat'=>request('professional_afectat'),
+            'professional_derivat'=>request('professional_derivat'),
+        ]);
+
+        return redirect()->route('rrhh.index');
     }
 
     /**

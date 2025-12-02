@@ -14,7 +14,7 @@
             </div>
             <ul class="bg-gray-100 bg-opacity-30 m-4 rounded-xl border border-spacing-5 border-gray-300 border-dashed">
                 @forelse($accidents as $accident)
-                        <x-accidentability-card/>
+                        <x-accidentability-card :accident="$accident"/>
                 @empty
                     <h1 class="text-4xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun accident</h1>
                 @endforelse
@@ -22,5 +22,5 @@
         </div>
     </div>
 
-@vite(['resources/js/incidents.js'])
+@vite(['resources/js/accidentability.js'])
 @endsection

@@ -9,9 +9,9 @@ use App\Http\Controllers\ProjectComisionController;
 use App\Http\Controllers\ProjectComissionAssignedController;
 use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\AccidentabilityController;
+use App\Http\Controllers\RrhhController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 
@@ -22,8 +22,6 @@ Route::get('/', function () {
 });
 
 
-//--------------------------------------------------Incidents--------------------------------------------------------------------
-Route::resource('incident', IncidentController::class);
 
 //--------------------------------------------------Manteniment------------------------------------------------------------------
 Route::resource('maintenance', MaintenanceController::class);
@@ -31,6 +29,8 @@ Route::resource('maintenance', MaintenanceController::class);
 //--------------------------------------------------Accidentability--------------------------------------------------------------
 Route::resource('accidentability', AccidentabilityController::class);
 
+//--------------------------------------------------RRHH--------------------------------------------------------------
+Route::resource('rrhh', RrhhController::class);
 
 //--------------------------------------------------Uniformes------------------------------------------------------------------------
 

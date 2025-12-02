@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('path',255);
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
-            $table->enum('status', ['pendent','resolt'])->default('pendent');
+            $table->enum('status', ['Pendent','Resolt'])->default('Pendent');
             $table->timestamps();
         });
     }

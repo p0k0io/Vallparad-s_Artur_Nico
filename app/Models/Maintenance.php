@@ -10,6 +10,6 @@ class Maintenance extends Model
     protected $fillable = ['context','description','path','professional_id','status'];
 
     public function professional(){
-        return $this->belongsTo(Incident::class);
+        return $this->belongsTo(Professional::class);
     }
 }
