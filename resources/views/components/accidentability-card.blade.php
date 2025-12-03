@@ -3,15 +3,15 @@
         <div class="flex flex-col w-3/4">
             <h2 class="text-orange-500 text-2xl">{{$accident->context}}</h1>
             <div class="flex">
-                <p class="text-gray-300 mr-5">Obert: {{$accident->created_at}}</p>
-                <p class="text-gray-300 mr-5">Creada Per: {{$accident->professional->name}}</p>
+                <p class="text-gray-400 mr-5">Obert: {{$accident->created_at}}</p>
+                <p class="text-gray-400 mr-5">Creada Per: {{$accident->professional->name}}</p>
             </div>
-            <div class="flex">
-                <p class="text-gray-300 mr-1">Tipus Accidentabilitat: </p>
-                <p class="text-gray-300 mr-5 typeInfo"> {{$accident->type}}</p>
-                <p class='text-gray-300 mr-5'>Durada: {{$accident->duration}}</p>
-                <p class='text-gray-300 mr-5'>Data Inici: {{$accident->startDate}}</p>
-                <p class='text-gray-300'>Data Final: {{$accident->endDate}}</p>
+            <div class="flex accidentContent">
+                <p class="text-gray-400 mr-1">Tipus Accidentabilitat: </p>
+                <p class="text-gray-400 mr-5 accidentType">{{$accident->type}}</p>
+                <p class='text-gray-400 mr-5 accidentDuration'>Durada: {{$accident->duration}}</p>
+                <p class='text-gray-400 mr-5 accidentStart'>Data Inici: {{$accident->startDate}}</p>
+                <p class='text-gray-400 accidentEnd'>Data Final: {{$accident->endDate}}</p>
             </div>
             
         </div>

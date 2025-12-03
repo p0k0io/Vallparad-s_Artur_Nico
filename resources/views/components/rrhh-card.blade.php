@@ -3,12 +3,12 @@
         <div class="flex flex-col w-3/4">
             <h2 class="text-orange-500 text-2xl">{{$rrhh->context}}</h1>
             <div class="flex">
-                <p class="text-gray-300 mr-5">Obert: {{$rrhh->created_at}}</p>
-                <p class="text-gray-300 mr-5">Creada Per: {{$rrhh->professional->name}}</p>
+                <p class="text-gray-400 mr-5">Obert: {{$rrhh->created_at}}</p>
+                <p class="text-gray-400 mr-5">Creada Per: {{$rrhh->professional->name}}</p>
             </div>
             <div class="flex">
-                <p class='text-gray-300 mr-5'>Professional Afectat: ...</p>
-                <p class='text-gray-300 mr-5'>Professional Derivat: ...</p>
+                <p class='text-gray-400 mr-5'>Professional Afectat: {{$rrhh->afectat->name}}</p>
+                <p class='text-gray-400 mr-5'>Professional Derivat: {{$rrhh->derivat->name}}</p>
             </div>
             
         </div>

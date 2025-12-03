@@ -13,11 +13,11 @@ class RRHH extends Model
         return $this->belongsTo(Professional::class);
     }
 
-    public function professional_afectat(){
+    public function afectat(){
         return $this->belongsTo(Professional::class,'professional_afectat');
     }
 
-    public function professional_derivat(){
+    public function derivat(){
         return $this->belongsTo(Professional::class,'professional_derivat');
     }
 }

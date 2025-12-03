@@ -52,12 +52,4 @@ class Professional extends Model
     public function rrhh(){
         return $this->hasMany(RRHH::class);
     }
-    
-    public function professional_afectat(){
-        return $this->hasMany(Professional::class,'professional_afectat');
-    }
-
-    public function professional_derivat(){
-        return $this->hasMany(Professional::class,'professional_derivat');
-    }
 }
