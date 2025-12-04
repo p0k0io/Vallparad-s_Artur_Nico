@@ -13,12 +13,13 @@
             
         </div>
         <div class="flex w-1/4 justify-end my-4 gap-1">
-            <div class="font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
-                Fer seguiment
-            </div>
-            <div class="font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
-                Pendent
-            </div>
+            <a class="ferSeguiment font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+                Fer Seguiment
+            </a>
+            <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+                <input hidden value="{{$rrhh->id}}">
+                <span>{{$rrhh->status}}</span>
+            </a>
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">

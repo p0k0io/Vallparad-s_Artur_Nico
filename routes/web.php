@@ -25,6 +25,8 @@ Route::get('/', function () {
 
 //--------------------------------------------------Manteniment------------------------------------------------------------------
 Route::resource('maintenance', MaintenanceController::class);
+Route::post('/changeStateM', [MaintenanceController::class, 'changeStateM'])->name('changeStateM.maintenance');
+
 
 //--------------------------------------------------Accidentability--------------------------------------------------------------
 Route::resource('accidentability', AccidentabilityController::class);

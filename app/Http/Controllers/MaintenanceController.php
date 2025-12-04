@@ -80,4 +80,31 @@ class MaintenanceController extends Controller
     {
         //
     }
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public function changeStateM(Request $request){
+        $id=$request->input('id');
+        $id=(int) $id;
+
+        $maintenance=Maintenance::find($id);
+
+        if($maintenance->status == 'Pendent'){
+            $maintenance->status = 'Resolt';
+        }
+        else{
+            $maintenance->status = 'Pendent';
+        }
+
+        
+        $maintenance->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Estat actualitzat.',
+            'data' => $maintenance->status
+        ]);
+    }
 }

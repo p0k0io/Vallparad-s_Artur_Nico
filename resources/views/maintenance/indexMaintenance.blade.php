@@ -9,7 +9,7 @@
                 <use xlink:href="#search"></use>
             </svg>
         </div>
-        <div class="bg-white rounded-3xl shadow-md flex flex-col w-3/4 my-3 ">
+        <div class="bg-white rounded-3xl shadow-md flex flex-col w-3/4 my-3">
             <div class="flex flex-inline justify-between p-4 mx-1">
                 <h1 class="text-4xl font-bold text-orange-500">Ultims Manteniments</h1>
                 <x-create-maintenance/>
