@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maintenances', function (Blueprint $table) {
+        Schema::create('maintenance_tracking', function (Blueprint $table) {
             $table->id();
-            $table->string('context',255);
+            $table->string('context',100);
             $table->text('description');
-            $table->string('path',255)->nullable();
-            $table->unsignedBigInteger('professional_id');
-            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
-            $table->enum('status', ['Pendent','Resolt'])->default('Pendent');
+            $table->unsignedBigInteger('maintenance_id');
+            $table->foreign('maintenance_id')->references('id')->on('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('maintenances');
+        Schema::dropIfExists('maintenance_tracking');
     }
 };

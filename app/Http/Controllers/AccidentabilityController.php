@@ -35,6 +35,14 @@ class AccidentabilityController extends Controller
      */
     public function store(Request $request)
     {
+        if(request('type')=="Sense Baixa"){
+            $status="Sense Baixa";
+        }
+        else{
+            $status="En Baixa";
+        }
+
+
         Accidentability::create([
             'type'=>request('type'),
             'context'=>request('context'),
@@ -42,6 +50,7 @@ class AccidentabilityController extends Controller
             'duration'=>request('duration'),
             'startDate'=>request('startDate'),
             'endDate'=>request('endDate'),
+            'status'=>$status,
             'professional_id'=>1
         ]);
 
@@ -79,4 +88,32 @@ class AccidentabilityController extends Controller
     {
         //
     }
+
+
+    public function changeStateBaixa(Request $request){
+        $id=$request->input('id');
+        $id=(int) $id;
+
+        $accident=Accidentability::find($id);
+
+        if($accident->status == 'En Baixa'){
+            $accident->status = 'Baixa Finalitzada';
+        }
+        elseif($accident->status == 'Baixa Finalitzada'){
+            $accident->status = 'En Baixa';
+        }
+        else{
+            $accident->status = 'Sense Baixa';
+        }
+
+        $accident->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Estat actualitzat.',
+            'data' => $accident->status
+        ]);
+    }
+
+
 }

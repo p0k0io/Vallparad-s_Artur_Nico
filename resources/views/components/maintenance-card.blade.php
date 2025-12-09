@@ -5,11 +5,14 @@
             <div class="flex">
                 <p class="text-gray-400 mr-5">Obert: {{$maintenance->created_at}}</p>
             </div>
-            <p class="text-gray-400 mr-5">Creada Per: {{$maintenance->professional->name}}</p>
+            <p class="text-gray-400 mr-5">Creada Per: {{$maintenance->professional->name}} {{$maintenance->professional->surname1}} {{$maintenance->professional->surname2}}</p>
         </div>
         <div class="flex w-1/4 justify-end my-4 gap-1">
             <a class="ferSeguiment font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 Fer Seguiment
+
+                <x-maintenance-create-tracking :maintenance="$maintenance"/>
+
             </a>
             <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 <input hidden value="{{$maintenance->id}}">

@@ -47,7 +47,7 @@
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                             @foreach($professionals as $professional)
-                                <option value="{{ $professional->id }}">{{ $professional->name }}</option>
+                                <option value="{{ $professional->id }}">{{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}</option>
                             @endforeach
                         </select>
                     </div>

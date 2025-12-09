@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
+use App\Models\MaintenanceTracking;
 
 
 class MaintenanceController extends Controller
@@ -15,10 +16,12 @@ class MaintenanceController extends Controller
     public function index()
     {
         $maintenances = Maintenance::all();
+        $maintenanceTracking = MaintenanceTracking::all();
 
         return view('maintenance.indexMaintenance', 
             [
-                'maintenances' => $maintenances
+                'maintenances' => $maintenances,
+                'maintenanceTracking' => $maintenanceTracking
             ]
         );
     
@@ -84,6 +87,15 @@ class MaintenanceController extends Controller
 
 
     ////////////////////////////////////////////////////////////////////////////////
+
+    public function createMaintenanceTracking(Request $request){
+        MaintenanceTracking::create([
+            'context'=>request('context'),
+            'description'=>request('description'),
+            'maintenance_id'=>request('maintenance_id')
+        ]);
+        return redirect()->route('maintenance.index');
+    }
 
     public function changeStateM(Request $request){
         $id=$request->input('id');

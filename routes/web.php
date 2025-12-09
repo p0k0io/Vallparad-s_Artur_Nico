@@ -26,10 +26,11 @@ Route::get('/', function () {
 //--------------------------------------------------Manteniment------------------------------------------------------------------
 Route::resource('maintenance', MaintenanceController::class);
 Route::post('/changeStateM', [MaintenanceController::class, 'changeStateM'])->name('changeStateM.maintenance');
-
+Route::post('/createMaintenanceTracking', [MaintenanceController::class, 'createMaintenanceTracking'])->name('createMaintenanceTracking.maintenance');
 
 //--------------------------------------------------Accidentability--------------------------------------------------------------
 Route::resource('accidentability', AccidentabilityController::class);
+Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeStateBaixa'])->name('changeStateBaixa.maintenance');
 
 //--------------------------------------------------RRHH--------------------------------------------------------------
 Route::resource('rrhh', RrhhController::class);

@@ -4,7 +4,7 @@
             <h2 class="text-orange-500 text-2xl">{{$accident->context}}</h1>
             <div class="flex">
                 <p class="text-gray-400 mr-5">Obert: {{$accident->created_at}}</p>
-                <p class="text-gray-400 mr-5">Creada Per: {{$accident->professional->name}}</p>
+                <p class="text-gray-400 mr-5">Creada Per: {{$accident->professional->name}} {{$accident->professional->surname1}} {{$accident->professional->surname2}}</p>
             </div>
             <div class="flex accidentContent">
                 <p class="text-gray-400 mr-1">Tipus Accidentabilitat: </p>
@@ -16,12 +16,13 @@
             
         </div>
         <div class="flex w-1/4 justify-end my-4 gap-1">
-            <div class="font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+            <a class="font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 Descarregar Fitxa
-            </div>
-            <div class="font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
-                En Baixa
-            </div>
+            </a>
+            <a class="estatBaixa font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+                <input hidden value="{{$accident->id}}">
+                <span>En Baixa</span>
+            </a>
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">

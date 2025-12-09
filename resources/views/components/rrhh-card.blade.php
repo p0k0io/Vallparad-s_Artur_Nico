@@ -4,11 +4,11 @@
             <h2 class="text-orange-500 text-2xl">{{$rrhh->context}}</h1>
             <div class="flex">
                 <p class="text-gray-400 mr-5">Obert: {{$rrhh->created_at}}</p>
-                <p class="text-gray-400 mr-5">Creada Per: {{$rrhh->professional->name}}</p>
+                <p class="text-gray-400 mr-5">Creada Per: {{$rrhh->professional->name}} {{$rrhh->professional->surname1}} {{$rrhh->professional->surname2}}</p>
             </div>
             <div class="flex">
-                <p class='text-gray-400 mr-5'>Professional Afectat: {{$rrhh->afectat->name}}</p>
-                <p class='text-gray-400 mr-5'>Professional Derivat: {{$rrhh->derivat->name}}</p>
+                <p class='text-gray-400 mr-5'>Professional Afectat: {{$rrhh->afectat->name}} {{$rrhh->afectat->surname1}} {{$rrhh->afectat->surname2}}</p>
+                <p class='text-gray-400 mr-5'>Professional Derivat: {{$rrhh->derivat->name}} {{$rrhh->derivat->surname1}} {{$rrhh->derivat->surname2}}</p>
             </div>
             
         </div>

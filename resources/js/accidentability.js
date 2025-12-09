@@ -6,6 +6,40 @@ document.addEventListener('DOMContentLoaded',()=>{
     const selectBaixa=document.getElementById("baixaSelect");
 
     
+    document.querySelectorAll('.estatBaixa').forEach(state=> {
+        console.log(state);
+
+        state.addEventListener('click', function(event){
+            event.stopPropagation();
+            const meta = document.querySelector('meta[name="csrf-token"]');
+            const token = meta ? meta.getAttribute('content') : '';
+
+            const spanStatus=state.querySelector('span');
+            const idAcc=state.querySelector('input');
+            const id=idAcc.value;
+
+            fetch('/changeStateBaixa',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({ id: id })
+            })
+            .then(response => response.json())
+            .then(response =>{
+                if (response.success==true) {
+                    spanStatus.innerHTML=response.data;
+                }
+                else{
+                    console.log(response.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error Gran',error);
+            });
+        });
+    });
 
         document.querySelectorAll('.accidentContent').forEach(type => {
 
@@ -33,8 +67,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         });
 
-
     selectBaixa.addEventListener('change',changeBaixaState);
+
 
     function changeBaixaState(){
         if(selectBaixa.value === "Amb Baixa"){

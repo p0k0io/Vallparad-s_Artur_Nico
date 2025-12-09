@@ -1,9 +1,22 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
+    document.querySelectorAll('.ferSeguiment').forEach(tracking => {
+
+        const trackDiv=tracking.querySelector('.fixed');
+
+        tracking.addEventListener('click', function(event){
+            event.stopPropagation();
+
+            trackDiv.classList.remove('hidden');
+            trackDiv.classList.add('flex');
+        });
+    });
+
+
     document.querySelectorAll('.canviarStatus').forEach(state => {
         console.log(state);
-        const currentState=document.querySelector('.canviarStatus')
-        const maintenanceTracking=document.querySelector('.ferSeguiment')
+        const currentState=document.querySelector('.canviarStatus');
+        const maintenanceTracking=document.querySelector('.ferSeguiment');
         const currentStateInner=currentState.innerHTML;
 
         state.addEventListener('click', function(event){
