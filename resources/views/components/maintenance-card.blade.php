@@ -24,31 +24,15 @@
         <div class="pb-3 text-gray-500">
             <p>{{$maintenance->description}}</p>
         </div>
-        <div class="rounded-xl border border-spacing-5 border-gray-300 border-dashed">
+        <div class="rounded-xl border border-spacing-5 border-gray-300 border-dashed h-36 overflow-y-scroll">
             <ul>
-                <li x-data="{ open: false }" class="border border-orange-300 rounded-xl m-2 overflow-hidden">
-                    <button
-                        @click="open=!open"
-                        class="bg-orange-50 hover:bg-orange-100 w-full text-left transition py-1"
-                    >
-                        <div class="flex justify-between">
-                            <p class="text-orange-500 pl-5 text-xl">
-                                Tema
-                            </p>
-                            <p class="text-lg pr-5 text-orange-400">
-                                Qui fa el seguiment Quan s'ha creat
-                            </p>
-                        </div>
-                    </button>
-                    <div x-show="open" class="bg-white px-6 py-4 border-t border-orange-100 rounded-b-xl">
-                        <p>
-                            Descripcio
-                        </p>
-                    </div>
-                </li>
+                @forelse($maintenanceTracking as $tracking)
+                    <x-maintenance-tracking-card :tracking="$tracking"/>
+                @empty
+                    <h2 class="text-2xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun seguiment</h1>
+                @endforelse
             </ul>
         </div>
         
     </div>
 </li>
-

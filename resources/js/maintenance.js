@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     document.querySelectorAll('.ferSeguiment').forEach(tracking => {
 
-        const trackDiv=tracking.querySelector('.fixed');
+        let trackDiv=tracking.querySelector('.fixed');
 
         tracking.addEventListener('click', function(event){
             event.stopPropagation();
@@ -15,18 +15,18 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     document.querySelectorAll('.canviarStatus').forEach(state => {
         console.log(state);
-        const currentState=document.querySelector('.canviarStatus');
-        const maintenanceTracking=document.querySelector('.ferSeguiment');
-        const currentStateInner=currentState.innerHTML;
+        let currentState=document.querySelector('.canviarStatus');
+        let maintenanceTracking=document.querySelector('.ferSeguiment');
+        let currentStateInner=currentState.innerHTML;
 
         state.addEventListener('click', function(event){
             event.stopPropagation();
-            const meta = document.querySelector('meta[name="csrf-token"]');
-            const token = meta ? meta.getAttribute('content') : '';
+            let meta = document.querySelector('meta[name="csrf-token"]');
+            let token = meta ? meta.getAttribute('content') : '';
 
-            const spanStatus=state.querySelector('span');
-            const idM=state.querySelector('input');
-            const id=idM.value;
+            let spanStatus=state.querySelector('span');
+            let idM=state.querySelector('input');
+            let id=idM.value;
 
             /*
                 if(currentStateInner==='Resolt'){

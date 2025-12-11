@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-    const maintForm=document.getElementById('maintenanceForm');
-    const rrhhForm=document.getElementById('rrhhForm');
-    const accForm=document.getElementById('accidentabilityForm');
+    let maintForm=document.getElementById('maintenanceForm');
+    let rrhhForm=document.getElementById('rrhhForm');
+    let accForm=document.getElementById('accidentabilityForm');
     
     // Accidentabilitat
-    const duration=document.getElementById("durationInput");
-    const startDate=document.getElementById("startDate");
-    const endDate=document.getElementById("endDate");
-    const selectBaixa=document.getElementById("baixaSelect");
+    let duration=document.getElementById("durationInput");
+    let startDate=document.getElementById("startDate");
+    let endDate=document.getElementById("endDate");
+    let selectBaixa=document.getElementById("baixaSelect");
     /////////////////////////////////////////////////////////////
 
-    const btMaintenance=document.querySelector('#btMaintenance');
+    let btMaintenance=document.querySelector('#btMaintenance');
     btMaintenance.addEventListener('click',btMaintenanceClick);
 
-    const btRRHH=document.querySelector('#btRRHH');
+    let btRRHH=document.querySelector('#btRRHH');
     btRRHH.addEventListener('click',btRRHHClick);
 
-    const btAccidentability=document.querySelector('#btAccidentability');
+    let btAccidentability=document.querySelector('#btAccidentability');
     btAccidentability.addEventListener('click',btAccidentabilityClick);
 
     // Accidentabilitat

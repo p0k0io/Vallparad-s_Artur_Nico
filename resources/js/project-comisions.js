@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     function showBladeAlert(message,success) {
-        const toast = document.createElement('div');
+        let toast = document.createElement('div');
         if(success==true){
             toast.className = `
             flex gap-2 items-center text-white font-medium
@@ -45,16 +45,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     function assignProfessional(e){
         e.preventDefault();
 
-        const idProf=e.dataTransfer.getData("id");
+        let idProf=e.dataTransfer.getData("id");
 
-        const liProj=e.target.closest("li");
-        const idProj=liProj.getAttribute("id");
+        let liProj=e.target.closest("li");
+        let idProj=liProj.getAttribute("id");
 
         console.log(idProf);
         console.log(idProj);
 
-        const meta = document.querySelector('meta[name="csrf-token"]');
-        const token = meta ? meta.getAttribute('content') : '';
+        let meta = document.querySelector('meta[name="csrf-token"]');
+        let token = meta ? meta.getAttribute('content') : '';
         
         
         fetch('storeProj',{

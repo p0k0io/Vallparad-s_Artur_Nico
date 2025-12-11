@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
    
-    const duration=document.getElementById("durationInput");
-    const startDate=document.getElementById("startDate");
-    const endDate=document.getElementById("endDate");
-    const selectBaixa=document.getElementById("baixaSelect");
+    let duration=document.getElementById("durationInput");
+    let startDate=document.getElementById("startDate");
+    let endDate=document.getElementById("endDate");
+    let selectBaixa=document.getElementById("baixaSelect");
 
     
     document.querySelectorAll('.estatBaixa').forEach(state=> {
@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         state.addEventListener('click', function(event){
             event.stopPropagation();
-            const meta = document.querySelector('meta[name="csrf-token"]');
-            const token = meta ? meta.getAttribute('content') : '';
+            let meta = document.querySelector('meta[name="csrf-token"]');
+            let token = meta ? meta.getAttribute('content') : '';
 
-            const spanStatus=state.querySelector('span');
-            const idAcc=state.querySelector('input');
-            const id=idAcc.value;
+            let spanStatus=state.querySelector('span');
+            let idAcc=state.querySelector('input');
+            let id=idAcc.value;
 
             fetch('/changeStateBaixa',{
                     method: 'POST',
@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         document.querySelectorAll('.accidentContent').forEach(type => {
 
-            const accidentDuration=type.querySelector('.accidentDuration');
-            const accidentStart=type.querySelector('.accidentStart');
-            const accidentEnd=type.querySelector('.accidentEnd');
-            const accidentType=type.querySelector('.accidentType');
+            let accidentDuration=type.querySelector('.accidentDuration');
+            let accidentStart=type.querySelector('.accidentStart');
+            let accidentEnd=type.querySelector('.accidentEnd');
+            let accidentType=type.querySelector('.accidentType');
 
             console.log(accidentType);
 
