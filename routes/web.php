@@ -34,6 +34,7 @@ Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeState
 
 //--------------------------------------------------RRHH--------------------------------------------------------------
 Route::resource('rrhh', RrhhController::class);
+Route::post('/createRrhhTracking', [RrhhController::class, 'createRrhhTracking'])->name('createRrhhTracking.rrhh');
 
 //--------------------------------------------------Uniformes------------------------------------------------------------------------
 

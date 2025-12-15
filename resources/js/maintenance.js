@@ -58,6 +58,24 @@ document.addEventListener('DOMContentLoaded',()=>{
             .then(response =>{
                 if (response.success==true) {
                     spanStatus.innerHTML=response.data;
+                    /*
+                    if(response.data==='Resolt'){
+                        currentState.classList.remove('bg-orange-200');
+                        currentState.classList.remove('text-orange-500');
+                        currentState.classList.remove('border-orange-300');
+                        currentState.classList.add('bg-green-200');
+                        currentState.classList.add('text-green-500');
+                        currentState.classList.add('border-green-300');
+                    }
+                    else{
+                        currentState.classList.remove('bg-green-200');
+                        currentState.classList.remove('text-green-500');
+                        currentState.classList.remove('border-green-300');
+                        currentState.classList.add('bg-orange-200');
+                        currentState.classList.add('text-orange-500');
+                        currentState.classList.add('border-orange-300');
+                    }
+                    */
                 }
                 else{
                     console.log(response.message);
@@ -66,7 +84,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             .catch(error => {
                 console.error('Error Gran',error);
             });
+
         });
     });    
+
+    /*
+    document.querySelectorAll("maintenanceTrackingCard").forEach(trackingList=>{
+
+    });
+    */
 });
 

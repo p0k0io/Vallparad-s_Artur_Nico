@@ -16,12 +16,10 @@ class MaintenanceController extends Controller
     public function index()
     {
         $maintenances = Maintenance::all();
-        $maintenanceTracking = MaintenanceTracking::all();
 
         return view('maintenance.indexMaintenance', 
             [
                 'maintenances' => $maintenances,
-                'maintenanceTracking' => $maintenanceTracking
             ]
         );
     
@@ -43,6 +41,7 @@ class MaintenanceController extends Controller
         Maintenance::create([
             'context'=>request('context'),
             'description'=>request('description'),
+            'responsible'=>request('responsible'),
             'path'=>request('path'),
             'professional_id'=> 1,
             'status'=> 'pendent'

@@ -15,6 +15,7 @@
         <div class="flex w-1/4 justify-end my-4 gap-1">
             <a class="ferSeguiment font-bold text-orange-500 mr-3 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 Fer Seguiment
+                <x-rrhh-create-tracking :rrhh="$rrhh"/>
             </a>
             <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 <input hidden value="{{$rrhh->id}}">
@@ -23,11 +24,17 @@
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
-        <div>
+        <div class="pb-3 text-gray-500">
             <p>{{$rrhh->description}}</p>
         </div>
         <div class="rounded-xl border border-spacing-5 border-gray-300 border-dashed">
-            prova de seguiment
+            <ul>
+                @forelse($rrhh->rrhhTrackings as $tracking)
+                    <x-rrhh-tracking-card :tracking="$tracking"/>
+                @empty
+                    <h2 class="text-2xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun tema pendent</h1>
+                @endforelse
+            </ul>
         </div>
     </div>
 </li>

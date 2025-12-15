@@ -16,7 +16,7 @@
             </div>
             <ul class="bg-gray-100 bg-opacity-30 m-4 rounded-xl border border-spacing-5 border-gray-300 border-dashed h-96 overflow-y-scroll">
                 @forelse($maintenances as $maintenance)
-                    <x-maintenance-card :maintenance="$maintenance" :maintenanceTracking="$maintenanceTracking"/>
+                    <x-maintenance-card :maintenance="$maintenance"/>
                 @empty
                     <h1 class="text-4xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun manteniment</h1>
                 @endforelse

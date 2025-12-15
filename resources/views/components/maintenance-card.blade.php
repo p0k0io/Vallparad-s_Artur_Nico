@@ -3,7 +3,7 @@
         <div class="flex flex-col w-3/4">
             <h2 class="text-orange-500 text-2xl">{{$maintenance->context}}</h1>
             <div class="flex">
-                <p class="text-gray-400 mr-5">Obert: {{$maintenance->created_at}}</p>
+                <p class="text-gray-400 mr-5">Obert: {{$maintenance->created_at}}</p> <p class="text-gray-400 mr-5">Responsable: {{$maintenance->responsible}} </p>
             </div>
             <p class="text-gray-400 mr-5">Creada Per: {{$maintenance->professional->name}} {{$maintenance->professional->surname1}} {{$maintenance->professional->surname2}}</p>
         </div>
@@ -14,10 +14,12 @@
                 <x-maintenance-create-tracking :maintenance="$maintenance"/>
 
             </a>
+            
             <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
                 <input hidden value="{{$maintenance->id}}">
                 <span>{{$maintenance->status}}</span>
             </a>
+            
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
@@ -26,7 +28,7 @@
         </div>
         <div class="rounded-xl border border-spacing-5 border-gray-300 border-dashed h-36 overflow-y-scroll">
             <ul>
-                @forelse($maintenanceTracking as $tracking)
+                @forelse($maintenance->maintenanceTrackings as $tracking)
                     <x-maintenance-tracking-card :tracking="$tracking"/>
                 @empty
                     <h2 class="text-2xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun seguiment</h1>

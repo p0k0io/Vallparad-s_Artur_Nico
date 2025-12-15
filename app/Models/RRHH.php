@@ -20,4 +20,8 @@ class RRHH extends Model
     public function derivat(){
         return $this->belongsTo(Professional::class,'professional_derivat');
     }
+
+    public function rrhhTrackings(){
+        return $this->hasMany(RrhhTracking::class, 'rrhh_id');
+    }
 }

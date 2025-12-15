@@ -26,6 +26,12 @@
                         >
                     </div>
                     <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Responsable</label>
+                        <input type="text" name="responsible" required
+                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                        >
+                    </div>
+                    <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Descripció</label>
                         <textarea name="description" required
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
@@ -36,6 +42,20 @@
                         <input type="text" name="path"
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
+                    </div>
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Nota</label>
+                        <div class="border border-orange-200 rounded-xl overflow-hidden">
+                            <div id="toolbar" class="flex border-b border-orange-200">
+                                <label for="stroke" class="text-orange-600">Stroke</label>
+                                <input id="stroke" name='stroke' type="color">
+                                <label for="lineWidth" class="text-orange-600">Line Width</label>
+                                <input id="lineWidth" name='lineWidth' type="number" value="5">
+                            </div>
+                            <div>
+                                <canvas id="drawing-board" class="border-orange-200 bg-white"></canvas>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
                         Crear

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RRHH;
 use App\Models\Professional;
+use App\Models\RrhhTracking;
 
 class RrhhController extends Controller
 {
@@ -78,5 +79,16 @@ class RrhhController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public function createRrhhTracking(Request $request){
+        RrhhTracking::create([
+            'context'=>request('context'),
+            'description'=>request('description'),
+            'rrhh_id'=>request('rrhh_id')
+        ]);
+        return redirect()->route('rrhh.index');
     }
 }

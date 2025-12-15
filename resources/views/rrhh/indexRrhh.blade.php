@@ -24,5 +24,5 @@
         </div>
     </div>
 
-@vite(['resources/js/incidents.js'])
+@vite(['resources/js/rrhh.js'])
 @endsection
