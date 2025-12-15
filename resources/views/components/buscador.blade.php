@@ -22,22 +22,9 @@ o cualuier cosa q sea un array EXTRAE DESCRIPCION
     const resultados = document.getElementById('resultados');
 
     input.addEventListener('keyup', function() {
-        const texto = this.value.toLowerCase().trim();
+        
+        
 
-        // Si el buscador está vacío, no mostrar nada
-        if (texto === '') {
-            resultados.innerHTML = '';
-            return;
-        }
 
-        const filtrados = data.filter(item => 
-            item.description.toLowerCase().includes(texto)
-        );
-
-        resultados.innerHTML = filtrados.map(item => `<li>${item.description}</li>`).join('');
-
-        if(filtrados.length === 0) {
-            resultados.innerHTML = '<li>No se encontraron resultados</li>';
-        }
     });
 </script>

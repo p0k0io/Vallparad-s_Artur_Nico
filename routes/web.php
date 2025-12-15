@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
 use App\Http\Controllers\ExternalContactController;
+use App\Http\Controllers\ServeiGeneralController;
 
 
 // Página principal
@@ -134,6 +135,11 @@ Route::get('/externalContact', [ExternalContactController::class, 'index'])
 Route::post('/externalContact', [ExternalContactController::class, 'store'])
     ->name('externalContact.store');
 
+
+//Rutas servicios generales
+
+Route::get('/serveisGenerals', [ServeiGeneralController::class, 'index'])->name('serveisGenerals.index');
+Route::resource('serveisGenerals', ServeiGeneralController::class);
 
 // Rutas de autenticación
 require __DIR__.'/auth.php';
