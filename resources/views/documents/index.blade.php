@@ -16,7 +16,7 @@
 
 <div class="min-h-screen bg-gray-50 flex items-start justify-center py-12 px-6">
 <div>
-            <x-buscador :objecto="$documents" />
+            
 
 
 
@@ -26,6 +26,7 @@
         
         <div class="flex justify-between items-center border-b border-gray-200 pb-4">
             <h1 class="text-2xl font-semibold text-gray-800">Documentos</h1>
+            <x-buscador :objecto="$documents" />
             <button 
                 onclick="createModal()" 
                 class="px-6 py-2 rounded-xl bg-orange-500 text-white font-medium shadow hover:bg-orange-600 transition">

@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProfessionalController extends Controller
 {
+
+    public function data()
+    {
+        $professionals = Professional::all();
+        return response()->json($professionals);
+    }
     /**
      * Display a listing of the resource.
      */

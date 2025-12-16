@@ -141,5 +141,16 @@ Route::post('/externalContact', [ExternalContactController::class, 'store'])
 Route::get('/serveisGenerals', [ServeiGeneralController::class, 'index'])->name('serveisGenerals.index');
 Route::resource('serveisGenerals', ServeiGeneralController::class);
 
-// Rutas de autenticación
+Route::get("/api/professionals",[ProfessionalController::class,'data']);
+
+Route::get('professionalsinfo', function () {
+    return 'OK';
+});
+
+
+
+//Rutas testeo fetch
+
+/* Route::get('/professionals',[ProfessionalController::class]);
+ */// Rutas de autenticación
 require __DIR__.'/auth.php';
