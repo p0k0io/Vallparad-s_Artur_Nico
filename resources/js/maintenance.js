@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
+    let maintenancBtn=document.querySelector(".crateMaintenanceButton");
+
+
+
     document.querySelectorAll('.ferSeguiment').forEach(tracking => {
 
         let trackDiv=tracking.querySelector('.fixed');
@@ -10,8 +14,18 @@ document.addEventListener('DOMContentLoaded',()=>{
             trackDiv.classList.remove('hidden');
             trackDiv.classList.add('flex');
         });
+
+        //tracking.querySelector('');
     });
 
+    /*
+    document.querySelectorAll('.backdrop-blur-sm').forEach(e=>{
+        e.addEventListener('click',function(event){
+            console.log("Ola")
+            e.classList.add('hidden');
+        })
+    });
+    */
 
     document.querySelectorAll('.canviarStatus').forEach(state => {
         console.log(state);
@@ -28,24 +42,23 @@ document.addEventListener('DOMContentLoaded',()=>{
             let idM=state.querySelector('input');
             let id=idM.value;
 
-            /*
-                if(currentStateInner==='Resolt'){
-                    currentState.classList.remove('bg-orange-200');
-                    currentState.classList.remove('text-orange-500');
-                    currentState.classList.remove('border-orange-300');
-                    currentState.classList.add('bg-green-200');
-                    currentState.classList.add('text-green-500');
-                    currentState.classList.add('border-green-300');
-                }
-                else{
-                    currentState.classList.remove('bg-green-200');
-                    currentState.classList.remove('text-green-500');
-                    currentState.classList.remove('border-green-300');
-                    currentState.classList.add('bg-orange-200');
-                    currentState.classList.add('text-orange-500');
-                    currentState.classList.add('border-orange-300');
-                }
-            */
+            if(currentStateInner==='Resolt'){
+                currentState.classList.remove('bg-orange-200');
+                currentState.classList.remove('text-orange-500');
+                currentState.classList.remove('border-orange-300');
+                currentState.classList.add('bg-green-200');
+                currentState.classList.add('text-green-500');
+                currentState.classList.add('border-green-300');
+            }
+            else{
+                currentState.classList.remove('bg-green-200');
+                currentState.classList.remove('text-green-500');
+                currentState.classList.remove('border-green-300');
+                currentState.classList.add('bg-orange-200');
+                currentState.classList.add('text-orange-500');
+                currentState.classList.add('border-orange-300');
+            }
+            
             fetch('/changeStateM',{
                     method: 'POST',
                     headers: {
@@ -58,24 +71,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             .then(response =>{
                 if (response.success==true) {
                     spanStatus.innerHTML=response.data;
-                    /*
-                    if(response.data==='Resolt'){
-                        currentState.classList.remove('bg-orange-200');
-                        currentState.classList.remove('text-orange-500');
-                        currentState.classList.remove('border-orange-300');
-                        currentState.classList.add('bg-green-200');
-                        currentState.classList.add('text-green-500');
-                        currentState.classList.add('border-green-300');
-                    }
-                    else{
-                        currentState.classList.remove('bg-green-200');
-                        currentState.classList.remove('text-green-500');
-                        currentState.classList.remove('border-green-300');
-                        currentState.classList.add('bg-orange-200');
-                        currentState.classList.add('text-orange-500');
-                        currentState.classList.add('border-orange-300');
-                    }
-                    */
                 }
                 else{
                     console.log(response.message);
@@ -87,11 +82,5 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         });
     });    
-
-    /*
-    document.querySelectorAll("maintenanceTrackingCard").forEach(trackingList=>{
-
-    });
-    */
 });
 

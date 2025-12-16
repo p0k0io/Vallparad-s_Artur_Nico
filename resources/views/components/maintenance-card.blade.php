@@ -15,7 +15,11 @@
 
             </a>
             
-            <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+            @if($maintenance->status=="Pendent")
+                <a class="canviarStatus font-bold text-orange-500 border-2 rounded-full border-orange-400 bg-orange-200 flex w-2/4 justify-center items-center">
+            @else
+                <a class="canviarStatus font-bold text-green-500 border-2 rounded-full border-green-400 bg-green-200 flex w-2/4 justify-center items-center">
+            @endif
                 <input hidden value="{{$maintenance->id}}">
                 <span>{{$maintenance->status}}</span>
             </a>

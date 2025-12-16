@@ -8,7 +8,6 @@
 
     <div 
         x-show="openCreate" 
-        
         class="fixed inset-0 backdrop-blur-sm flex items-center justify-center "
     >
         <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200"
@@ -44,27 +43,22 @@
                         >
                     </div>
                     <div>
-                        <label class="block text-sm text-orange-600 mb-1 font-medium">Nota</label>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Firma</label>
                         <div class="border border-orange-200 rounded-xl overflow-hidden">
-                            <div id="toolbar" class="flex border-b border-orange-200">
-                                <label for="stroke" class="text-orange-600">Stroke</label>
-                                <input id="stroke" name='stroke' type="color">
-                                <label for="lineWidth" class="text-orange-600">Line Width</label>
-                                <input id="lineWidth" name='lineWidth' type="number" value="5">
+                            <div class="bg-orange-50 border-b-2 border-orange-200 p-2">
+                                <a id="clear" class="border-b-2 border-orange-300 text-orange-600">Netejar</a>
                             </div>
-                            <div>
-                                <canvas id="drawing-board" class="border-orange-200 bg-white"></canvas>
+                            <div class="h-36">
+                                <canvas width="460" height="144" id="canvas" class="border-orange-200 bg-white"></canvas>
                             </div>
                         </div>
+                        <input type="hidden" name="firma">
                     </div>
-                    <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
+                    <button type="submit" class="crateMaintenanceButton px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition w-full">
                         Crear
                     </button>
                 </form>
-            </div>
-
-            
+            </div>           
         </div>
     </div>
-
 </div>

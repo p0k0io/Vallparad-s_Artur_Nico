@@ -1,5 +1,5 @@
 <div class="fixed inset-0 backdrop-blur-sm items-center justify-center hidden">
-    <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200">
+    <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200 z-50">
         <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">
             Fer Seguiment
         </h1>
@@ -18,7 +18,7 @@
                     class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                 >
             </div>
-            <input type="submit" value="Crear">
+            <input type="submit" value="Crear" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition w-full">
         </form>
     </div>
 </div>
