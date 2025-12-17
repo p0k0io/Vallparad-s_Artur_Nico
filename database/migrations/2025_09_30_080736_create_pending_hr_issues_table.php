@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('context',100);
             $table->text('description');
+            $table->text('signature');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->unsignedBigInteger('professional_afectat');

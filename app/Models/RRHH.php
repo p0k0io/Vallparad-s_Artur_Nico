@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RRHH extends Model
 {
     protected $table = "pending_hr_issues";
-    protected $fillable = ['context','description','professional_id','professional_afectat','professional_derivat'];
+    protected $fillable = ['context','description','signature','professional_id','professional_afectat','professional_derivat'];
 
     public function professional(){
         return $this->belongsTo(Professional::class);

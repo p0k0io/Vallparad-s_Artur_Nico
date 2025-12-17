@@ -44,7 +44,8 @@ class MaintenanceController extends Controller
             'responsible'=>request('responsible'),
             'path'=>request('path'),
             'professional_id'=> 1,
-            'status'=> 'pendent'
+            'status'=> 'pendent',
+            'signature'=> request('signature')
 
         ]);
 

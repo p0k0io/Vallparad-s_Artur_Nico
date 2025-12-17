@@ -24,8 +24,9 @@
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
-        <div class="pb-3 text-gray-500">
-            <p>{{$rrhh->description}}</p>
+        <div class="pb-3 text-gray-500 flex justify-between">
+            <p class="w-3/5">{{$rrhh->description}}</p>
+            <img src="{{$rrhh->signature}}" alt="firma" class="border border-orange-400 border-dashed rounded-xl">
         </div>
         <div class="rounded-xl border border-spacing-5 border-gray-300 border-dashed">
             <ul>

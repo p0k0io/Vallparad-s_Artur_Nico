@@ -26,8 +26,9 @@
         </div>
     </button>
     <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
-        <div>
-            <p>{{$accident->description}}</p>
+        <div class="flex justify-between">
+            <p class="w-3/5">{{$accident->description}}</p>
+            <img src="{{$accident->signature}}" alt="firma" class="border border-orange-400 border-dashed rounded-xl">
         </div>
         
     </div>

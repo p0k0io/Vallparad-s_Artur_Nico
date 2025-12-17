@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('duration')->nullable();
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
+            $table->text('signature');
             $table->enum('status', ['Baixa Finalitzada','En Baixa','Sense Baixa']);
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');

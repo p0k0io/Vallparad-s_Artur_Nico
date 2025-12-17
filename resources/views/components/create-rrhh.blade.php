@@ -51,7 +51,20 @@
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Firma</label>
+                        <div class="border border-orange-200 rounded-xl overflow-hidden">
+                            <div class="bg-orange-50 border-b-2 border-orange-200 p-2 flex justify-between">
+                                <a id="clear" class="border-b-2 border-orange-300 text-orange-600">Netejar</a>
+                                <a id="guardar" class="border-b-2 border-orange-300 text-orange-600">Guardar</a>
+                            </div>
+                            <div class="h-36">
+                                <canvas width="460" height="144" id="canvas" class="border-orange-200 bg-white"></canvas>
+                            </div>
+                        </div>
+                        <input type="hidden" id="signature" name="signature">
+                    </div>
+                    <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition w-full">
                         Crear
                     </button>
                 </form>

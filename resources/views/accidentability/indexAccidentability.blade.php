@@ -23,4 +23,5 @@
     </div>
 
 @vite(['resources/js/accidentability.js'])
+@vite(['resources/js/canvas.js'])
 @endsection

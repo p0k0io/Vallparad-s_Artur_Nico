@@ -1,12 +1,21 @@
 let canvas = document.getElementById("canvas");
 let clear = document.getElementById('clear');
+let guardar = document.getElementById('guardar');
 let context = canvas.getContext("2d");
+let signature = document.getElementById("signature");
+signature.value="";
+console.log("Valor signature: "+signature.value);
 
 
 context.strokeStyle="black";
 context.lineCap = "round";
 let isPainting = false;
 let lineWidth = 5;
+
+guardar.addEventListener('click', e=>{
+    signature.value=canvas.toDataURL();
+    console.log("Valor signature: "+signature.value);
+});
 
 clear.addEventListener('click', e=>{
     context.clearRect(0,0,canvas.width, canvas.height);
@@ -39,5 +48,5 @@ canvas.addEventListener('mousemove', e=>{
     }
 });
 
-let data=canvas.toDataURL();
+let data=canvas;
 console.log(data);

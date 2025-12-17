@@ -50,6 +50,7 @@ class AccidentabilityController extends Controller
             'duration'=>request('duration'),
             'startDate'=>request('startDate'),
             'endDate'=>request('endDate'),
+            'signature'=>request('signature'),
             'status'=>$status,
             'professional_id'=>1
         ]);

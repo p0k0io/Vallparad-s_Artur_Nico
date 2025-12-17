@@ -11,10 +11,10 @@
         </div>
         <div class="bg-white rounded-3xl shadow-md flex flex-col w-3/4 my-3">
             <div class="flex flex-inline justify-between p-4 mx-1">
-                <h1 class="text-4xl font-bold text-orange-500">Ultims Manteniments</h1>
+                <h1 class="text-4xl font-bold text-orange-500">Manteniments</h1>
                 <x-create-maintenance/>
             </div>
-            <ul class="bg-gray-100 bg-opacity-30 m-4 rounded-xl border border-spacing-5 border-gray-300 border-dashed h-96 overflow-y-scroll">
+            <ul class="bg-gray-100 bg-opacity-30 m-4 rounded-xl border border-spacing-5 border-gray-300 border-dashed h-[32rem] overflow-y-scroll">
                 @forelse($maintenances as $maintenance)
                     <x-maintenance-card :maintenance="$maintenance"/>
                 @empty

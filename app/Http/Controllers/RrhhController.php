@@ -41,6 +41,7 @@ class RrhhController extends Controller
         RRHH::create([
             'context'=>request('context'),
             'description'=>request('description'),
+            'signature'=>request('signature'),
             'professional_id'=>1,
             'professional_afectat'=>request('professional_afectat'),
             'professional_derivat'=>request('professional_derivat'),
