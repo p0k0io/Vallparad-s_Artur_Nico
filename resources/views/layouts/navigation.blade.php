@@ -18,34 +18,157 @@
 </div>
 
             </div>
-
-                <!-- Navigation Links -->
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <!-- Navigation Links 
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">   -----
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('professional.index')" :active="request()->routeIs('professional')">
+                    <x-nav-link :href="route('professional.index')" :active="request()->routeIs('professional')">       ------
                         {{ __('Professionales') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('center.index')" :active="request()->routeIs('center')">
+                    <x-nav-link :href="route('center.index')" :active="request()->routeIs('center')">   -----
                         {{ __('Centres') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('projects_comisions')">
+                    <x-nav-link :href="route('projects_comisions.index')" :active="request()->routeIs('projects_comisions')">   ------
                         {{ __('Projectes i Comisions') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('course.index')" :active="request()->routeIs('courses')">
+                    <x-nav-link :href="route('course.index')" :active="request()->routeIs('courses')">  --------
                         {{ __('Cursos') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('uniforms.index')" :active="request()->routeIs('uniforms')">
                         {{ __('Uniformes') }}
                     </x-nav-link>
-                </div>
+                    -->
+                    <!-- Nav a tot lo que esta relacionat amb Professionals-->
 
+                    <div class="hidden sm:flex sm:items-center sm:ms-6 px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-orange-400 focus:outline-none focus:text-gray-700 focus:border-orange-400 transition duration-150 ease-in-out">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    Professionals
+                                    <!--
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    -->
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('professional.index')">
+                                    {{ __('Llistat') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('uniforms.index')">
+                                    {{ __('Uniformes') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('uniforms.index')">
+                                    {{ __('Documentacio') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
+                    <!-- Nav a tot lo que esta relacionat amb Centres-->
+
+                    <div class="hidden sm:flex sm:items-center sm:ms-6 px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-orange-400 focus:outline-none focus:text-gray-700 focus:border-orange-400 transition duration-150 ease-in-out">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    Centre
+
+                                    <!--
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    -->
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('projects_comisions.index')">
+                                    {{ __('Projectes i Comisions') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('course.index')">
+                                    {{ __('Cursos') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('course.index')">
+                                    {{ __('Documentacio del Centre') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
+                    <!-- Tot lo relacionat amb incidencies -->
+
+                    <div class="hidden sm:flex sm:items-center sm:ms-6 px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-orange-400 focus:outline-none focus:text-gray-700 focus:border-orange-400 transition duration-150 ease-in-out">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    Incidencies
+
+                                    <!--
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    -->
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('maintenance.index')">
+                                    {{ __('Manteniments') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('accidentability.index')">
+                                    {{ __('Accidents') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('rrhh.index')">
+                                    {{ __('Temes Pendents RRHH') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
+                    <!-- Tot lo relacionat amb incidencies -->
+
+                    <div class="hidden sm:flex sm:items-center sm:ms-6 px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-orange-400 focus:outline-none focus:text-gray-700 focus:border-orange-400 transition duration-150 ease-in-out">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    Serveis
+
+                                    <!--
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    -->
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('maintenance.index')">
+                                    {{ __('Generals') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('accidentability.index')">
+                                    {{ __('Complementaris') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                </div>
                 
             
 
@@ -54,13 +177,15 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->name }} </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </div>
+                            <br>
+                            <span class="text-gray-300">{{ Auth::user()->role }}</span>
                         </button>
                     </x-slot>
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('role', ['Equip Directiu','Administracio','Responsable i Equip Tecnic'])->default('Equip Directiu'); /* Recordar de canviar aixo*/
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
