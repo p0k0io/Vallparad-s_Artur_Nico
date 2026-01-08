@@ -1,105 +1,152 @@
 @extends('layouts.app')
 
 @section('content')
-<script>
-    function createModal() {
-        document.getElementById("create-modal").classList.remove("hidden");
-    }
+<!-- contenedor principal con alpine para el modal -->
+<div x-data="{ openCreate: false }">
 
-    function closeModal() {
-        document.getElementById("create-modal").classList.add("hidden");
-    }
-</script>
+    <!-- fondo y estructura general -->
+    <div class="min-h-screen bg-slate-100 py-16 px-6 flex flex-col items-center">
 
+        <div class="w-full max-w-5xl">
 
-
-<div class="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-2">
-    <div class="w-3/4 h-auto p-6 rounded-xl bg-gradient-to-r from-orange-100 to-orange-300">
-        <div class="w-full p-2 flex flex-row justify-between items-center">
-            <h1 class=" font-bold">Contactos Externos</h1>
-            <div class="px-2 h-auto">
-                <button 
-                    onclick="createModal()" 
-                    class="px-6 py-2 rounded-xl bg-orange-500 text-white font-medium shadow hover:bg-orange-600 transition">
-                    Crear nuevo contacto
-                </button>
+            <!-- titulo principal -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold text-orange-500 mb-3 tracking-tight">
+                    Contactos Externos
+                </h1>
+                <p class="text-lg text-gray-600">
+                    Gestion de empresas, proveedores y contactos externos
+                </p>
             </div>
-        </div>
 
-        <div class="mt-4">
-            @forelse ($externalContacts as $contact)
-                <div class="p-2 border-b border-gray-300 flex justify-between items-center">
-                    <x-contact-card :user=$contact/>
+            <!-- tarjeta principal con lista -->
+            <div class="bg-white rounded-3xl shadow-xl p-10 border-2 border-orange-200">
+
+                <!-- cabecera con titulo y boton crear -->
+                <div class="flex justify-between items-center mb-10 pb-6 border-b-2 border-orange-100">
+                    <h2 class="text-3xl font-bold text-gray-800">Lista de contactos</h2>
+
+                    <!-- boton abrir modal -->
+                    <button 
+                        @click="openCreate = true"
+                        class="flex items-center gap-3 px-8 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+                    >
+                        <x-lucide-plus class="w-6 h-6"/>
+                        Nuevo contacto
+                    </button>
                 </div>
-            @empty
-                <p class="text-gray-500">No hay contactos externos.</p>
-            @endforelse
+
+                <!-- lista de contactos -->
+                <div class="space-y-6">
+                    @forelse ($externalContacts as $contact)
+                        <div class="hover:-translate-y-1 transition-all duration-300">
+                            <x-contact-card :user="$contact" />
+                        </div>
+                    @empty
+                        <div class="text-center py-12">
+                            <p class="text-xl text-gray-500">No hay contactos externos aun.</p>
+                            <p class="mt-2 text-gray-400">Empieza añadiendo el primero</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal crear contacto con alpine -->
+    <div 
+        x-show="openCreate" 
+        x-transition
+        class="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50 px-4"
+        @keydown.escape.window="openCreate = false"
+    >
+        <div 
+            class="bg-white/95 rounded-3xl p-8 w-full max-w-2xl shadow-2xl border border-orange-200"
+            @click.outside="openCreate = false"
+        >
+            <!-- titulo modal -->
+            <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">
+                Crear nuevo contacto externo
+            </h2>
+
+            <!-- formulario -->
+            <form action="{{ route('externalContact.store') }}" method="post" class="space-y-6">
+                @csrf
+
+                <!-- nombre -->
+                <div>
+                    <label class="block text-sm text-orange-600 mb-1 font-medium">Nombre de la empresa / contacto</label>
+                    <input type="text" name="name" required
+                           class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition"
+                           placeholder="Ej: Proveedor XYZ S.L." />
+                </div>
+
+                <!-- descripcion -->
+                <div>
+                    <label class="block text-sm text-orange-600 mb-1 font-medium">Descripcion</label>
+                    <textarea name="description" rows="3"
+                              class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition resize-none"
+                              placeholder="Ej: Proveedor habitual de material de oficina"></textarea>
+                </div>
+
+                <!-- encargado y email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Persona de contacto</label>
+                        <input type="text" name="manager"
+                               class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition"
+                               placeholder="Ej: Maria Garcia" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Correo electronico</label>
+                        <input type="email" name="email"
+                               class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition"
+                               placeholder="contacto@empresa.com" />
+                    </div>
+                </div>
+
+                <!-- direccion y telefono -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Direccion</label>
+                        <input type="text" name="address"
+                               class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition"
+                               placeholder="Calle Ejemplo 123, Ciudad" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-orange-600 mb-1 font-medium">Telefono</label>
+                        <input type="tel" name="phone"
+                               class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition"
+                               placeholder="93 123 45 67" />
+                    </div>
+                </div>
+
+                <!-- centro -->
+                <div>
+                    <label class="block text-sm text-orange-600 mb-1 font-medium">Centro asociado</label>
+                    <select name="center_id" required
+                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition">
+                        <option value="">-- Selecciona un centro --</option>
+                        @foreach($centers as $center)
+                            <option value="{{ $center->id }}">{{ $center->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- botones -->
+                <div class="flex justify-end gap-4 pt-4">
+                    <button type="button" 
+                            @click="openCreate = false"
+                            class="px-8 py-4 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold transition-all">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                            class="px-8 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md hover:shadow-lg transition-all">
+                        Guardar contacto
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<div id="create-modal" class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden z-50">
-    <div class="bg-white w-1/3 max-w-lg h-auto flex flex-col px-8 py-6 rounded-lg shadow-lg">
-        
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Nuevo Contacto</h2>
-        
-        <form action="{{ route('externalContact.store') }}" method="post" class="flex flex-col gap-4">
-            @csrf
-
-            <div class="flex flex-col">
-                <label for="name" class="mb-1 text-gray-700 font-medium">Nombre</label>
-                <input type="text" name="name" id="name" placeholder="Ingrese el nombre" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="description" class="mb-1 text-gray-700 font-medium">Descripción</label>
-                <input type="text" name="description" id="description" placeholder="Ingrese una descripción" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="manager" class="mb-1 text-gray-700 font-medium">Encargado</label>
-                <input type="text" name="manager" id="manager" placeholder="Nombre del encargado" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="email" class="mb-1 text-gray-700 font-medium">Correo Electrónico</label>
-                <input type="email" name="email" id="email" placeholder="correo@ejemplo.com" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="address" class="mb-1 text-gray-700 font-medium">Dirección</label>
-                <input type="text" name="address" id="address" placeholder="Ingrese la dirección" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="phone" class="mb-1 text-gray-700 font-medium">Teléfono</label>
-                <input type="tel" name="phone" id="phone" placeholder="123-456-7890" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div class="flex flex-col">
-                <label for="center_id" class="mb-1 text-gray-700 font-medium">Centro</label>
-                <select name="center_id" id="center_id" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    @foreach($centers as $center)
-                        <option value="{{ $center->id }}">{{ $center->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <button type="submit" class="mt-4 px-6 py-2 rounded-lg bg-orange-500 text-white font-medium hover:bg-orange-600 transition">
-                Guardar
-            </button>
-        </form>
-    </div>
-</div>
-
 @endsection

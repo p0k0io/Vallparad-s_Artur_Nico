@@ -14,6 +14,7 @@ use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\ServeiGeneralController;
+use App\Http\Controllers\AdminController;
 
 
 // Página principal
@@ -140,6 +141,17 @@ Route::post('/externalContact', [ExternalContactController::class, 'store'])
 
 Route::get('/serveisGenerals', [ServeiGeneralController::class, 'index'])->name('serveisGenerals.index');
 Route::resource('serveisGenerals', ServeiGeneralController::class);
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin.index');
+Route::post('/admin/users', [AdminController::class, 'store'])
+    ->middleware('auth')
+    ->name('admin.store');
+Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('admin.destroy');
+
 
 // Rutas de autenticación
 require __DIR__.'/auth.php';
