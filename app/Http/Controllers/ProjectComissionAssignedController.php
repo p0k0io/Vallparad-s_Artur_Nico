@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ProjectComissionAssigned;
 use Illuminate\Http\Request;
+use App\Exports\ProjectComissionExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ProjectComissionAssignedController extends Controller
 {
@@ -27,19 +31,30 @@ class ProjectComissionAssignedController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {       
         $data = $request->validate([
-            'name' => request('name'),
-            'description' => request('project_comission_id'),
-            'observations' => request('professional_id'), 
+            'project_comision_id' => 'required|integer|exists:projects_comisions,id',
+            'professional_id' => 'required|integer|exists:professional,id'
         ]);
-        $assignment = ProjectComissionAssigned::create($data);
 
+        $projectId = $data['project_comision_id'];
+        $professionalId = $data['professional_id'];
+
+        $professionalAssignation= ProjectComissionAssigned::where('project_comision_id',$projectId)->where('professional_id',$professionalId);
+        
+        if($professionalAssignation->count() < 1){
+            $success=true;
+            $message="Professional assignat correctament";
+            ProjectComissionAssigned::create($data);
+        }
+        else{
+            $success=false;
+            $message="Aquest professional ja estava assignat";
+        }
         
         return response()->json([
-            'success' => true,
-            'message' => 'Profesional asignado correctamente',
-            'data' => $assignment
+            'success' => $success,
+            'message' => $message,
         ]);
     }
 
@@ -82,10 +97,11 @@ class ProjectComissionAssignedController extends Controller
      */
     public function destroy($id)
     {
-        /*
-        ProjectComissionAssigned::findOrFail($id)->delete();
 
-        return response()->json(['message' => 'Deleted successfully']);
-        */
+    }
+
+    public function exportAssigned()
+    {
+        return Excel::download(new ProjectComissionExport, 'ProjectesIComisionsAsignats.csv');
     }
 }

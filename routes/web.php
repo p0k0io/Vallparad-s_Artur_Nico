@@ -9,6 +9,9 @@ use App\Http\Controllers\ProjectComisionController;
 use App\Http\Controllers\ProjectComissionAssignedController;
 use App\Http\Controllers\UniformController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\AccidentabilityController;
+use App\Http\Controllers\RrhhController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
@@ -22,19 +25,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+//--------------------------------------------------Manteniment------------------------------------------------------------------
+Route::resource('maintenance', MaintenanceController::class);
+Route::post('/changeStateM', [MaintenanceController::class, 'changeStateM'])->name('changeStateM.maintenance');
+Route::post('/createMaintenanceTracking', [MaintenanceController::class, 'createMaintenanceTracking'])->name('createMaintenanceTracking.maintenance');
+
+//--------------------------------------------------Accidentability--------------------------------------------------------------
+Route::resource('accidentability', AccidentabilityController::class);
+Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeStateBaixa'])->name('changeStateBaixa.maintenance');
+
+//--------------------------------------------------RRHH--------------------------------------------------------------
+Route::resource('rrhh', RrhhController::class);
+Route::post('/createRrhhTracking', [RrhhController::class, 'createRrhhTracking'])->name('createRrhhTracking.rrhh');
+
+//--------------------------------------------------Uniformes------------------------------------------------------------------------
+
 // Rutas de exportación de Uniforms (antes del resource para evitar conflictos)
+Route::resource('uniforms', UniformController::class);
+
 Route::prefix('uniforms')->group(function () {
     Route::get('export', [UniformController::class, 'export'])->name('uniforms.export');
     Route::get('export-test', [UniformController::class, 'exportTest']);
 });
 
-
-Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
-
-
-
 Route::put('/uniforms/{uniform}/confirm', [UniformController::class, 'changeState'])
     ->name('uniforms.changeState');
+
+
+//--------------------------------------------------Cursos------------------------------------------------------------------------
 
 Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->name('inscritos.export');
 
@@ -50,10 +70,14 @@ Route::resource('course', CourseController::class );
 
 Route::resource('center', CenterController::class);
 
-// Rutas de recursos
-Route::post('/assigned-in', [ProjectComissionAssignedController::class, 'store']);
+//--------------------------------------------------Projectes i Comisions------------------------------------------------------------------------
 
 Route::resource('projects_comisions', ProjectComisionController::class);
+
+Route::post('/storeProj', [ProjectComissionAssignedController::class, 'store']);
+Route::resource('project_comision_assignment', ProjectComissionAssignedController::class);
+
+Route::get('/exportar-assignats', [ProjectComissionAssignedController::class, 'exportAssigned'])->name('assigned.export');
 
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
@@ -82,17 +106,14 @@ Route::get('/search', function () {return view('index.professional');});
 Route::post('/search', [ProfessionalController::class, 'search']);
 
 
-//--------------------------------------------------------------------------------------------------------------------------
-
-
 Route::resource('cv', CvController::class);
-Route::resource('uniforms', UniformController::class);
 
-
-//--------------------------------------------------------------------------------------------------------------------------
 // Rutas para cambiar estado
 Route::put('/changeStateP/{professional}', [ProfessionalController::class, 'changeStateP'])
     ->name('changeStateProfessional');
+
+
+//--------------------------------------------------Centres------------------------------------------------------------------------
 
 Route::put('/changeStateC/{center}', [CenterController::class, 'changeStateC'])
     ->name('changeStateCenter');

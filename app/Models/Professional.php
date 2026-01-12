@@ -17,6 +17,10 @@ class Professional extends Model
         return $this->belongsTo(Center::class);
     }
 
+    public function incidents(){
+        return $this->hasMany(Incident::class);
+    }
+
     public function projectcomision(){
         return $this->hasMany(ProjectComision::class);
     }
@@ -33,5 +37,19 @@ class Professional extends Model
     }
     public function tracking(){
         return $this->hasMany(ProfessionalTracking::class, 'tracker');
+    }
+
+
+    public function maintenance(){
+        return $this->hasMany(Maintenance::class);
+    }
+
+    public function accidentability(){
+        return $this->hasMany(Accidentability::class);
+    }
+
+    
+    public function rrhh(){
+        return $this->hasMany(RRHH::class);
     }
 }

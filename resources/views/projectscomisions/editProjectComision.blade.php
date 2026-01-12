@@ -17,7 +17,6 @@
     <form action="" method="POST" class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-full max-w-4xl flex flex-col space-y-8 z-10">
         @csrf
         @method('PUT')
-        {{dd($project_comision)}}
 
         <h2 class="text-3xl font-semibold text-center text-orange-600">
             Editar Projecte/Comisio
@@ -25,27 +24,27 @@
             <div class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
-                    <input type="text" name="name" id="name" value="{{$project_comision->name}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+                    <input type="text" name="name" id="name" value="{{$projects_comision->name}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
                 </div>
 
                 <div>
                     <label for="description" class="block text-sm font-medium text-gray-700">Descripció</label>
-                    <input type="text" name="description" id="description" value="{{$project_comision->description}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+                    <input type="text" name="description" id="description" value="{{$projects_comision->description}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
                 </div>
 
                 <div>
                     <label for="observations" class="block text-sm font-medium text-gray-700">Observacions</label>
-                    <input type="text" name="observations" id="observations" value="{{$project_comision->observations}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+                    <input type="text" name="observations" id="observations" value="{{$projects_comision->observations}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
                 </div>
 
                 <div>
                     <label for="type" class="block text-sm font-medium text-gray-700">Tipus</label>
-                    <input type="text" name="type" id="type" value="{{$project_comision->type}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+                    <input type="text" name="type" id="type" value="{{$projects_comision->type}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
                 </div>
 
                 <div>
                     <label for="professional_id" class="block text-sm font-medium text-gray-700">Responsable</label>
-                    <input type="text" name="professional_id" id="professional_id" value="{{$project_comision->professional->name}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
+                    <input type="text" name="professional_id" id="professional_id" value="{{$projects_comision->professional->name}}" class="mt-1 w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500 h-10 px-3">
                 </div>
             </div>
         <div class="pt-6">

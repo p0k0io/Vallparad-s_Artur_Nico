@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidents', function (Blueprint $table) {
+        Schema::create('rrhh_tracking', function (Blueprint $table) {
             $table->id();
-            $table->string('type',255);
-            $table->unsignedBigInteger('professional_id');
-            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
+            $table->string('context',100);
+            $table->text('description');
+            $table->unsignedBigInteger('rrhh_id');
+            $table->foreign('rrhh_id')->references('id')->on('pending_hr_issues')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidents');
+        Schema::dropIfExists('rrhh_tracking');
     }
 };

@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('accidents_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('type',255);
-            $table->string('date',255);
+            $table->enum('type', ['Sense Baixa','Amb Baixa','Baixa Llarga'])->default('Sense Baixa');
             $table->string('context',255);
             $table->text('description');
-            $table->string('path',255);
-            $table->unsignedBigInteger('incident_id');
-            $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
+            $table->text('duration')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
+            $table->text('signature');
+            $table->enum('status', ['Baixa Finalitzada','En Baixa','Sense Baixa']);
+            $table->unsignedBigInteger('professional_id');
+            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('accidents_reports');
     }
 };
+

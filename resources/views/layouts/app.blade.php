@@ -20,15 +20,18 @@
             const getAssessmentUrl = "{{ route('getAssessment.professional') }}";
             const csrfToken = "{{ csrf_token() }}";
         </script>
-        <script src="{{ asset('js/professional.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
         <!--Professionals-->
     </head>
-    <x-bg-img/>
-    <body class="font-sans antialiased">
-        
-        <div class="min-h-screen bg-gray-100 z-10">
+    
+    
+    
+    <body class="font-sans antialiased bg-gray-100">
+        <x-bg-img/>
+        {!! file_get_contents(resource_path('svg/icons.svg')) !!}
+        <div class="min-h-screen ">
+           
             @include('layouts.navigation')
 
             <main>

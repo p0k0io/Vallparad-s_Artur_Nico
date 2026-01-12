@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->string('date',255);
             $table->string('context',255);
             $table->text('description');
-            $table->string('path',255);
-            $table->unsignedBigInteger('incident_id');
-            $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
+            $table->string('responsible',50);
+            $table->string('path',255)->nullable();
+            $table->unsignedBigInteger('professional_id');
+            $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
+            $table->enum('status', ['Pendent','Resolt'])->default('Pendent');
+            $table->text('signature');
             $table->timestamps();
         });
     }
