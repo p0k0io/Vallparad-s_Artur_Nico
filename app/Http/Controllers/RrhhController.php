@@ -41,6 +41,7 @@ class RrhhController extends Controller
         RRHH::create([
             'context'=>request('context'),
             'description'=>request('description'),
+            'status'=> 'pendent',
             'signature'=>request('signature'),
             'professional_id'=>1,
             'professional_afectat'=>request('professional_afectat'),
@@ -91,5 +92,28 @@ class RrhhController extends Controller
             'rrhh_id'=>request('rrhh_id')
         ]);
         return redirect()->route('rrhh.index');
+    }
+
+    public function changeStateRrhh(Request $request){
+        $id=$request->input('id');
+        $id=(int) $id;
+
+        $rrhh=RRHH::find($id);
+
+        if($rrhh->status == 'Pendent'){
+            $rrhh->status = 'Resolt';
+        }
+        else{
+            $rrhh->status = 'Pendent';
+        }
+
+        
+        $rrhh->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Estat actualitzat.',
+            'data' => $rrhh->status
+        ]);
     }
 }

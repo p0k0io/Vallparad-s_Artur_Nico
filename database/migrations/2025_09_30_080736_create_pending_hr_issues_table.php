@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('context',100);
             $table->text('description');
+            $table->enum('status', ['Pendent','Resolt'])->default('Pendent');
             $table->text('signature');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
