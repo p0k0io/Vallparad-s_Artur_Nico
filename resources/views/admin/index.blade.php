@@ -52,6 +52,7 @@
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nombre</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Rol</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Registro</th>
                                 <th class="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Acciones</th>
                             </tr>
@@ -62,6 +63,7 @@
                                     <td class="px-6 py-4 text-sm text-gray-700">{{ $user->id }}</td>
                                     <td class="px-6 py-4 text-sm font-semibold text-gray-800">{{ $user->name }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600">{{ $user->email }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">{{ $user->role }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500">{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td class="px-6 py-4 text-right">
                                         <!-- boton eliminar  -->
@@ -119,6 +121,22 @@
                                class="w-full rounded-xl border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 transition-all" 
                                placeholder="usuario@ejemplo.com" />
                         @error('email')
+                            <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- campo role -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+
+                        <select name="role" required
+                            class="w-full rounded-xl border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 transition-all"
+                        >
+                            <option value="Equip Directiu">Equip Directiu</option>
+                            <option value="Administracio">Administracio</option>
+                            <option selected value="Responsable i Equip Tecnic">Responsable i Equip Tecnic</option>
+                        </select>
+                        @error('role')
                             <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
                         @enderror
                     </div>
