@@ -15,6 +15,7 @@
     
     <!-- Contenedor principal -->
     <div class="w-full max-w-7xl bg-white rounded-3xl shadow-xl p-10">
+        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->role }}</div>
 
         <!-- Cabecera -->
         <div class="text-center mb-12">
@@ -88,6 +89,8 @@
             </a>
 
        
+            @if (Auth::user()->role === 'Equip Directiu')
+    
             <a href="{{ route('documents.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
                 <div class="p-8 text-center">
@@ -100,6 +103,7 @@
                     <p class="text-gray-600">Documentación interna del centro</p>
                 </div>
             </a>
+            @endif
 
     
             <a href="{{ route('externalContact.indexExternalContacts') }}" 
@@ -115,6 +119,7 @@
                 </div>
             </a>
 
+            @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Admin')
             <a href="{{ route('serveisGenerals.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
                 <div class="p-8 text-center">
@@ -128,6 +133,7 @@
                     <p class="text-gray-600">Gestión de servicios generales</p>
                 </div>
             </a>
+            @endif
 
             <a href="{{ route('uniforms.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
@@ -153,6 +159,8 @@
                 </div>
             </a>
 
+            @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Admin')
+
             <a href="{{ route('maintenance.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
                 <div class="p-8 text-center">
@@ -165,7 +173,9 @@
                     <p class="text-gray-600">Gestio de manteniments</p>
                 </div>
             </a>
+            @endif
 
+            @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Admin')
             <a href="{{ route('accidentability.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
                 <div class="p-8 text-center">
@@ -178,7 +188,9 @@
                     <p class="text-gray-600">Gestio de accidentabilitat</p>
                 </div>
             </a>
+            @endif
 
+            @if (Auth::user()->role === 'Equip Directiu')
             <a href="{{ route('rrhh.index') }}" 
                class="group bg-white border-2 border-orange-200 rounded-2xl shadow-md hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-300 overflow-hidden">
                 <div class="p-8 text-center">
@@ -191,6 +203,7 @@
                     <p class="text-gray-600">Gestio de temes pendents de recursos humans</p>
                 </div>
             </a>
+            @endif
 
         </div>
     </div>

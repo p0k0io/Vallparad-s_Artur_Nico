@@ -17,6 +17,7 @@
                        href="{{ route('professional.create') }}">
                         Nou Professional
                     </a>
+                    
                 </div>
 
                 <div class="flex flex-col gap-6">
