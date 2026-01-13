@@ -73,7 +73,9 @@ class MaintenanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $maintenance->update($request->all());
+
+        return redirect()->route('maintenance.index');
     }
 
     /**
