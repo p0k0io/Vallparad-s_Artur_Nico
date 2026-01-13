@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CvSeeder::class,
             ProfessionalSeeder::class,
             CourseSeeder::class,
+            ServeiGeneralSeeder::class,
         ]);
     }
 }
