@@ -1,7 +1,7 @@
 @if ($rrhh->status=="Pendent")
-    <li x-data="{ open: false }" class="border border-orange-300 rounded-xl overflow-hidden m-3">
+    <li x-data="{ open: false }" class="liMaintCard border border-orange-300 rounded-xl overflow-hidden m-3">
 @else
-    <li x-data="{ open: false }" class="border border-gray-300 rounded-xl overflow-hidden m-3">
+    <li x-data="{ open: false }" class="liMaintCard border border-gray-300 rounded-xl overflow-hidden m-3">
 @endif
     @if($rrhh->status=="Pendent")
         <button @click="open = !open" class="bg-orange-50 hover:bg-orange-100 w-full text-left transition py-1 flex px-3">

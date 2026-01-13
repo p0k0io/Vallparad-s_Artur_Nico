@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->enum('status', ['Pendent','Resolt'])->default('Pendent');
-            $table->text('signature');
+            $table->text('signature')->nullable();
             $table->timestamps();
         });
     }
