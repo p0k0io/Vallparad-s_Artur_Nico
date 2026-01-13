@@ -54,7 +54,8 @@ class ProfessionalController extends Controller
             'keyCode'=>request('keyCode'),
             'center_id'=>request('center_id'),
             'role'=>request('role'),
-            'cv_id'=>request('cv_id')
+            'cv_id'=>request('cv_id'),
+            'user_id'=>request('user_id')
         ]);
 
         return redirect()->route('professional.index');

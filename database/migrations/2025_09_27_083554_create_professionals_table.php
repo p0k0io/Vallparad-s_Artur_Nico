@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('role',50);
             $table->unsignedBigInteger('cv_id');
             $table->foreign('cv_id')->references('id')->on('cv')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 currentState.classList.remove('bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
                 currentState.classList.add('bg-gray-200','text-gray-500','border-gray-400','hover:bg-gray-100');
                 trackingA.classList.add('hidden');
+                trackingA.classList.remove('flex','bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
             }
             else{
                 divBottom.classList.remove('border-gray-200');
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 currentState.classList.remove('bg-gray-200','text-gray-500','border-gray-400','hover:bg-gray-100');
                 currentState.classList.add('bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
                 trackingA.classList.remove('hidden');
+                trackingA.classList.add('flex','bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
             }
             
             fetch('/changeStateM',{

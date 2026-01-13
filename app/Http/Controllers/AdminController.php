@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Professional;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -37,7 +38,24 @@ class AdminController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'role' => request('role'),
             'password' => Hash::make($validated['password']),
+        ]);
+
+        Professional::create([
+            'name'=>request('name'),
+            'surname1'=>'test',
+            'surname2'=>'test',
+            'email'=>request('email'),
+            'address'=>'test',
+            'phone'=>'test',
+            'locker'=>'test',
+            'profession'=>'test',
+            'linkStatus'=>'test',
+            'keyCode'=>'test',
+            'center_id'=>'1',
+            'role'=>'test',
+            'cv_id'=>'1',
         ]);
 
         event(new Registered($user));

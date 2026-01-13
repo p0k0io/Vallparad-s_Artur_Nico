@@ -143,7 +143,7 @@
 
                     <!-- campo password -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Contrasena</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Contrasenya</label>
                         <input type="password" name="password"
                                class="w-full rounded-xl border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 transition-all" />
                         @error('password')
@@ -153,7 +153,7 @@
 
                     <!-- campo confirmar password -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar contrasena</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar contrasenya</label>
                         <input type="password" name="password_confirmation"
                                class="w-full rounded-xl border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 transition-all" />
                     </div>
