@@ -17,6 +17,7 @@ use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\ServeiGeneralController;
+use App\Http\Controllers\ComplementaryServiceController;
 use App\Http\Controllers\AdminController;
 
 
@@ -173,6 +174,10 @@ Route::post('/admin/users', [AdminController::class, 'store'])
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
     ->middleware('auth')
     ->name('admin.destroy');
+
+
+//Rutas servicios complementarios
+Route::resource('complementaryService', ComplementaryServiceController::class);
 
 
 // Rutas de autenticación

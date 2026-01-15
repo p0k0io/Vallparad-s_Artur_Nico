@@ -16,4 +16,9 @@ class Center extends Model
     public function projectcomission(){
         return $this->hasOne(ProjectComission::class, 'center_id');
     }
+
+    public function complementaryservice()
+    {
+        return $this->hasMany(ComplementaryService::class);
+    }
 }

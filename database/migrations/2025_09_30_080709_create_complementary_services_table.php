@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('manager',255);
             $table->string('phone',9);
+            $table->date('startDate');
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->timestamps();

@@ -48,6 +48,7 @@
                             <x-lucide-file-pen-line class="mr-3 text-orange-600 size-5"/>
                             Fer Seguiment
                         </a>
+
                         @endif
                         <a href="{{ route('assessView.professional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
                             <x-lucide-user-pen class="mr-3 text-orange-600 size-5"/>
