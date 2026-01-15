@@ -44,10 +44,13 @@ class ExternalContactController extends Controller
                 'phone' => request('phone'),
                 'address' => request('address'),
                 'email' => request('email'),
-                'center_id' =>request('center_id')
+                'center_id' =>1
         ]);
 
-        return redirect('success', 'Contacto creado');
+        return redirect()
+        ->route('externalContact.indexExternalContacts')
+        ->with('success', 'Contacto creado');
+
     }
 
     /**

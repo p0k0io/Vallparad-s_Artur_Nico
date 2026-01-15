@@ -64,16 +64,14 @@
             class="bg-white/95 rounded-3xl p-8 w-full max-w-2xl shadow-2xl border border-orange-200"
             @click.outside="openCreate = false"
         >
-            <!-- titulo modal -->
+
             <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">
                 Crear nuevo contacto externo
             </h2>
 
-            <!-- formulario -->
             <form action="{{ route('externalContact.store') }}" method="post" class="space-y-6">
                 @csrf
 
-                <!-- nombre -->
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Nombre de la empresa / contacto</label>
                     <input type="text" name="name" required
@@ -81,7 +79,6 @@
                            placeholder="Ej: Proveedor XYZ S.L." />
                 </div>
 
-                <!-- descripcion -->
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Descripcion</label>
                     <textarea name="description" rows="3"
@@ -89,7 +86,6 @@
                               placeholder="Ej: Proveedor habitual de material de oficina"></textarea>
                 </div>
 
-                <!-- encargado y email -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Persona de contacto</label>
@@ -105,7 +101,6 @@
                     </div>
                 </div>
 
-                <!-- direccion y telefono -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Direccion</label>
@@ -121,19 +116,7 @@
                     </div>
                 </div>
 
-                <!-- centro -->
-                <div>
-                    <label class="block text-sm text-orange-600 mb-1 font-medium">Centro asociado</label>
-                    <select name="center_id" required
-                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition">
-                        <option value="">-- Selecciona un centro --</option>
-                        @foreach($centers as $center)
-                            <option value="{{ $center->id }}">{{ $center->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
 
-                <!-- botones -->
                 <div class="flex justify-end gap-4 pt-4">
                     <button type="button" 
                             @click="openCreate = false"

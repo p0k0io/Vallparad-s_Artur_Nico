@@ -161,10 +161,18 @@ function openInfoModal(servei) {
 
     if (personal.length) {
         content.innerHTML += `
-            <div>
-                <strong>Personal:</strong>
-                <ul class="list-disc ml-6">
-                    ${personal.map(p => `<li>${p.nom} — ${p.horari}</li>`).join('')}
+           <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-md shadow-sm">
+                <strong class="text-orange-600 block mb-2 text-sm uppercase tracking-wide">
+                    Personal
+                </strong>
+
+                <ul class="list-disc ml-6 space-y-1 text-gray-700">
+                    ${personal.map(p => `
+                        <li class="marker:text-orange-500">
+                            <span class="font-medium">${p.nom}</span>
+                            <span class="text-sm text-gray-500"> — ${p.horari}</span>
+                        </li>
+                    `).join('')}
                 </ul>
             </div>`;
     }
@@ -232,7 +240,7 @@ function renderRows() {
                        value="${p.horari}"
                        oninput="personalRows[${i}].horari=this.value">
                 <button onclick="deleteRow(${i})"
-                        class="px-2 bg-red-500 text-white rounded-lg">✕</button>
+                        class="px-4 border-2  border-red-500 text-red-500 rounded-lg font-bold">✕</button>
             </div>`;
     });
 
