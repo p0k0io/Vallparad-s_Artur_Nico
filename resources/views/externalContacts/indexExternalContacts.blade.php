@@ -115,6 +115,14 @@
                                placeholder="93 123 45 67" />
                     </div>
                 </div>
+                <div>
+                    <label class="block text-sm text-orange-600 mb-1 font-medium">Tipo de contacto</label>
+                    <select name="type" required
+                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition">
+                        <option value="" disabled selected>Selecciona un tipo</option>
+                        <option value="asistenciales">Asistenciales</option>
+                        <option value="generales">Generales</option>
+                    </select>
 
 
                 <div class="flex justify-end gap-4 pt-4">

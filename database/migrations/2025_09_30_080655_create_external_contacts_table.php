@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email',255);
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
+            $table->enum('type', ['Asistenciales','Generales']);
             $table->timestamps();
         });
     }

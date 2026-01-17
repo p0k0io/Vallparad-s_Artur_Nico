@@ -9,7 +9,7 @@ class ExternalContact extends Model
 {
     //
     protected $table = "external_contacts";
-    protected $fillable = ['name','description', 'manager', 'phone','address', 'email', 'center_id'];
+    protected $fillable = ['name','description', 'manager', 'phone','address', 'email', 'center_id', 'type'];
 
     public function center(){
         return $this->belongsTo(Center::class, 'id');

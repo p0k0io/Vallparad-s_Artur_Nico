@@ -44,6 +44,7 @@ class ExternalContactController extends Controller
                 'phone' => request('phone'),
                 'address' => request('address'),
                 'email' => request('email'),
+                'type' => request('type'),
                 'center_id' =>1
         ]);
 

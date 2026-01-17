@@ -23,6 +23,7 @@
     </div>
 
     <div id="info" class="hidden mt-4 border-t border-gray-200 pt-4 space-y-2 text-gray-700">
+        <p><strong>Tipo de contacto:</strong> {{ $user->type }}</p>
         <p><strong>Email:</strong> {{ $user->email }}</p>
         <p><strong>Descripción:</strong> {{ $user->description }}</p>
         <p><strong>Teléfono:</strong> {{ $user->phone }}</p>
