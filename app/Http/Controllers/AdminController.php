@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
@@ -20,49 +22,53 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+  public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                'unique:users,email',
-            ],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        DB::transaction(function () use ($request) {
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'role' => request('role'),
-            'password' => Hash::make($validated['password']),
-        ]);
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => [
+                    'required',
+                    'string',
+                    'lowercase',
+                    'email',
+                    'max:255',
+                    'unique:users,email',
+                ],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
 
-        Professional::create([
-            'name'=>request('name'),
-            'surname1'=>'test',
-            'surname2'=>'test',
-            'email'=>request('email'),
-            'address'=>'test',
-            'phone'=>'test',
-            'locker'=>'test',
-            'profession'=>'test',
-            'linkStatus'=>'test',
-            'keyCode'=>'test',
-            'center_id'=>'1',
-            'role'=>'test',
-            'cv_id'=>'1',
-        ]);
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'role' => $request->role,
+                'password' => Hash::make($validated['password']),
+            ]);
 
-        event(new Registered($user));
+            Professional::create([
+                'name' => $request->name,
+                'surname1' => $request->surname1,
+                'surname2' => $request->surname2,
+                'email' => $request->email,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'locker' => $request->locker,
+                'profession' => $request->profession,
+                'linkStatus' => 'test',
+                'keyCode' => $request->keyCode,
+                'center_id' => 1,
+                'role' => $request->role,
+                'cv_id' => 1,
+                'user_id' => $user->id,
+            ]);
+
+            event(new Registered($user));
+        });
 
         return redirect()
             ->route('admin.index')
-            ->with('success', 'Usuario registrado correctamente');
+            ->with('success', 'Usuario y profesional registrados correctamente');
     }
 
 
