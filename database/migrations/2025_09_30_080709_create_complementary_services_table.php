@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name',255);
             $table->text('description');
             $table->string('manager',255);
-            $table->string('phone',9);
+            $table->string('contact',100);
             $table->date('startDate');
+            $table->string('observations',100)->nullable();
+            $table->string('docs',255)->nullable();
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->timestamps();

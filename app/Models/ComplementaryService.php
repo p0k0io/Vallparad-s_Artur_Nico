@@ -11,8 +11,10 @@ class ComplementaryService extends Model
         'name',
         'description',
         'manager',
-        'phone',
+        'contact',
         'startDate',
+        'observations',
+        'docs',
         'center_id',
     ];
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('observations');
             $table->enum('type', ['project', 'comision'])->default('project');
+            $table->date('startDate');
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
             $table->unsignedBigInteger('center_id');

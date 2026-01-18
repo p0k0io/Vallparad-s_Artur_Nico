@@ -1,13 +1,13 @@
 <div x-data="{ openCreate:false }">
 
 
-    <button 
+    <a 
         @click="openCreate = true"
-        class="flex items-center gap-2 px-4 h-11 rounded-full bg-orange-400/90 hover:bg-orange-500 text-white font-medium shadow-sm transition-all"
+        class="text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700"
     >
         <x-lucide-plus class="w-5 h-5"/>
-        Nou Projecte/Comisio
-    </button>
+        Editar
+    </a>
 
 
 
@@ -20,51 +20,49 @@
              @click.outside="openCreate=false"
         >
             <h2 class="text-xl font-semibold text-orange-600 mb-6">
-                Crear un nou Projecte/Comisio
+                Editar Projecte/Comisio
             </h2>
 
-            <form action="{{ route('projects_comisions.store') }}" method="POST" class="space-y-4">
+            <form action="{{ route('projects_comisions.edit',$project_comision) }}" method="POST" class="space-y-4">
                 @csrf
 
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Nom del Projecte/Comisio</label>
-                    <input type="text" name="name" required
+                    <input type="text" name="name" required value="{{ $project_comision->name }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     >
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Descripció</label>
-                    <textarea name="description"
+                    <textarea name="description" value="{{ $project_comision->description }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     ></textarea>
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Observacions</label>
-                    <textarea name="observations"
+                    <textarea name="observations" value="{{ $project_comision->observations }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     ></textarea>
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Data inici</label>
-                    <input type="date" name="startDate" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
+                    <input type="date" name="startDate" value="{{ $project_comision->startDate }}" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus</label>
-                        <select name="type" required
+                        <select name="type" required 
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                             <option value="project">Projecte</option>
                             <option value="comision">Comisio</option>
                         </select>
                     </div>
-
-                    
                 </div>
 
                 <!--
@@ -89,7 +87,7 @@
                     
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Centro</label>
-                        <select name="center_id" required
+                        <select name="center_id" required 
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                         
@@ -102,7 +100,7 @@
                     
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Profesional</label>
-                        <select name="professional_id" required
+                        <select name="professional_id" required 
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         >
                         

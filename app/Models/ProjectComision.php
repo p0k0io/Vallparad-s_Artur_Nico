@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectComision extends Model
 {
     protected $table = "projects_comisions";
-    protected $fillable = ['name','description','observations','type','professional_id','center_id'];
+    protected $fillable = ['name','description','observations','type','startDate','professional_id','center_id'];
 
     public function professional(){
         return $this->belongsTo(Professional::class);
@@ -18,7 +18,7 @@ class ProjectComision extends Model
     }
 
     public function projectcomisionAssigned(){
-        return $this->hasMany(ProjectComisionAssigned::class);
+        return $this->hasMany(ProjectComissionAssigned::class);
     }
 
 }

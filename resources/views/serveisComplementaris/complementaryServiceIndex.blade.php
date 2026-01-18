@@ -10,14 +10,14 @@
         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
             <div>
                 <h1 class="text-4xl font-extrabold text-orange-500 tracking-tight">
-                    Serveis Generals
+                    Serveis Complementaris
                 </h1>
                 <p class="text-lg text-gray-600 mt-2">
                     Gestió i administració dels serveis generals
                 </p>
             </div>
 
-            <button onclick="openCreateModal()"
+            <button id="addNewCService" onclick="openCreateModal()"
                 class="mt-6 md:mt-0 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600
                        text-white font-semibold rounded-xl shadow-md hover:shadow-lg
                        hover:scale-[1.02] transition-all duration-300">
@@ -32,15 +32,12 @@
             </div>
 
             <div class="p-6 space-y-3">
-                @forelse($serveis as $servei)
+                @forelse($complementaryServices as $servei)
                     <button onclick='openInfoModal(@json($servei))'
                         class="w-full text-left p-4 rounded-xl border border-gray-200
                                hover:border-orange-400 hover:bg-orange-50 transition-all">
                         <p class="text-lg font-semibold text-gray-800">
-                            {{ $servei->nom_servei }}
-                        </p>
-                        <p class="text-sm text-gray-500">
-                            {{ $servei->center->name }}
+                            {{ $servei->name }}
                         </p>
                     </button>
                 @empty
@@ -64,7 +61,13 @@
 
         <div id="content-info" class="space-y-4"></div>
 
-        <div class="pt-6 flex justify-end">
+        <div class="pt-6 flex justify-between">
+            <button id="delete-btn"
+                class="px-5 py-2 bg-red-500 text-white rounded-xl
+                       hover:bg-red-600 transition">
+                Eliminar servei
+            </button>
+            
             <button id="edit-btn"
                 class="px-5 py-2 bg-orange-500 text-white rounded-xl
                        hover:bg-orange-600 transition">
@@ -88,38 +91,43 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nom del servei</label>
-                <input type="text" id="nom_servei" name="nom_servei" required
+                <input type="text" id="name" name="name" required
                     class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Descripció</label>
+                <textarea name="description" id="description" rows="3" required class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500"></textarea>
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Responsable</label>
-                <input type="text" id="responsable" name="responsable" required
+                <input type="text" id="manager" name="manager" required
                     class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Centre</label>
-                <select id="center_id" name="center_id"
+                <label class="block text-sm font-medium text-gray-700 mb-1">Contacte</label>
+                <input type="text" id="contact" name="contact" required
                     class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
-                    @foreach($centers as $center)
-                        <option value="{{ $center->id }}">{{ $center->name }}</option>
-                    @endforeach
-                </select>
             </div>
 
-            <!-- PERSONAL -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Personal</label>
-                <div id="personal-info-container" class="space-y-2"></div>
-
-                <button type="button" onclick="addRow()"
-                    class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
-                    + Afegir persona
-                </button>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Data d'inici</label>
+                <input type="date" id="startDate" name="startDate" required
+                    class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
             </div>
 
-            <input type="hidden" name="personal_info" id="personal_info">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Observacions</label>
+                <textarea name="observations" id="observations" rows="3" required class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Documents (falta fer file)</label>
+                <input type="file" id="docs" name="docs" 
+                    class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+            </div>
 
             <div class="flex justify-end gap-3 pt-4">
                 <button type="button" onclick="closeEditModal()"
@@ -138,38 +146,24 @@
 
 <!-- SCRIPT -->
 <script>
-let personalRows = [];
 
 function openInfoModal(servei) {
     const modal = document.getElementById("info-modal");
     const content = document.getElementById("content-info");
 
-    content.innerHTML = `
-        <h2 class="text-2xl font-bold text-gray-800">${servei.nom_servei}</h2>
-        <p><strong>Responsable:</strong> ${servei.responsable}</p>
+    document.getElementById("edit-btn").onclick = () => openEditModal(servei);
 
-        <div class="bg-orange-50 p-3 rounded-xl space-y-1">
-            <p><strong>Centre:</strong> ${servei.center.name}</p>
-            <p><strong>Telèfon:</strong> ${servei.center.phone}</p>
-            <p><strong>Email:</strong> ${servei.center.email}</p>
-            <p><strong>Ubicació:</strong> ${servei.center.location}</p>
-        </div>
+    content.innerHTML = `
+        <h2 class="text-2xl font-bold text-gray-800">${servei.name}</h2>
+        <p><strong>Descripció:</strong> ${servei.description}</p>
+        <p><strong>Responsable:</strong> ${servei.manager}</p>
+        <p><strong>Contacte:</strong> ${servei.contact}</p>
+        <p><strong>Data d'inici:</strong> ${servei.startDate}</p>
+        <p><strong>Observacions:</strong> ${servei.observations}</p>
+        <p><strong>Documents:</strong> ${servei.docs}</p>
     `;
 
-    let personal = [];
-    try { personal = JSON.parse(servei.personal_info ?? "[]"); } catch {}
-
-    if (personal.length) {
-        content.innerHTML += `
-            <div>
-                <strong>Personal:</strong>
-                <ul class="list-disc ml-6">
-                    ${personal.map(p => `<li>${p.nom} — ${p.horari}</li>`).join('')}
-                </ul>
-            </div>`;
-    }
-
-    document.getElementById("edit-btn").onclick = () => openEditModal(servei);
+    
     modal.classList.remove("hidden");
 }
 
@@ -178,65 +172,29 @@ function closeInfoModal() {
 }
 
 function openCreateModal() {
-    document.getElementById("edit-form").action = "{{ route('serveisGenerals.store') }}";
+    document.getElementById("edit-form").action = "{{ route('complementaryService.store') }}";
     document.getElementById("method-field").value = "POST";
     document.getElementById("edit-form").reset();
-    personalRows = [];
-    renderRows();
     document.getElementById("edit-modal").classList.remove("hidden");
 }
 
 function openEditModal(servei) {
-    document.getElementById("edit-form").action = `/serveisGenerals/${servei.id}`;
+    document.getElementById("edit-form").action = `/complementaryService/${servei.id}`;
     document.getElementById("method-field").value = "PUT";
+    document.getElementById("name").value = servei.name;
+    document.getElementById("description").value = servei.description;
+    document.getElementById("manager").value = servei.manager;
+    document.getElementById("contact").value = servei.contact;
+    document.getElementById("startDate").value = servei.startDate;
+    document.getElementById("observations").value = servei.observations;
+    //document.getElementById("docs").value = servei.docs;
 
-    document.getElementById("nom_servei").value = servei.nom_servei;
-    document.getElementById("responsable").value = servei.responsable;
-    document.getElementById("center_id").value = servei.center_id;
-
-    try { personalRows = JSON.parse(servei.personal_info ?? "[]"); }
-    catch { personalRows = []; }
-
-    renderRows();
     closeInfoModal();
     document.getElementById("edit-modal").classList.remove("hidden");
 }
 
 function closeEditModal() {
     document.getElementById("edit-modal").classList.add("hidden");
-}
-
-function addRow() {
-    personalRows.push({ nom: "", horari: "" });
-    renderRows();
-}
-
-function deleteRow(i) {
-    personalRows.splice(i, 1);
-    renderRows();
-}
-
-function renderRows() {
-    const c = document.getElementById("personal-info-container");
-    c.innerHTML = "";
-
-    personalRows.forEach((p, i) => {
-        c.innerHTML += `
-            <div class="flex gap-2">
-                <input class="flex-1 rounded-lg border-gray-300"
-                       placeholder="Nom"
-                       value="${p.nom}"
-                       oninput="personalRows[${i}].nom=this.value">
-                <input class="flex-1 rounded-lg border-gray-300"
-                       placeholder="Horari"
-                       value="${p.horari}"
-                       oninput="personalRows[${i}].horari=this.value">
-                <button onclick="deleteRow(${i})"
-                        class="px-2 bg-red-500 text-white rounded-lg">✕</button>
-            </div>`;
-    });
-
-    document.getElementById("personal_info").value = JSON.stringify(personalRows);
 }
 
 function beforeSubmit() {

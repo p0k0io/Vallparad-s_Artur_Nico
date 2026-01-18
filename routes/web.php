@@ -81,6 +81,8 @@ Route::resource('project_comision_assignment', ProjectComissionAssignedControlle
 
 Route::get('/exportar-assignats', [ProjectComissionAssignedController::class, 'exportAssigned'])->name('assigned.export');
 
+Route::get('/removeAssignation/{idPC}/{idProf}', [ProjectComissionAssignedController::class, 'removeAssignation'])->name('removeAssignation.projectComissionAssignment');
+
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
 
@@ -162,7 +164,6 @@ Route::post('/externalContact', [ExternalContactController::class, 'store'])
 
 //Rutas servicios generales
 
-Route::get('/serveisGenerals', [ServeiGeneralController::class, 'index'])->name('serveisGenerals.index');
 Route::resource('serveisGenerals', ServeiGeneralController::class);
 
 Route::get('/admin', [AdminController::class, 'index'])

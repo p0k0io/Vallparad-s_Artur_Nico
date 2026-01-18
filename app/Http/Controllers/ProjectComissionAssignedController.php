@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProjectComissionAssigned;
+use App\Models\ProjectComission;
 use Illuminate\Http\Request;
 use App\Exports\ProjectComissionExport;
 
@@ -63,7 +64,7 @@ class ProjectComissionAssignedController extends Controller
      */
     public function show($id)
     {
-        return ProjectComissionAssigned::with(['professional', 'project_comision'])->findOrFail($id);
+        
     }
 
     /**
@@ -97,11 +98,18 @@ class ProjectComissionAssignedController extends Controller
      */
     public function destroy($id)
     {
-
+        
     }
 
     public function exportAssigned()
     {
         return Excel::download(new ProjectComissionExport, 'ProjectesIComisionsAsignats.csv');
+    }
+
+    public function removeAssignation($idPC, $idProf){
+        $asignacio = ProjectComissionAssigned::where(['project_comision_id' => $idPC,'professional_id' => $idProf,])->firstOrFail();
+        $asignacio->delete();
+
+        return redirect()->route('projects_comisions.index');
     }
 }

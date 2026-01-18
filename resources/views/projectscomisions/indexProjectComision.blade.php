@@ -37,6 +37,7 @@
                                 </span>
                             </div>
                             <div class="flex items-center gap-3">
+                                <x-project-comision-edit-modal :centers="$centers" :project_comision="$project_comision"/>
                                 <span class="text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
                                     {{ ucfirst($project_comision->type) }}
                                 </span>
@@ -53,10 +54,39 @@
                                 <li><b class="text-orange-500">Tipo:</b> {{ ucfirst($project_comision->type ?? 'No especificado') }}</li>
                                 <li><b class="text-orange-500">Centro:</b> {{ $project_comision->center->name ?? 'No asignado' }}</li>
                                 <li><b class="text-orange-500">Profesional:</b> {{ $project_comision->professional->name ?? 'No asignat' }}</li>
-                                <li><a href="{{ route('projects_comisions.edit', $project_comision) }}">Editar</a></li>
                             </ul>
 
-                            <ul class="assigned-professionals text-xs font-medium text-gray-700 mt-3 space-y-1"></ul>
+                            
+                            @if($project_comision->projectcomisionAssigned->isNotEmpty())
+                                <div class="overflow-x-auto rounded-xl border border-orange-200 mt-2">
+                                    <table class="min-w-full text-sm text-left text-gray-700">
+                                        <thead class="bg-orange-100 text-orange-500 uppercase font-semibold">
+                                            <tr>
+                                                <th class="px-4 py-2">Nom</th>
+                                                <th class="px-4 py-2">Cognom</th>
+                                                <th class="px-4 py-2"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($project_comision->projectcomisionAssigned as $enrollment)
+                                                <tr class="border-b hover:bg-orange-50 transition">
+                                                    <td class="px-4 py-2">
+                                                        {{ $enrollment->professional->name ?? 'Sin nombre' }}
+                                                    </td>
+                                                    <td class="px-4 py-2">
+                                                        {{ $enrollment->professional->surname1 ?? '' }} {{ $enrollment->professional->surname2 ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('removeAssignation.projectComissionAssignment', ['idPC' => $project_comision->id, 'idProf' => $enrollment->professional->id]) }}">Desassignar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="text-gray-500 text-sm italic mt-2">No hi han profesionales assignats.</p>
+                            @endif
                         </div>
                     </li>
                 @empty
@@ -95,73 +125,3 @@
 
 @vite(['resources/js/project-comisions.js'])
 @endsection
-
-
-<!--
-<script>
-
-    function showBladeAlert(message, type = 'success') {
-        const toast = document.createElement('div');
-
-
-        toast.className = `
-            flex gap-2 items-center text-white font-medium
-            px-4 py-3 rounded-xl shadow-xl backdrop-blur
-            animate-fade-in-up border border-white/20
-            bg-green-500
-        `;
-
-        toast.innerHTML = `
-           
-            <span>${message}</span>
-        `;
-
-        document.getElementById('toast-container').appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.add('animate-fade-out');
-            setTimeout(() => toast.remove(), 350);
-        }, 3000);
-    }
-
- 
-    function assignProfessional(project_comision_id, event) {
-        const professional_id = event.dataTransfer.getData('professional_id');
-
-        if (!professional_id) {
-            showBladeAlert('No se pudo obtener el profesional.', 'error');
-            return;
-        }
-
-        fetch('/assigned-in', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify({
-                professional_id: professional_id,
-                project_comision_id: project_comision_id
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            showBladeAlert('Profesional asignado correctamente');
-
-            const projectComision = event.currentTarget;
-            const list = projectComision.querySelector('.assigned-professionals');
-
-            if (list) {
-                const li = document.createElement('li');
-                li.textContent = `Profesional ${professional_id}`;
-                li.className = "px-2 py-1 bg-orange-100 rounded-md text-orange-700 text-xs";
-                list.appendChild(li);
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        });
-    }
-</script>
--->

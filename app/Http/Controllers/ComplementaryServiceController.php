@@ -35,7 +35,18 @@ class ComplementaryServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ComplementaryService::create([
+            'name'=>request('name'),
+            'description'=>request('description'),
+            'manager'=>request('manager'),
+            'contact'=> request('contact'),
+            'startDate'=>request('startDate'),
+            'observations'=>request('observations'),
+            'docs'=>request('docs'),
+            'center_id'=>1,
+        ]);
+
+        return redirect()->route('complementaryService.index');
     }
 
     /**
@@ -51,15 +62,19 @@ class ComplementaryServiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $servei = ComplementaryService::findOrFail($id);
+
+        return view('serveisGenerals.edit', compact('servei'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ComplementaryService $complementaryService)
     {
-        //
+        $complementaryService->update($request->all());
+
+        return redirect()->route('complementaryService.index');
     }
 
     /**
@@ -67,6 +82,9 @@ class ComplementaryServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $servei = ComplementaryService::findOrFail($id);
+        $servei->delete();
+
+        return redirect()->route('complementaryService.index')->with('success', 'Servei complementari eliminat correctament.');
     }
 }
