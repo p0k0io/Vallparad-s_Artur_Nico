@@ -1,68 +1,67 @@
 @extends('../layouts.app')
 
-@section('title','Valoracio Professionals')
+@section('title','Valoració Professionals')
 
 @section('content')
 
-<div class="flex justify-center items-center min-h-screen relative">
-    <div class="bg-white bg-opacity-95 shadow-xl rounded-2xl p-10 w-3/4 flex flex-col space-y-4 z-10">
-        <h2 class="text-3xl font-semibold text-orange-600 text-center">
+<div class="min-h-screen bg-slate-100 flex flex-col items-center py-16 relative">
+
+    <img 
+        src="{{ asset('images/asset_login_superpossed.png') }}" 
+        alt="Decorative background"
+        class="absolute bottom-0 left-0 w-full h-auto object-cover pointer-events-none select-none opacity-80 z-0"
+    />
+
+    <div class="relative z-10 w-full max-w-6xl space-y-8">
+
+        <h2 class="text-4xl font-extrabold text-orange-500 text-center tracking-tight">
             Avaluacions de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
         </h2>
-        <div id="seguiments" class="overflow-x-auto rounded-xl shadow-md mt-6">
-            <table class="min-w-full border-collapse text-sm text-center">
-                <thead class="bg-orange-300 text-white">
-                    <tr>
-                        <th class="w-20 py-2 border border-orange-200">P1</th>
 
-                        <th class="w-20 py-2 border border-orange-200">P2</th>
-                        <th class="w-20 py-2 border border-orange-200">P3</th>
-                        <th class="w-20 py-2 border border-orange-200">P4</th>
-                        <th class="w-20 py-2 border border-orange-200">P5</th>
-                        <th class="w-20 py-2 border border-orange-200">P6</th>
-                        <th class="w-20 py-2 border border-orange-200">P7</th>
-                        <th class="w-20 py-2 border border-orange-200">P8</th>
-                        <th class="w-20 py-2 border border-orange-200">P9</th>
-                        <th class="w-20 py-2 border border-orange-200">P10</th>
-                        <th class="w-20 py-2 border border-orange-200">P11</th>
-                        <th class="w-20 py-2 border border-orange-200">P12</th>
-                        <th class="w-20 py-2 border border-orange-200">P13</th>
-                        <th class="w-20 py-2 border border-orange-200">P14</th>
-                        <th class="w-20 py-2 border border-orange-200">P15</th>
-                        <th class="w-20 py-2 border border-orange-200">P16</th>
-                        <th class="w-20 py-2 border border-orange-200">P17</th>
-                        <th class="w-20 py-2 border border-orange-200">P18</th>
-                        <th class="w-20 py-2 border border-orange-200">P19</th>
-                        <th class="w-20 py-2 border border-orange-200">P20</th>
-                        <th class="px-3 py-2 border border-orange-200">Avaluador</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white">
-                    @foreach($evaluations as $evaluation)
-                        <tr class="hover:bg-orange-50 border-b">
-                            @for ($i = 1; $i <= 20; $i++)
-                                @if($evaluation->{'P'.$i}==0)
-                                    <td class="py-2 border border-gray-200 bg-red-200">{{ $evaluation->{'P'.$i} }}</td>
-                                @elseif($evaluation->{'P'.$i}==1)
-                                    <td class="py-2 border border-gray-200 bg-yellow-100">{{ $evaluation->{'P'.$i} }}</td>
-                                @elseif($evaluation->{'P'.$i}==2)
-                                    <td class="py-2 border border-gray-200 bg-green-100">{{ $evaluation->{'P'.$i} }}</td>
-                                @else
-                                    <td class="py-2 border border-gray-200 bg-green-200">{{ $evaluation->{'P'.$i} }}</td>
-                                @endif
-                            @endfor
-                            <td class="px-3 py-2 border border-gray-200 font-medium text-gray-700">
-                                {{ $evaluation->evaluator }}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach($evaluations as $evaluation)
+                <div class="bg-white rounded-3xl shadow-lg p-6 space-y-4 hover:shadow-xl transition-all">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-semibold text-gray-700">Avaluador: {{ $evaluation->evaluator }}</h3>
+                        <span class="text-sm font-medium text-gray-500">{{ $evaluation->created_at->format('d/m/Y') }}</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        @for ($i = 1; $i <= 20; $i++)
+                            @php
+                                $value = $evaluation->{'P'.$i};
+                                $bg = match($value) {
+                                    0 => 'bg-red-400',
+                                    1 => 'bg-yellow-400',
+                                    2 => 'bg-green-300',
+                                    3 => 'bg-green-500',
+                                    default => 'bg-gray-200',
+                                };
+                                $width = ($value + 1) * 20; // barra proporcional
+                            @endphp
+                            <div class="flex items-center gap-3">
+                                <span class="w-10 text-sm text-gray-700 font-medium">P{{ $i }}</span>
+                                <div class="w-full h-4 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="{{ $bg }} h-4 rounded-full transition-all duration-300" style="width: {{ $width }}%;"></div>
+                                </div>
+                                <span class="w-6 text-sm text-gray-700 font-semibold text-right">{{ $value }}</span>
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="flex justify-center">
-            <a href="{{ route('professional.index')}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Tornar</a>
-            <a href="{{ route('assessView.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Nova Avaluacio</a>
-            <a href="{{ route('trackingViewProfessional.professional', $professional)}}" class="text-center font-semibold text-white bg-orange-400 mx-2 w-44 rounded-lg py-1">Veure Seguiments</a>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <a href="{{ route('professional.index')}}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all">
+                Tornar
+            </a>
+            <a href="{{ route('assessView.professional', $professional)}}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all">
+                Nova Avaluacio
+            </a>
+            <a href="{{ route('trackingViewProfessional.professional', $professional)}}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all">
+                Veure Seguiments
+            </a>
             <x-assess-questions-modal class="mx-2"/>
         </div>
     </div>
