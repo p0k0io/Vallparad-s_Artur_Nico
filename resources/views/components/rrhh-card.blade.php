@@ -1,5 +1,5 @@
 @if ($rrhh->status=="Pendent")
-    <li x-data="{ open: false }" class="liMaintCard border border-orange-300 rounded-xl overflow-hidden m-3">
+    <li x-data="{ open: false }" class="liMaintCard border border-orange-200 rounded-xl overflow-hidden m-3">
 @else
     <li x-data="{ open: false }" class="liMaintCard border border-gray-300 rounded-xl overflow-hidden m-3">
 @endif
@@ -8,7 +8,7 @@
     @else
         <button @click="open = !open" class="bg-gray-100 hover:bg-gray-200 w-full text-left transition py-1 flex px-3">  
     @endif            
-            <div class="flex flex-col w-3/4">
+            <div class="flex flex-col w-3/5">
             @if($rrhh->status=="Pendent")
                 <h2 class="cardTitle text-orange-500 text-2xl">{{$rrhh->context}}</h1>
             @else
@@ -19,16 +19,16 @@
                     <p class="text-gray-400 mr-5">Creada Per: {{$rrhh->professional->name}} {{$rrhh->professional->surname1}} {{$rrhh->professional->surname2}}</p>
                 </div>
                 <div class="flex">
-                    <p class='text-gray-400 mr-5'>Professional Afectat: {{$rrhh->afectat->name}} {{$rrhh->afectat->surname1}} {{$rrhh->afectat->surname2}}</p>
-                    <p class='text-gray-400 mr-5'>Professional Derivat: {{$rrhh->derivat->name}} {{$rrhh->derivat->surname1}} {{$rrhh->derivat->surname2}}</p>
+                    <p class='text-gray-400 mr-5'>Afectat: {{$rrhh->afectat->name}} {{$rrhh->afectat->surname1}} {{$rrhh->afectat->surname2}}</p>
+                    <p class='text-gray-400 mr-5'>Derivat: {{$rrhh->derivat->name}} {{$rrhh->derivat->surname1}} {{$rrhh->derivat->surname2}}</p>
                 </div>
                 
             </div>
 
-            <div class="flex w-1/4 justify-end my-4 gap-1">
+            <div class="flex w-2/5 justify-end my-4 gap-1">
 
                 @if($rrhh->status=="Pendent")
-                    <a class="ferSeguiment font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-400 bg-orange-200 hover:bg-orange-100 transition flex w-2/4 justify-center items-center">
+                    <a class="ferSeguiment font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 transition flex w-2/4 justify-center items-center">
                 @else
                     <a class="hidden ferSeguiment font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition w-2/4 justify-center items-center">
                 @endif
@@ -39,7 +39,7 @@
                 </a>
 
                 @if($rrhh->status=="Pendent")
-                    <a class="canviarStatus font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-400 bg-orange-200 hover:bg-orange-100 transition flex w-2/4 justify-center items-center">
+                    <a class="canviarStatus font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 transition flex w-2/4 justify-center items-center">
                 @else
                     <a class="canviarStatus font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition flex w-2/4 justify-center items-center">
                 @endif

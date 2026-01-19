@@ -1,16 +1,4 @@
 <div x-data="{ openCreate:false }">
-
-
-    <a 
-        @click="openCreate = true"
-        class="text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700"
-    >
-        <x-lucide-plus class="w-5 h-5"/>
-        Editar
-    </a>
-
-
-
     <div 
         x-show="openCreate" 
         x-transition
@@ -23,34 +11,34 @@
                 Editar Projecte/Comisio
             </h2>
 
-            <form action="{{ route('projects_comisions.edit',$project_comision) }}" method="POST" class="space-y-4">
+            <form action="{{ route('projects_comisions.edit',$projectcomision) }}" method="POST" class="space-y-4">
                 @csrf
 
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Nom del Projecte/Comisio</label>
-                    <input type="text" name="name" required value="{{ $project_comision->name }}"
+                    <input type="text" name="name" required value="{{ $projectcomision->name }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     >
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Descripció</label>
-                    <textarea name="description" value="{{ $project_comision->description }}"
+                    <textarea name="description" value="{{ $projectcomision->description }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     ></textarea>
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Observacions</label>
-                    <textarea name="observations" value="{{ $project_comision->observations }}"
+                    <textarea name="observations" value="{{ $projectcomision->observations }}"
                         class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                     ></textarea>
                 </div>
 
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Data inici</label>
-                    <input type="date" name="startDate" value="{{ $project_comision->startDate }}" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
+                    <input type="date" name="startDate" value="{{ $projectcomision->startDate }}" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">

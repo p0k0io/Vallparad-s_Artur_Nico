@@ -12,7 +12,7 @@
         <div class="bg-white w-full lg:w-1/2 rounded-2xl shadow-lg p-6 border border-orange-200">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-orange-500 mb-6 ">Projectes/Comisions disponibles</h2>
-                <x-project-comision-create-modal :centers="$centers" :professionals="$professionals"/> <!--esta igual que cursos i no funciona, Chat GPT m'ha dit que fiqui aixo, ni idea pero funciona,-->
+                <x-project-comision-create-modal :centers="$centers" :professionals="$professionals"/>
                 <a href="{{ route('assigned.export') }}" class="btn btn-success bg-green-500 text-white  flex-row gap-3 px-4 py-3 rounded-full flex items-center justify-center">
                     <x-lucide-file-spreadsheet class="h-4 w-4"/>Exportar
                 </a>
@@ -37,7 +37,7 @@
                                 </span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <x-project-comision-edit-modal :centers="$centers" :project_comision="$project_comision"/>
+                                
                                 <span class="text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
                                     {{ ucfirst($project_comision->type) }}
                                 </span>
