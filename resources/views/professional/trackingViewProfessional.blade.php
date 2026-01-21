@@ -70,14 +70,13 @@
         >
             <!-- titulo modal -->
             <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">
-                Crear nuevo contacto externo
+                Crear nou seguiment
             </h2>
 
             <!-- formulario -->
             <form action="{{ route('track.professional',$professional) }}" method="post" class="space-y-6">
                 @csrf
                 <input type="hidden" name="tracked" value="{{$professional->id}}">
-                <input type="hidden" name="tracker" value="{{(Auth::user()->email)}}">
                 <!-- Tipus -->
                 <div>
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus de Seguiment</label>

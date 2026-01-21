@@ -8,9 +8,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\ProfessionalTracking;
+use App\Models\Evaluation;
 
 class ProfileController extends Controller
 {
+
+    public function index()
+    {
+        $user = auth()->user();
+        $trackings= ProfessionalTracking::where('tracked',$user->professional->id)->get();
+        $evaluations= Evaluation::where('evaluated',$user->professional->id)->get();
+
+        return view('profile.profileView',
+        [
+                "user" => $user,
+                "trackings" => $trackings,
+                "evaluations" => $evaluations,
+            ]
+        );
+    }
     /**
      * Display the user's profile form.
      */

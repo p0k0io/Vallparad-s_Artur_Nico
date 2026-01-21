@@ -4,7 +4,7 @@
             <h2 class="text-orange-500 text-2xl">{{$tracking->subject}}</h1>
             <div class="flex justify-between">
                 <p class="text-gray-400 mr-5">Tipus: {{$tracking->type}}</p>
-                <p class="text-gray-400 text-right">Seguiment fet per:---</p>
+                <p class="text-gray-400 text-right">Seguiment fet per: {{ $tracking->tracker->name }} {{ $tracking->tracker->surname1 }} {{ $tracking->tracker->surname2 }}</p>
             </div>
 
         </div>

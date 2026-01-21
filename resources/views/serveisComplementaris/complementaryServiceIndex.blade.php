@@ -124,7 +124,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Documents (falta fer file)</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Documents</label>
                 <input type="file" id="docs" name="docs" 
                     class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
             </div>

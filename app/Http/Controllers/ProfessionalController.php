@@ -120,7 +120,7 @@ class ProfessionalController extends Controller
 
     public function trackingViewProfessional(Professional $professional)
     {
-        $trackings= ProfessionalTracking::where('tracked',$professional->id)->orderBy('id','desc')->paginate(5);
+        $trackings= ProfessionalTracking::where('tracked',$professional->id)->orderBy('id','desc');
         return view("professional.trackingViewProfessional",
         [
             "professional" => $professional,
@@ -141,12 +141,15 @@ class ProfessionalController extends Controller
 
     public function track(Professional $professional)
     {
+        $idTracker = auth()->user();
+        $idTracker = $idTracker->professional->id;
+
         ProfessionalTracking::create([
             'type'=>request('type'),
             'subject'=>request('subject'),
             'description'=>request('description'),
-            'tracked'=>1,
-            'tracker'=>1
+            'tracked'=>request('tracked'),
+            'tracker'=> $idTracker,
         ]);
         return redirect()->route('trackingViewProfessional.professional', $professional);
     }
