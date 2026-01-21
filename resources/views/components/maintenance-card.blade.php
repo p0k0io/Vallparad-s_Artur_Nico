@@ -1,7 +1,7 @@
 @if ($maintenance->status=="Pendent")
-    <li x-data="{ open: false }" class="border border-orange-300 rounded-xl overflow-hidden m-3">
+    <li x-data="{ open: false }" class="liMaintCard border border-orange-200 rounded-xl overflow-hidden m-3">
 @else
-    <li x-data="{ open: false }" class="border border-gray-300 rounded-xl overflow-hidden m-3">
+    <li x-data="{ open: false }" class="liMaintCard border border-gray-300 rounded-xl overflow-hidden m-3">
 @endif
     @if($maintenance->status=="Pendent")
         <button @click="open = !open" class="bg-orange-50 hover:bg-orange-100 w-full text-left transition py-1 flex px-3">
@@ -20,33 +20,19 @@
                 <p class="text-gray-400 mr-5">Creada Per: {{$maintenance->professional->name}} {{$maintenance->professional->surname1}} {{$maintenance->professional->surname2}}</p>
             </div>
             <div class="flex w-2/6 justify-end my-4 gap-1">
-
                 
                 @if($maintenance->status=="Pendent")
-                    <a class="editar font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-400 bg-orange-200 hover:bg-orange-100 transition flex w-2/6 justify-center items-center">
+                    <a class="ferSeguiment font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 transition flex w-2/4 justify-center items-center">
                 @else
-                    <a class="hidden editar font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition w-2/6 justify-center items-center">
-                @endif
-                    Editar
-
-
-                </a>
-                
-                @if($maintenance->status=="Pendent")
-                    <a class="ferSeguiment font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-400 bg-orange-200 hover:bg-orange-100 transition flex w-2/6 justify-center items-center">
-                @else
-                    <a class="hidden ferSeguiment font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition w-2/6 justify-center items-center">
+                    <a class="hidden ferSeguiment font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition w-2/4 justify-center items-center">
                 @endif
                     Fer Seguiment
-
                     <x-maintenance-create-tracking :maintenance="$maintenance"/>
-
                 </a>
-                
                 @if($maintenance->status=="Pendent")
-                    <a class="canviarStatus font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-400 bg-orange-200 hover:bg-orange-100 transition flex w-2/6 justify-center items-center">
+                    <a class="canviarStatus font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 transition flex w-2/4 justify-center items-center">
                 @else
-                    <a class="canviarStatus font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition flex w-2/6 justify-center items-center">
+                    <a class="canviarStatus font-bold m-0.5 border-2 rounded-full bg-gray-200 text-gray-500 border-gray-400 hover:bg-gray-100 transition flex w-2/4 justify-center items-center">
                 @endif
                     <input hidden value="{{$maintenance->id}}">
                     <span>{{$maintenance->status}}</span>
@@ -73,4 +59,6 @@
             </div>
             
         </div>
+        
     </li>
+    

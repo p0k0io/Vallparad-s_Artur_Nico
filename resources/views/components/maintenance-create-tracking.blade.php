@@ -1,4 +1,4 @@
-<div class="fixed inset-0 backdrop-blur-sm items-center justify-center hidden">
+<div class="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50 px-4 hidden">
     <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200 z-50">
         <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">
             Fer Seguiment

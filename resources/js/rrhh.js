@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
-
-    
-    document.querySelectorAll('li').forEach(card=>{
+    document.querySelectorAll('.liMaintCard').forEach(card=>{
 
         let state = card.querySelector(".canviarStatus");
         state.addEventListener('click', function(event){

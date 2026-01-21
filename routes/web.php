@@ -17,6 +17,7 @@ use App\Http\Controllers\EnrolledInController;
 use App\Http\Controllers\CenterManagementDocumentController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\ServeiGeneralController;
+use App\Http\Controllers\ComplementaryServiceController;
 use App\Http\Controllers\AdminController;
 
 
@@ -79,6 +80,8 @@ Route::post('/storeProj', [ProjectComissionAssignedController::class, 'store']);
 Route::resource('project_comision_assignment', ProjectComissionAssignedController::class);
 
 Route::get('/exportar-assignats', [ProjectComissionAssignedController::class, 'exportAssigned'])->name('assigned.export');
+
+Route::get('/removeAssignation/{idPC}/{idProf}', [ProjectComissionAssignedController::class, 'removeAssignation'])->name('removeAssignation.projectComissionAssignment');
 
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
@@ -161,7 +164,6 @@ Route::post('/externalContact', [ExternalContactController::class, 'store'])
 
 //Rutas servicios generales
 
-Route::get('/serveisGenerals', [ServeiGeneralController::class, 'index'])->name('serveisGenerals.index');
 Route::resource('serveisGenerals', ServeiGeneralController::class);
 
 Route::get('/admin', [AdminController::class, 'index'])
@@ -173,6 +175,10 @@ Route::post('/admin/users', [AdminController::class, 'store'])
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
     ->middleware('auth')
     ->name('admin.destroy');
+
+
+//Rutas servicios complementarios
+Route::resource('complementaryService', ComplementaryServiceController::class);
 
 
 // Rutas de autenticación

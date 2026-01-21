@@ -1,15 +1,15 @@
 <div x-data="{ openCreate:false }">
     <button 
         @click="openCreate = true"
-        class="bg-orange-400 text-white text-lg px-20 py-2 font-bold rounded-full shadow-md transition-all"
+        class="flex items-center gap-3 px-8 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
     >
+        <x-lucide-plus class="w-6 h-6"/>
         Fer Incidencia
     </button>
 
     <div 
         x-show="openCreate" 
-        
-        class="fixed inset-0 backdrop-blur-sm flex items-center justify-center "
+        class="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50 px-4"
     >
         <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200"
             @click.outside="openCreate=false"

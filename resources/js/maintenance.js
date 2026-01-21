@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
-    document.querySelectorAll('li').forEach(card=>{
+    document.querySelectorAll('.liMaintCard').forEach(card=>{
 
         let state = card.querySelector(".canviarStatus");
         state.addEventListener('click', function(event){
@@ -89,30 +89,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             trackDiv.classList.remove('hidden');
             trackDiv.classList.add('flex');
         });
-
-        
-        trackDiv.addEventListener('click', function(event){
-            event.stopPropagation();
-
-            trackDiv.classList.add('hidden');
-            trackDiv.classList.remove('flex');
-        });
         
     });
 
-    document.querySelectorAll('.editar').forEach(tracking => {
-
-        let editDiv=tracking.querySelector('.fixed');
-
-        tracking.addEventListener('click', function(event){
-            event.stopPropagation();
-
-            editDiv.classList.remove('hidden');
-            editDiv.classList.add('flex');
-        });
-
-        //tracking.querySelector('');
-    });
 
     /*
     document.querySelectorAll('.backdrop-blur-sm').forEach(e=>{

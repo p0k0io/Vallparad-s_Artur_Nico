@@ -3,25 +3,43 @@
 @section('title','RRHH')
 
 @section('content')
-    <div class="min-h-screen flex flex-col py-16 items-center z-10">
-        <div class="flex justify-center w-3/4 my-3 bg-white shadow-md rounded-full text-center py-1 text-orange-500 conte">
-            <svg class="-mr-1 size-5 text-orange-500">
-                <use xlink:href="#search"></use>
-            </svg>
-        </div>
-        <div class="bg-white rounded-3xl shadow-md flex flex-col w-3/4 my-3 ">
-            <div class="flex flex-inline justify-between p-4 mx-1">
-                <h1 class="text-4xl font-bold text-orange-500">Temas Pendents de RH</h1>
-                <x-create-rrhh :professionals="$professionals"/>
+
+    <div class="min-h-screen bg-slate-100 py-16 px-6 flex flex-col items-center">
+        <div class="w-full max-w-5xl">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold text-orange-500 mb-3 tracking-tight">
+                    Temas Pendents de RH
+                </h1>
+                <p class="text-lg text-gray-600">
+                    Gestio de Temas Pendents de RH
+                </p>
             </div>
-            <ul class="bg-gray-100 bg-opacity-30 m-4 rounded-xl border border-spacing-5 border-gray-300 border-dashed">
-                @forelse($rrhhs as $rrhh)
-                        <x-rrhh-card :rrhh="$rrhh"/>
-                @empty
-                    <h1 class="text-4xl font-bold text-gray-400 text-center my-5">No s'ha trobat ningun Tema Pendent</h1>
-                @endforelse
-            </ul>
+            <div class="bg-white rounded-3xl shadow-xl p-10 border-2 border-orange-200">
+
+                <!-- cabecera con titulo y boton crear -->
+                <div class="flex justify-between items-center mb-10 pb-6 border-b-2 border-orange-100">
+                    <h2 class="text-3xl font-bold text-gray-800">Llista de Temas Pendents de RH</h2>
+
+                    <!-- boto crear manteniment -->
+                    <x-create-rrhh :professionals="$professionals"/>
+                </div>
+
+                <!-- llista de manteniments -->
+                <div class="space-y-6">
+                    @forelse($rrhhs as $rrhh)
+                        <div class="hover:-translate-y-1 transition-all duration-300">
+                            <x-rrhh-card :rrhh="$rrhh"/>
+                        </div>
+                    @empty
+                        <div class="text-center py-12">
+                            <p class="text-xl text-gray-500">No hi han manteniments tema pendent.</p>
+                            <p class="mt-2 text-gray-400">Comença afegint-ne un</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
         </div>
+        
     </div>
 
 @vite(['resources/js/rrhh.js'])
