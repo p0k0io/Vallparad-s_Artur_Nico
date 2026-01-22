@@ -38,12 +38,15 @@ class RrhhController extends Controller
      */
     public function store(Request $request)
     {
+        $idUser = auth()->user();
+        $idProf = $idUser->professional->id;
+
         RRHH::create([
             'context'=>request('context'),
             'description'=>request('description'),
             'status'=> 'pendent',
             'signature'=>request('signature'),
-            'professional_id'=>1,
+            'professional_id'=> $idProf,
             'professional_afectat'=>request('professional_afectat'),
             'professional_derivat'=>request('professional_derivat'),
         ]);

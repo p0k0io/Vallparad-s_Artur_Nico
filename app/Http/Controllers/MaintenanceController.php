@@ -38,12 +38,15 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
+        $idUser = auth()->user();
+        $idProf = $idUser->professional->id;
+
         Maintenance::create([
             'context'=>request('context'),
             'description'=>request('description'),
             'responsible'=>request('responsible'),
             'path'=>request('path'),
-            'professional_id'=> 1,
+            'professional_id'=> $idProf,
             'status'=> 'pendent',
             'signature'=> request('signature')
 
@@ -71,7 +74,7 @@ class MaintenanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Maintenance $maintenance)
     {
         $maintenance->update($request->all());
 

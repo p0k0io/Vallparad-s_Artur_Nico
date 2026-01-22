@@ -42,6 +42,8 @@ class AccidentabilityController extends Controller
             $status="En Baixa";
         }
 
+        $idUser = auth()->user();
+        $idProf = $idUser->professional->id;
 
         Accidentability::create([
             'type'=>request('type'),
@@ -51,8 +53,8 @@ class AccidentabilityController extends Controller
             'startDate'=>request('startDate'),
             'endDate'=>request('endDate'),
             'signature'=>request('signature'),
-            'status'=>$status,
-            'professional_id'=>1
+            'status'=> $status,
+            'professional_id'=> $idProf
         ]);
 
         return redirect()->route('accidentability.index');
