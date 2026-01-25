@@ -27,6 +27,7 @@ return [
     | Supported drivers: "local", "ftp", "sftp", "s3"
     |
     */
+    
 
     'disks' => [
 
@@ -60,7 +61,16 @@ return [
             'report' => false,
         ],
 
+        'complementaryService' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/complementaryService'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage/',
+            'throw' => false,
+        ],
     ],
+
+    
 
     /*
     |--------------------------------------------------------------------------

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 use App\Models\ComplementaryService;
+use App\Models\ComplementaryServiceDocument;
 
 class ComplementaryServiceController extends Controller
 {
@@ -35,18 +38,39 @@ class ComplementaryServiceController extends Controller
      */
     public function store(Request $request)
     {
-        ComplementaryService::create([
+
+        $complementaryService=ComplementaryService::create([
             'name'=>request('name'),
             'description'=>request('description'),
             'manager'=>request('manager'),
             'contact'=> request('contact'),
             'startDate'=>request('startDate'),
             'observations'=>request('observations'),
-            'docs'=>request('docs'),
             'center_id'=>1,
         ]);
 
+        $validated = $request->validate([
+            'files.*' => 'file|max:10240',
+        ]);
+
+        $files = $validated['files'];
+
+        if ($files) {
+            foreach ($files as $file) {
+                $name_file = time().'-'. $file->getClientOriginalName();
+                $storage_path = Storage::disk('complementaryService')->putFileAs('', $file, $name_file);
+                ComplementaryServiceDocument::create([
+                    'complementaryService_id' => $complementaryService->id,
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
+
+
         return redirect()->route('complementaryService.index');
+
+
+    
     }
 
     /**
@@ -87,4 +111,8 @@ class ComplementaryServiceController extends Controller
 
         return redirect()->route('complementaryService.index')->with('success', 'Servei complementari eliminat correctament.');
     }
+
+
+    
+
 }

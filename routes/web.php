@@ -37,6 +37,9 @@ Route::post('/createMaintenanceTracking', [MaintenanceController::class, 'create
 Route::resource('accidentability', AccidentabilityController::class);
 Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeStateBaixa'])->name('changeStateBaixa.maintenance');
 
+Route::get('/downloadAccident/{accident}', [AccidentabilityController::class, 'downloadAccident'])
+    ->name('accidentability.downloadAccident');
+
 //--------------------------------------------------RRHH--------------------------------------------------------------
 Route::resource('rrhh', RrhhController::class);
 Route::post('/changeStateRrhh', [RrhhController::class, 'changeStateRrhh'])->name('changeStateRrhh.rrhh');

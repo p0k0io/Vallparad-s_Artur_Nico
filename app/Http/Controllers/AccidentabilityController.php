@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Accidentability;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AccidentabilityController extends Controller
@@ -117,6 +118,42 @@ class AccidentabilityController extends Controller
             'data' => $accident->status
         ]);
     }
+
+    public function downloadAccident(Accidentability $accident)
+    {
+        if($accident->type=='Sense Baixa'){
+            $dades = [
+                'type' => $accident->type,
+                'context' => $accident->context,
+                'description' => $accident->description,
+            ];
+            $pdf = Pdf::loadView('accidentabilityFitxas.senseBaixa', $dades);
+        }
+        elseif($accident->type=='Amb Baixa'){
+            $dades = [
+                'type' => $accident->type,
+                'context' => $accident->context,
+                'description' => $accident->description,
+                'duration' => $accident->duration,
+            ];
+            $pdf = Pdf::loadView('accidentabilityFitxas.ambBaixa', $dades);
+        }
+        else{
+            $dades = [
+                'type' => $accident->type,
+                'context' => $accident->context,
+                'description' => $accident->description,
+                'startDate' => $accident->startDate,
+                'endDate' => $accident->endDate,
+            ];
+            $pdf = Pdf::loadView('accidentabilityFitxas.baixaLlarga', $dades);
+        }
+        
+
+        return $pdf->download('fitxaAccident.pdf');
+    }
+
+
 
 
 }

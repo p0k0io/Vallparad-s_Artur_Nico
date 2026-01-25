@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             let token = meta ? meta.getAttribute('content') : '';
 
             if(currentStateInner.innerText === 'Pendent') {
-                divBottom.classList.remove('border-orange-100');
-                divBottom.classList.add('border-gray-200');
+                divBottom.classList.remove('border-orange-200');
+                divBottom.classList.add('border-gray-300');
                 cardTitle.classList.remove('text-orange-500');
                 cardTitle.classList.add('text-gray-500');
                 parentBtn.classList.remove('bg-orange-50','hover:bg-orange-100');
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                 trackingA.classList.remove('flex','bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
             }
             else{
-                divBottom.classList.remove('border-gray-200');
-                divBottom.classList.add('border-orange-100');
+                divBottom.classList.remove('border-gray-300');
+                divBottom.classList.add('border-orange-200');
                 cardTitle.classList.remove('text-gray-500');
                 cardTitle.classList.add('text-orange-500');
                 parentBtn.classList.remove('bg-gray-100','hover:bg-gray-200');
@@ -83,9 +83,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         let trackDiv=tracking.querySelector('.fixed');
 
-        tracking.addEventListener('click', function(event){
-            event.stopPropagation();
-
+        tracking.addEventListener('click', function(e){
             trackDiv.classList.remove('hidden');
             trackDiv.classList.add('flex');
         });

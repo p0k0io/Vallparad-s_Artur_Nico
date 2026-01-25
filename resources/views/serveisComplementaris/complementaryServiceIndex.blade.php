@@ -85,7 +85,7 @@
             Gestió del servei
         </h2>
 
-        <form id="edit-form" method="POST" onsubmit="beforeSubmit()" class="space-y-4">
+        <form id="edit-form" method="POST" onsubmit="beforeSubmit()" class="space-y-4" enctype="multi-part/form-data">
             @csrf
             <input type="hidden" id="method-field" name="_method" value="POST">
 
@@ -125,7 +125,7 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Documents</label>
-                <input type="file" id="docs" name="docs" 
+                <input type="file" id="files" name="files[]" multiple 
                     class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
             </div>
 

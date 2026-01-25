@@ -22,4 +22,9 @@ class ComplementaryService extends Model
     {
         return $this->belongsTo(Center::class, 'center_id');
     }
+
+    public function complementaryServiceDocument()
+    {
+        return $this->hasMany(ComplementaryServiceDocument::class);
+    }
 }
