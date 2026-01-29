@@ -38,15 +38,19 @@ class AccidentabilityController extends Controller
      */
     public function store(Request $request)
     {
-        if(request('type')=="Sense Baixa"){
-            $status="Sense Baixa";
-        }
-        else{
+        $status = request('type');
+
+        if($status === "Amb Baixa" || $status === "Baixa Llarga"){
             $status="En Baixa";
         }
-
+        else{
+            $status="Sense Baixa";
+        }
+        
         $idUser = auth()->user();
         $idProf = $idUser->professional->id;
+
+        $affectedProfessionalId=request('professional_id');
 
         Accidentability::create([
             'type'=>request('type'),
@@ -57,10 +61,15 @@ class AccidentabilityController extends Controller
             'endDate'=>request('endDate'),
             'signature'=>request('signature'),
             'status'=> $status,
-            'professional_id'=> $idProf
+            'professional_id'=> request('professional_id'),
+            'whoWrites'=> $idProf
         ]);
 
-        return redirect()->route('accidentability.index');
+        return redirect()->route(
+            'accidentability.indexPerProfessional',
+            ['professional' => $affectedProfessionalId] //Si que torna amb sols la id
+        );
+        
     }
 
     /**
@@ -102,10 +111,10 @@ class AccidentabilityController extends Controller
 
         $accident=Accidentability::find($id);
 
-        if($accident->status == 'En Baixa'){
+        if($accident->status === 'En Baixa'){
             $accident->status = 'Baixa Finalitzada';
         }
-        elseif($accident->status == 'Baixa Finalitzada'){
+        elseif($accident->status === 'Baixa Finalitzada'){
             $accident->status = 'En Baixa';
         }
         else{
@@ -158,7 +167,7 @@ class AccidentabilityController extends Controller
 
     public function indexPerProfessional(Professional $professional)
     {
-        $accidents = Accidentability::all();
+        $accidents = Accidentability::where('professional_id', $professional->id)->get();
 
         return view('accidentability.indexAccidentability', 
             [

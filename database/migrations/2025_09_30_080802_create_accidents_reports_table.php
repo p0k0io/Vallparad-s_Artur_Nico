@@ -23,6 +23,8 @@ return new class extends Migration
             $table->enum('status', ['Baixa Finalitzada','En Baixa','Sense Baixa']);
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professional')->onDelete('cascade');
+            $table->unsignedBigInteger('whoWrites');
+            $table->foreign('whoWrites')->references('id')->on('professional')->onDelete('cascade');
             $table->timestamps();
         });
     }

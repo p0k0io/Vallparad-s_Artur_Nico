@@ -20,6 +20,7 @@
                 <form action="{{route('accidentability.store')}}" method="POST" class="space-y-4">
                 @csrf
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus de Baixa</label>
+                    <input type="hidden" name="professional_id" value="{{ $professional->id }}">
                     <select id="baixaSelect" name="type" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
                         <option value="Sense Baixa" selected>Sense Baixa</option>
                         <option value="Amb Baixa">Amb Baixa</option>

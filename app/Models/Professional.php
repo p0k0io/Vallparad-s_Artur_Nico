@@ -53,6 +53,10 @@ class Professional extends Model
         return $this->hasMany(Accidentability::class);
     }
 
+    public function whoWritesAcc(){
+        return $this->hasMany(Accidentability::class,'whoWrites');
+    }
+
     
     public function rrhh(){
         return $this->hasMany(RRHH::class);
