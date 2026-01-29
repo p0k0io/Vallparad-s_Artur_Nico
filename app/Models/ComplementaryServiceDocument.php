@@ -9,7 +9,7 @@ class ComplementaryServiceDocument extends Model
     protected $table = 'complementary_service_documents';
     protected $fillable = [
         'path',
-        'complementaryService_id',
+        'complementary_service_id',
     ];
 
     public function complementaryService()

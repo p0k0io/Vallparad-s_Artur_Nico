@@ -18,7 +18,7 @@
             <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">Fer RRHH</h1>
             
             <div id="rrhhForm">
-                <form action="{{route('rrhh.store')}}" method="POST" class="space-y-4">
+                <form action="{{route('rrhh.store')}}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>
@@ -51,6 +51,10 @@
                                 <option value="{{ $professional->id }}">{{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Documents</label>
+                        <input type="file" id="files" name="files[]" multiple class="w-full border-gray-300 focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Firma</label>

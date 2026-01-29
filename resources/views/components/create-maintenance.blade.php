@@ -17,7 +17,7 @@
             <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">Fer Manteniment</h1>
             
             <div id="maintenanceForm">
-                <form action="{{route('maintenance.store')}}" method="POST" class="space-y-4">
+                <form action="{{route('maintenance.store')}}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>
@@ -37,11 +37,10 @@
                             class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
                         ></textarea>
                     </div>
+                    
                     <div>
-                        <label class="block text-sm text-orange-600 mb-1 font-medium">Path (no creat)</label>
-                        <input type="text" name="path"
-                            class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
-                        >
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Documents</label>
+                        <input type="file" id="files" name="files[]" multiple class="w-full border-gray-300 focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div>
                         <label class="block text-sm text-orange-600 mb-1 font-medium">Firma</label>

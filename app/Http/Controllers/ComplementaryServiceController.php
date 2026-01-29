@@ -38,7 +38,6 @@ class ComplementaryServiceController extends Controller
      */
     public function store(Request $request)
     {
-
         $complementaryService=ComplementaryService::create([
             'name'=>request('name'),
             'description'=>request('description'),
@@ -50,26 +49,21 @@ class ComplementaryServiceController extends Controller
         ]);
 
         $validated = $request->validate([
-            'files.*' => 'file|max:10240',
+            'files.*' => 'nullable|file|max:10240',
         ]);
 
-        $files = $validated['files'];
-
-        if ($files) {
-            foreach ($files as $file) {
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
                 $name_file = time().'-'. $file->getClientOriginalName();
                 $storage_path = Storage::disk('complementaryService')->putFileAs('', $file, $name_file);
                 ComplementaryServiceDocument::create([
-                    'complementaryService_id' => $complementaryService->id,
+                    'complementary_service_id' => $complementaryService->id,
                     'path' => $storage_path,  // Ruta del archivo
                 ]);
             }
         }
 
-
         return redirect()->route('complementaryService.index');
-
-
     
     }
 
@@ -96,7 +90,36 @@ class ComplementaryServiceController extends Controller
      */
     public function update(Request $request, ComplementaryService $complementaryService)
     {
-        $complementaryService->update($request->all());
+        $complementaryService->update([
+            'name'=>request('name'),
+            'description'=>request('description'),
+            'manager'=>request('manager'),
+            'contact'=> request('contact'),
+            'startDate'=>request('startDate'),
+            'observations'=>request('observations'),
+        ]);
+
+        $request->validate([
+            'files.*' => 'nullable|file|max:10240',
+        ]);
+
+        if ($request->hasFile('files')) {
+
+            foreach ($complementaryService->documents as $document) {
+                Storage::disk('complementaryService')->delete($document->path);
+                $document->delete();
+            }
+
+            foreach ($request->file('files') as $file) {
+                $name_file = time() . '-' . $file->getClientOriginalName();
+                $path = Storage::disk('complementaryService')
+                    ->putFileAs('', $file, $name_file);
+
+                $complementaryService->documents()->create([
+                    'path' => $path,
+                ]);
+            }
+        }
 
         return redirect()->route('complementaryService.index');
     }

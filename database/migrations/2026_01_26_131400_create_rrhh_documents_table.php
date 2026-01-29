@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('complementary_service_documents', function (Blueprint $table) {
+        Schema::create('rrhh_documents', function (Blueprint $table) {
             $table->id();
             $table->string('path',255);
-            $table->unsignedBigInteger('complementary_service_id');
-            $table->foreign('complementary_service_id')->references('id')->on('complementary_services')->onDelete('cascade');
+            $table->unsignedBigInteger('rrhh_id');
+            $table->foreign('rrhh_id')->references('id')->on('pending_hr_issues')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('complementary_service_documents');
+        Schema::dropIfExists('rrhh_documents');
     }
 };

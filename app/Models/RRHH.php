@@ -24,4 +24,8 @@ class RRHH extends Model
     public function rrhhTrackings(){
         return $this->hasMany(RrhhTracking::class, 'rrhh_id');
     }
+
+    public function documents(){
+        return $this->hasMany(RrhhDocument::class, 'rrhh_id');
+    }
 }

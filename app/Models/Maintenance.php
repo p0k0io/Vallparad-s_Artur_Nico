@@ -16,4 +16,9 @@ class Maintenance extends Model
     public function maintenanceTrackings(){
         return $this->hasMany(MaintenanceTracking::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(MaintenanceDocument::class);
+    }
 }

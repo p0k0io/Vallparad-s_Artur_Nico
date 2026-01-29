@@ -3,12 +3,11 @@
 @section('title','Accidentability')
 
 @section('content')
-
     <div class="min-h-screen bg-slate-100 py-16 px-6 flex flex-col items-center">
         <div class="w-full max-w-5xl">
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-extrabold text-orange-500 mb-3 tracking-tight">
-                    Accidents
+                    Accidents de {{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}
                 </h1>
                 <p class="text-lg text-gray-600">
                     Gestio d'accidents

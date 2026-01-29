@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Accidentability;
+use App\Models\Professional;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -16,9 +17,10 @@ class AccidentabilityController extends Controller
     {
         $accidents = Accidentability::all();
 
+
         return view('accidentability.indexAccidentability', 
             [
-                'accidents' => $accidents
+                'accidents' => $accidents,
             ]
         );
     }
@@ -154,6 +156,17 @@ class AccidentabilityController extends Controller
     }
 
 
+    public function indexPerProfessional(Professional $professional)
+    {
+        $accidents = Accidentability::all();
+
+        return view('accidentability.indexAccidentability', 
+            [
+                'accidents' => $accidents,
+                'professional'=> $professional,
+            ]
+        );
+    }
 
 
 }

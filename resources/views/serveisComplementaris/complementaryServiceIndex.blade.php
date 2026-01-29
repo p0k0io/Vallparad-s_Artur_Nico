@@ -85,7 +85,7 @@
             Gestió del servei
         </h2>
 
-        <form id="edit-form" method="POST" onsubmit="beforeSubmit()" class="space-y-4" enctype="multi-part/form-data">
+        <form id="edit-form" method="POST" onsubmit="beforeSubmit()" class="space-y-4" enctype="multipart/form-data">
             @csrf
             <input type="hidden" id="method-field" name="_method" value="POST">
 
@@ -126,7 +126,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Documents</label>
                 <input type="file" id="files" name="files[]" multiple 
-                    class="w-full rounded-xl border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+                    class="w-full border-gray-300 focus:border-orange-500 focus:ring-orange-500">
             </div>
 
             <div class="flex justify-end gap-3 pt-4">
@@ -153,6 +153,30 @@ function openInfoModal(servei) {
 
     document.getElementById("edit-btn").onclick = () => openEditModal(servei);
 
+    let documentsHtml = '';
+
+    console.log(servei.documents);
+
+    if (servei.documents && servei.documents.length > 0) {
+        documentsHtml = `
+            <h3 class="mt-4 font-semibold">Documents</h3>
+            <ul class="mt-2 space-y-1">
+                ${servei.documents.map(doc => `
+                    <li class="flex justify-between items-center">
+                        <span>${doc.path.split('/').pop()}</span>
+                        <a href="/complementary-service-documents/${doc.id}/download"
+                           class="text-sm text-orange-600 hover:underline">
+                            Descarregar
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+    } else {
+        documentsHtml = `<p class="mt-4 text-gray-400">Aquest servei no té documents</p>`;
+    }
+
+    
     content.innerHTML = `
         <h2 class="text-2xl font-bold text-gray-800">${servei.name}</h2>
         <p><strong>Descripció:</strong> ${servei.description}</p>
@@ -160,9 +184,9 @@ function openInfoModal(servei) {
         <p><strong>Contacte:</strong> ${servei.contact}</p>
         <p><strong>Data d'inici:</strong> ${servei.startDate}</p>
         <p><strong>Observacions:</strong> ${servei.observations}</p>
-        <p><strong>Documents:</strong> ${servei.docs}</p>
+        ${documentsHtml}
     `;
-
+    
     
     modal.classList.remove("hidden");
 }

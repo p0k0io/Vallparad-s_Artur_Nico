@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ComplementaryService extends Model
 {
     protected $table = 'complementary_services';
+    protected $with = ['documents']; //Aixo es molt raro, he utilitzat chat gpt pero es que el codi de complementaryService.blade.php es rarisim
     protected $fillable = [
         'name',
         'description',
@@ -23,7 +24,7 @@ class ComplementaryService extends Model
         return $this->belongsTo(Center::class, 'center_id');
     }
 
-    public function complementaryServiceDocument()
+    public function documents()
     {
         return $this->hasMany(ComplementaryServiceDocument::class);
     }

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\RRHH;
 use App\Models\Professional;
 use App\Models\RrhhTracking;
+use App\Models\RrhhDocument;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class RrhhController extends Controller
 {
@@ -41,7 +45,9 @@ class RrhhController extends Controller
         $idUser = auth()->user();
         $idProf = $idUser->professional->id;
 
-        RRHH::create([
+        
+
+        $rrhh=RRHH::create([
             'context'=>request('context'),
             'description'=>request('description'),
             'status'=> 'pendent',
@@ -50,6 +56,21 @@ class RrhhController extends Controller
             'professional_afectat'=>request('professional_afectat'),
             'professional_derivat'=>request('professional_derivat'),
         ]);
+
+        $validated = $request->validate([
+            'files.*' => 'nullable|file|max:10240',
+        ]);
+
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $name_file = time().'-'. $file->getClientOriginalName();
+                $storage_path = Storage::disk('pending_hr')->putFileAs('', $file, $name_file);
+                RrhhDocument::create([
+                    'rrhh_id' => $rrhh->id,
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
 
         return redirect()->route('rrhh.index');
     }

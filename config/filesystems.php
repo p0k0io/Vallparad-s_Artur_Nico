@@ -68,6 +68,22 @@ return [
             'url' => env('APP_URL').'/storage/',
             'throw' => false,
         ],
+
+        'maintenance' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/maintenance'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage/',
+            'throw' => false,
+        ],
+
+        'pending_hr' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pending_hr'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage/',
+            'throw' => false,
+        ],
     ],
 
     

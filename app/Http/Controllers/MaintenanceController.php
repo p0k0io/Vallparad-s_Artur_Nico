@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
+use App\Models\MaintenanceDocument;
 use App\Models\MaintenanceTracking;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class MaintenanceController extends Controller
@@ -38,19 +42,33 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
+        
         $idUser = auth()->user();
         $idProf = $idUser->professional->id;
 
-        Maintenance::create([
+        $maintenance=Maintenance::create([
             'context'=>request('context'),
             'description'=>request('description'),
             'responsible'=>request('responsible'),
-            'path'=>request('path'),
             'professional_id'=> $idProf,
             'status'=> 'pendent',
             'signature'=> request('signature')
-
         ]);
+
+        $validated = $request->validate([
+            'files.*' => 'nullable|file|max:10240',
+        ]);
+
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $name_file = time().'-'. $file->getClientOriginalName();
+                $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
+                MaintenanceDocument::create([
+                    'maintenance_id' => $maintenance->id,
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
 
         return redirect()->route('maintenance.index');
     }

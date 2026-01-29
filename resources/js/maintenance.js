@@ -5,15 +5,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         state.addEventListener('click', function(event){
             event.stopPropagation();
 
-            const parent = state.closest('li');
-            const parentBtn = state.closest('button');
             const cardTitle = card.querySelector(".cardTitle");
             const trackingA = card.querySelector(".ferSeguiment");
-            const divBottom = card.querySelector(".bottomDiv");
 
             console.log(cardTitle);
 
-            const currentState = state;
             const currentStateInner = state.querySelector('span');
             const id = state.querySelector('input').value;
             console.log(currentStateInner.innerHTML);
@@ -22,32 +18,12 @@ document.addEventListener('DOMContentLoaded',()=>{
             let token = meta ? meta.getAttribute('content') : '';
 
             if(currentStateInner.innerText === 'Pendent') {
-                divBottom.classList.remove('border-orange-200');
-                divBottom.classList.add('border-gray-300');
-                cardTitle.classList.remove('text-orange-500');
-                cardTitle.classList.add('text-gray-500');
-                parentBtn.classList.remove('bg-orange-50','hover:bg-orange-100');
-                parentBtn.classList.add('bg-gray-100','hover:bg-gray-200');
-                parent.classList.remove('border-orange-300');
-                parent.classList.add('border-gray-300');
-                currentState.classList.remove('bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
-                currentState.classList.add('bg-gray-200','text-gray-500','border-gray-400','hover:bg-gray-100');
                 trackingA.classList.add('hidden');
-                trackingA.classList.remove('flex','bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
+                trackingA.classList.remove('flex');
             }
             else{
-                divBottom.classList.remove('border-gray-300');
-                divBottom.classList.add('border-orange-200');
-                cardTitle.classList.remove('text-gray-500');
-                cardTitle.classList.add('text-orange-500');
-                parentBtn.classList.remove('bg-gray-100','hover:bg-gray-200');
-                parentBtn.classList.add('bg-orange-50','hover:bg-orange-100');
-                parent.classList.remove('border-gray-300');
-                parent.classList.add('border-orange-300');
-                currentState.classList.remove('bg-gray-200','text-gray-500','border-gray-400','hover:bg-gray-100');
-                currentState.classList.add('bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
                 trackingA.classList.remove('hidden');
-                trackingA.classList.add('flex','bg-orange-200','text-orange-500','border-orange-400','hover:bg-orange-100');
+                trackingA.classList.add('flex');
             }
             
             fetch('/changeStateM',{

@@ -18,8 +18,10 @@ use App\Http\Controllers\CenterManagementDocumentController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\ServeiGeneralController;
 use App\Http\Controllers\ComplementaryServiceController;
+use App\Http\Controllers\ComplementaryServiceDocumentController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\MaintenanceDocumentController;
+use App\Http\Controllers\RrhhDocumentController;
 
 // Página principal
 Route::get('/', function () {
@@ -33,6 +35,9 @@ Route::resource('maintenance', MaintenanceController::class);
 Route::post('/changeStateM', [MaintenanceController::class, 'changeStateM'])->name('changeStateM.maintenance');
 Route::post('/createMaintenanceTracking', [MaintenanceController::class, 'createMaintenanceTracking'])->name('createMaintenanceTracking.maintenance');
 
+Route::get('/maintenance/{document}/download',[MaintenanceDocumentController::class, 'download'])->name('maintenanceDocument.download');
+
+
 //--------------------------------------------------Accidentability--------------------------------------------------------------
 Route::resource('accidentability', AccidentabilityController::class);
 Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeStateBaixa'])->name('changeStateBaixa.maintenance');
@@ -40,10 +45,18 @@ Route::post('/changeStateBaixa', [AccidentabilityController::class, 'changeState
 Route::get('/downloadAccident/{accident}', [AccidentabilityController::class, 'downloadAccident'])
     ->name('accidentability.downloadAccident');
 
+Route::get('/indexPerProfessional/professional/{professional}', [AccidentabilityController::class, 'indexPerProfessional'])->name('accidentability.indexPerProfessional');
+
+
+
+
 //--------------------------------------------------RRHH--------------------------------------------------------------
 Route::resource('rrhh', RrhhController::class);
 Route::post('/changeStateRrhh', [RrhhController::class, 'changeStateRrhh'])->name('changeStateRrhh.rrhh');
 Route::post('/createRrhhTracking', [RrhhController::class, 'createRrhhTracking'])->name('createRrhhTracking.rrhh');
+
+Route::get('/rrhh/{document}/download',[RrhhDocumentController::class, 'download'])->name('rrhhDocument.download');
+
 
 //--------------------------------------------------Uniformes------------------------------------------------------------------------
 
@@ -183,6 +196,7 @@ Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
 
 //Rutas servicios complementarios
 Route::resource('complementaryService', ComplementaryServiceController::class);
+Route::get('/complementary-service-documents/{document}/download',[ComplementaryServiceDocumentController::class, 'download'])->name('complementaryServiceDocument.download');
 
 
 // Rutas de autenticación
