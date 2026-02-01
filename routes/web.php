@@ -36,7 +36,9 @@ Route::post('/changeStateM', [MaintenanceController::class, 'changeStateM'])->na
 Route::post('/createMaintenanceTracking', [MaintenanceController::class, 'createMaintenanceTracking'])->name('createMaintenanceTracking.maintenance');
 
 Route::get('/maintenance/{document}/download',[MaintenanceDocumentController::class, 'download'])->name('maintenanceDocument.download');
+Route::get('/maintenanceDelete/{id}', [MaintenanceController::class, 'maintenanceDelete'])->name('maintenance.delete');
 
+Route::post('/searchMaintenances', [MaintenanceController::class, 'searchMaintenances'])->name('searchMaintenances.maintenance');
 
 //--------------------------------------------------Accidentability--------------------------------------------------------------
 Route::resource('accidentability', AccidentabilityController::class);
@@ -46,9 +48,9 @@ Route::get('/downloadAccident/{accident}', [AccidentabilityController::class, 'd
     ->name('accidentability.downloadAccident');
 
 Route::get('/indexPerProfessional/professional/{professional}', [AccidentabilityController::class, 'indexPerProfessional'])->name('accidentability.indexPerProfessional');
+Route::get('/accidentDelete/{id}/{professional}', [AccidentabilityController::class, 'accidentDelete'])->name('accident.delete');
 
-
-
+Route::post('/searchMaintenances/{professional}', [AccidentabilityController::class, 'searchAccidents'])->name('searchAccidents.accidents');
 
 //--------------------------------------------------RRHH--------------------------------------------------------------
 Route::resource('rrhh', RrhhController::class);
@@ -56,6 +58,10 @@ Route::post('/changeStateRrhh', [RrhhController::class, 'changeStateRrhh'])->nam
 Route::post('/createRrhhTracking', [RrhhController::class, 'createRrhhTracking'])->name('createRrhhTracking.rrhh');
 
 Route::get('/rrhh/{document}/download',[RrhhDocumentController::class, 'download'])->name('rrhhDocument.download');
+
+Route::get('/rrhhDelete/{id}', [RrhhController::class, 'rrhhDelete'])->name('rrhh.delete');
+
+Route::post('/searchRrhh', [RrhhController::class, 'searchRrhh'])->name('searchRrh.rrhh');
 
 
 //--------------------------------------------------Uniformes------------------------------------------------------------------------
@@ -98,6 +104,8 @@ Route::resource('project_comision_assignment', ProjectComissionAssignedControlle
 Route::get('/exportar-assignats', [ProjectComissionAssignedController::class, 'exportAssigned'])->name('assigned.export');
 
 Route::get('/removeAssignation/{idPC}/{idProf}', [ProjectComissionAssignedController::class, 'removeAssignation'])->name('removeAssignation.projectComissionAssignment');
+
+Route::get('/projectComisionDelete/{id}', [ProjectComisionController::class, 'projectComisionDelete'])->name('projectComision.delete');
 
 
 //--------------------------------------------------Professionals------------------------------------------------------------------------
@@ -151,10 +159,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Documentacion interna centro
-Route::get('/', function () {
-    return redirect()->route('documents.index');
-});
+
 
 Route::post('/documents', [CenterManagementDocumentController::class, 'store'])->name('documents.store');
 
@@ -194,9 +199,11 @@ Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
     ->name('admin.destroy');
 
 
-//Rutas servicios complementarios
+//---------------------------------------------------------------------------------------------Rutas servicios complementarios
 Route::resource('complementaryService', ComplementaryServiceController::class);
 Route::get('/complementary-service-documents/{document}/download',[ComplementaryServiceDocumentController::class, 'download'])->name('complementaryServiceDocument.download');
+
+Route::post('/searchComplementaryService', [ComplementaryServiceController::class, 'searchComplementaryService'])->name('search.complementaryService');
 
 
 // Rutas de autenticación

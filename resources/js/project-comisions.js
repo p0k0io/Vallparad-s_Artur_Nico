@@ -84,56 +84,35 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         
     }
-/*
-    function updateEnrollmentMode(id, mode, button) {
 
-    fetch(`/enrolled-in/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ mode: mode })
-    })
-    .then(async res => {
-        console.log('Respuesta del servidor:', res);
-        const data = await res.json().catch(err => {
-            return null;
+
+
+    document.querySelectorAll('.pjli').forEach(card => {
+
+
+        let openEdit = card.querySelector('.openEdit');
+        let closeEdit = card.querySelector('.closeEdit');
+        let editForm = card.querySelector('.editForm');
+
+
+        openEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            editForm.classList.remove('hidden');
+            editForm.classList.add('flex');
         });
-        return { status: res.status, ok: res.ok, data: data };
-    })
-    .then(res => {
-        console.log('Datos procesados:', res);
 
-        if (!res.ok) {
-            showBladeAlert(`Error ${res.status}: No se pudo actualizar`, 'error');
-            return;
-        }
+        closeEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
 
-        if (res.data) {
-            showBladeAlert(res.data.message || 'Actualizado correctamente');
-            const row = button.closest('tr');
-            const modeCell = row.querySelector('td:nth-child(3) span');
+            editForm.classList.remove('flex');
+            editForm.classList.add('hidden');
+        });
 
-            modeCell.textContent = res.data.data.mode;
 
-            if (res.data.data.mode === 'completed') {
-                modeCell.className = 'px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700';
-                button.textContent = 'Revertir a inscrito';
-                button.className = 'text-xs bg-orange-500 hover:bg-orange-600 text-white font-semibold px-3 py-1 rounded-lg transition';
-                button.setAttribute('onclick', `updateEnrollmentMode(${id}, 'enrolled', this)`);
-            } else {
-                modeCell.className = 'px-2 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-700';
-                button.textContent = 'Marcar como completado';
-                button.className = 'text-xs bg-green-500 hover:bg-green-600 text-white font-semibold px-3 py-1 rounded-lg transition';
-                button.setAttribute('onclick', `updateEnrollmentMode(${id}, 'completed', this)`);
-            }
-        }
-    })
-    .catch(err => {
-        console.error('Error en fetch:', err);
-        showBladeAlert('Ocurrió un error al actualizar el estado', 'error');
     });
-    */
+
+
+
+    
 });

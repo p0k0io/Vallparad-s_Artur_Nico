@@ -16,7 +16,7 @@
             <div class="bg-white rounded-3xl shadow-xl p-10 border-2 border-orange-200">
 
                 <!-- cabecera con titulo y boton crear -->
-                <div class="flex justify-between items-center mb-10 pb-6 border-b-2 border-orange-100">
+                <div class="flex justify-between items-center pb-6">
                     <h2 class="text-3xl font-bold text-gray-800">Llista d'accidents</h2>
 
                     <!-- boto crear manteniment -->
@@ -100,13 +100,20 @@
                         </div>
 
                     </div>
-
                 </div>
+
+                <form action="{{ route('searchAccidents.accidents',$professional) }}" method="POST" class="flex justify-between items-center mb-6 border-b-2">
+                @csrf
+                    <input type="text" name="search" class="w-11/12 border-0 bg-transparent px-3 py-2 outline-none ring-0 focus:ring-0 transition-all" placeholder="Busca accidents...">
+                    <button type="submit" class="w-1/12 flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                    </button>
+                </form>
 
                 <!-- llista de manteniments -->
                 <div class="space-y-6">
                     @forelse($accidents as $accident)
-                        <div class="hover:-translate-y-1 transition-all duration-300">
+                        <div class="divMaintCard transition-all duration-300">
                             <li x-data="{ open: false }" class="border border-orange-200 rounded-xl overflow-hidden m-3">
                                 <button @click="open = !open" class="bg-orange-50 hover:bg-orange-100 w-full text-left transition py-1 flex px-3">
                                     <div class="flex flex-col w-3/5">
@@ -128,13 +135,24 @@
                                         <a href="{{route('accidentability.downloadAccident',$accident)}}" class="font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 flex w-2/4 justify-center items-center">
                                             Descarregar Fitxa
                                         </a>
-                                        <a class="estatBaixa font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 flex w-2/4 justify-center items-center">
-                                            <input hidden value="{{$accident->id}}">
-                                            <span>En Baixa</span>
-                                        </a>
+                                        @if ($accident->status != "Sense Baixa")
+                                            <a class="estatBaixa font-bold text-orange-500 m-0.5 border-2 rounded-full border-orange-300 bg-orange-100 hover:bg-orange-200 flex w-2/4 justify-center items-center">
+                                                <input hidden value="{{$accident->id}}">
+                                                <span>En Baixa</span>
+                                            </a>
+                                        @endif
+                                        
                                     </div>
                                 </button>
-                                <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
+                                <div x-show="open" x-collapse class="bg-white px-6 pb-4 border-t border-orange-100">
+                                    <div class="flex mb-4 w-full bg-white border-b border-l border-r border-orange-100 rounded-b-lg overflow-hidden">
+                                        <a class="openEdit w-full text-gray-500 text-center px-4 py-2 hover:bg-orange-50 transition border-r border-orange-100">
+                                            Editar
+                                        </a>
+                                        <a href="{{ route('accident.delete',['id'=>$accident->id, 'professional'=>$professional] )}}" class="w-full text-center px-4 py-2 text-red-600 hover:bg-orange-50 transition ">
+                                            Eliminar
+                                        </a>
+                                    </div>
                                     <div class="flex justify-between">
                                         <p class="w-3/5">{{$accident->description}}</p>
                                         <img src="{{$accident->signature}}" alt="firma" class="border-b-2 border-gray-300 border-dashed w-2/6">
@@ -142,6 +160,67 @@
                                     
                                 </div>
                             </li>
+
+                            <!--Edit-->
+                            <div class="editForm fixed inset-0 backdrop-blur-sm bg-black/40  items-center justify-center z-50 px-4 hidden">
+                                <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200">
+                                    <button class="closeEdit w-full text-right text-gray-500">
+                                        ✕
+                                    </button>
+                                    <h1 class="text-orange-500 font-bold text-2xl text-center mb-6 ">Fer Accidentabilitat</h1>
+
+                                    <div id="accidentabilityForm">
+                                        <form action="{{route('accidentability.update', $accident)}}" method="POST" class="space-y-4">
+                                        @csrf
+                                        @method('PUT')
+                                            <input type="hidden" name="professional_id" value="{{ $accident->professional_id }}">
+                                            <div>
+                                                <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>
+                                                <input type="text" name="context" value="{{ $accident->context }}"
+                                                    class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                >
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-orange-600 mb-1 font-medium">Descripció</label>
+                                                <textarea name="description"
+                                                    class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                >{{ $accident->description }}</textarea>
+                                            </div>
+
+                                            @if($accident->type=="Amb Baixa")
+                                                <div id="durationInput">
+                                                    <label class="block text-sm text-orange-600 mb-1 font-medium">Durada</label>
+                                                    <input type="text" name="duration" value="{{ $accident->duration }}"
+                                                        class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                    >
+                                                </div>
+                                            @endif
+
+                                            @if($accident->type=="Baixa Llarga")
+                                                <div id="startDate">
+                                                    <label class="block text-sm text-orange-600 mb-1 font-medium">Data Inici</label>
+                                                    <input type="date" name="startDate" value="{{ $accident->startDate }}"
+                                                        class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                    >
+                                                </div>
+                                            @endif
+
+                                            @if($accident->type=="Baixa Llarga")
+                                                <div id="endDate">
+                                                    <label class="block text-sm text-orange-600 mb-1 font-medium">Data Final</label>
+                                                    <input type="date" name="endDate" value="{{ $accident->endDate }}"
+                                                        class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                    >
+                                                </div>
+                                            @endif
+
+                                            <button type="submit" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition">
+                                                Guardar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="text-center py-12">

@@ -129,6 +129,12 @@ class ComplementaryServiceController extends Controller
      */
     public function destroy(string $id)
     {
+        //
+    }
+
+
+    public function complementaryServiceDelete(int $id)
+    {
         $servei = ComplementaryService::findOrFail($id);
         $servei->delete();
 
@@ -136,6 +142,22 @@ class ComplementaryServiceController extends Controller
     }
 
 
-    
+    public function searchComplementaryService(Request $request)
+    {
+        $search = $request->input('search');
+
+        $complementaryServices=ComplementaryService::where('name', 'like', "%{$search}%")
+            ->orWhere('manager', 'like', "%{$search}%")
+            ->orWhere('contact', 'like', "%{$search}%")
+            ->orWhere('startDate', 'like', "%{$search}%")
+            ->get();
+
+        return view(
+            'serveisComplementaris.complementaryServiceIndex',
+            [
+                'complementaryServices' => $complementaryServices,
+            ]
+        );
+    }
 
 }

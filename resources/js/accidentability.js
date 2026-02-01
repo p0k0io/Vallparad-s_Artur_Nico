@@ -6,6 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectBaixa = document.getElementById("baixaSelect");
 
 
+
+    document.querySelectorAll('.divMaintCard').forEach(card => {
+
+        let openEdit = card.querySelector('.openEdit');
+        let closeEdit = card.querySelector('.closeEdit');
+        let editForm = card.querySelector('.editForm');
+
+        openEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            editForm.classList.remove('hidden');
+            editForm.classList.add('flex');
+        });
+
+        closeEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            editForm.classList.remove('flex');
+            editForm.classList.add('hidden');
+        });
+
+    });
+
+
+
     document.querySelectorAll('.estatBaixa').forEach(state => {
         console.log(state);
 

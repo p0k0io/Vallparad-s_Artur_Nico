@@ -16,17 +16,18 @@ class MaintenanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
     public function index()
     {
         $maintenances = Maintenance::all();
 
-        return view('maintenance.indexMaintenance', 
+        return view(
+            'maintenance.indexMaintenance',
             [
                 'maintenances' => $maintenances,
             ]
         );
-    
+
     }
 
     /**
@@ -42,17 +43,17 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $idUser = auth()->user();
         $idProf = $idUser->professional->id;
 
-        $maintenance=Maintenance::create([
-            'context'=>request('context'),
-            'description'=>request('description'),
-            'responsible'=>request('responsible'),
-            'professional_id'=> $idProf,
-            'status'=> 'pendent',
-            'signature'=> request('signature')
+        $maintenance = Maintenance::create([
+            'context' => request('context'),
+            'description' => request('description'),
+            'responsible' => request('responsible'),
+            'professional_id' => $idProf,
+            'status' => 'pendent',
+            'signature' => request('signature')
         ]);
 
         $validated = $request->validate([
@@ -61,7 +62,7 @@ class MaintenanceController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $file) {
-                $name_file = time().'-'. $file->getClientOriginalName();
+                $name_file = time() . '-' . $file->getClientOriginalName();
                 $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
                 MaintenanceDocument::create([
                     'maintenance_id' => $maintenance->id,
@@ -94,7 +95,32 @@ class MaintenanceController extends Controller
      */
     public function update(Request $request, Maintenance $maintenance)
     {
-        $maintenance->update($request->all());
+        $maintenance->update([
+            'context' => request('context'),
+            'description' => request('description'),
+            'responsible' => request('responsible'),
+        ]);
+
+        $request->validate([
+            'files.*' => 'nullable|file|max:10240',
+        ]);
+
+        if ($request->hasFile('files')) {
+            foreach ($maintenance->documents as $document) {
+                Storage::disk('maintenance')->delete($document->path);
+                $document->delete();
+            }
+
+            foreach ($request->file('files') as $file) {
+                $name_file = time() . '-' . $file->getClientOriginalName();
+                $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
+                
+                MaintenanceDocument::create([
+                    'maintenance_id' => $maintenance->id,
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
 
         return redirect()->route('maintenance.index');
     }
@@ -107,39 +133,77 @@ class MaintenanceController extends Controller
         //
     }
 
-
-
     ////////////////////////////////////////////////////////////////////////////////
 
-    public function createMaintenanceTracking(Request $request){
+    public function maintenanceDelete(int $id)
+    {
+        $maintenance = Maintenance::findOrFail($id);
+        $maintenance->delete();
+
+        return redirect()->route('maintenance.index');
+    }
+
+    public function createMaintenanceTracking(Request $request)
+    {
         MaintenanceTracking::create([
-            'context'=>request('context'),
-            'description'=>request('description'),
-            'maintenance_id'=>request('maintenance_id')
+            'context' => request('context'),
+            'description' => request('description'),
+            'maintenance_id' => request('maintenance_id')
         ]);
         return redirect()->route('maintenance.index');
     }
 
-    public function changeStateM(Request $request){
-        $id=$request->input('id');
-        $id=(int) $id;
+    public function changeStateM(Request $request)
+    {
+        $id = $request->input('id');
+        $id = (int) $id;
 
-        $maintenance=Maintenance::find($id);
+        $maintenance = Maintenance::find($id);
 
-        if($maintenance->status == 'Pendent'){
+        if ($maintenance->status == 'Pendent') {
             $maintenance->status = 'Resolt';
-        }
-        else{
+        } else {
             $maintenance->status = 'Pendent';
         }
 
-        
+
         $maintenance->save();
-        
+
         return response()->json([
             'success' => true,
             'message' => 'Estat actualitzat.',
             'data' => $maintenance->status
         ]);
     }
+
+    /*
+    public function searchMaintenances(Request $request)
+    {
+        $search = $request->input('search');
+
+        $manintenances=Maintenance::where('context', 'like', "%{$search}%")->get();
+
+        return response()->json([
+            'trobat' => $manintenances->isNotEmpty(),
+            'maintenances' => $manintenances,
+        ]);
+    }
+    */
+    public function searchMaintenances(Request $request)
+    {
+        $search = $request->input('search');
+
+        $maintenances=Maintenance::where('context', 'like', "%{$search}%")
+            ->orWhere('responsible', 'like', "%{$search}%")
+            ->orWhere('status', 'like', "%{$search}%")
+            ->get();;
+
+        return view(
+            'maintenance.indexMaintenance',
+            [
+                'maintenances' => $maintenances,
+            ]
+        );
+    }
+    
 }

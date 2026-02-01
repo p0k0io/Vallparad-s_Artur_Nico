@@ -91,9 +91,31 @@ class AccidentabilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Accidentability $accident)
     {
-        //
+        $type=$accident->type;
+
+        $dades = [
+            'context' => request('context'),
+            'description' => request('description'),
+        ];
+
+        if($type==='Amb Baixa'){
+            $dades['duration']=request('duration');
+        }
+        elseif($type==='Baixa Llarga'){
+            $dades['startDate']=request('startDate');
+            $dades['endDate']=request('endDate');
+        }
+
+        $accident->update($dades);
+
+        $professional = Professional::findOrFail($request->input('professional_id'));
+        
+        return redirect()->route('accidentability.indexPerProfessional', [
+            'professional' => $professional
+        ]);
+
     }
 
     /**
@@ -177,5 +199,34 @@ class AccidentabilityController extends Controller
         );
     }
 
+
+    public function accidentDelete(int $id, Professional $professional)
+    {
+        $accid = Accidentability::findOrFail($id);
+        $accid->delete();
+
+        return redirect()->route('accidentability.indexPerProfessional', [
+            'professional' => $professional->id
+        ]);
+    }
+
+    public function searchAccidents(Request $request, Professional $professional)
+    {
+        $search = $request->input('search');
+
+        $accidents=Accidentability::where('context', 'like', "%{$search}%")
+            ->orWhere('type', 'like', "%{$search}%")
+            ->orWhere('duration', 'like', "%{$search}%")
+            ->orWhere('startDate', 'like', "%{$search}%")
+            ->orWhere('endDate', 'like', "%{$search}%")
+            ->get();
+
+        return view('accidentability.indexAccidentability', 
+            [
+                'accidents' => $accidents,
+                'professional'=> $professional,
+            ]
+        );
+    }
 
 }

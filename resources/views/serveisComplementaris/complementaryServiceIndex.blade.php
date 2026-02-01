@@ -7,7 +7,7 @@
     <div class="w-full max-w-6xl mx-auto bg-white rounded-3xl shadow-xl p-10">
 
         <!-- CABECERA -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-5">
             <div>
                 <h1 class="text-4xl font-extrabold text-orange-500 tracking-tight">
                     Serveis Complementaris
@@ -24,6 +24,13 @@
                 + Afegir nou servei
             </button>
         </div>
+        <form action="{{ route('search.complementaryService') }}" method="POST" class="flex justify-between items-center mb-6 border-b-2">
+        @csrf
+            <input type="text" name="search" id="searchMaintenances" class="w-11/12 border-0 bg-transparent px-3 py-2 outline-none ring-0 focus:ring-0 transition-all" placeholder="Busca manteniments amb el context o el responsable...">
+            <button type="submit" class="w-1/12 flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+            </button>
+        </form>
 
         <!-- LLISTAT -->
         <div class="bg-white rounded-2xl shadow-md border-2 border-orange-200 overflow-hidden">
@@ -148,10 +155,13 @@
 <script>
 
 function openInfoModal(servei) {
-    const modal = document.getElementById("info-modal");
-    const content = document.getElementById("content-info");
+    let modal = document.getElementById("info-modal");
+    let content = document.getElementById("content-info");
+    let id = servei.id;
 
     document.getElementById("edit-btn").onclick = () => openEditModal(servei);
+
+    //document.getElementById("delete-form").action = "/complementaryServiceDelete/"+id;
 
     let documentsHtml = '';
 
@@ -191,6 +201,7 @@ function openInfoModal(servei) {
     modal.classList.remove("hidden");
 }
 
+
 function closeInfoModal() {
     document.getElementById("info-modal").classList.add("hidden");
 }
@@ -225,4 +236,6 @@ function beforeSubmit() {
     document.getElementById("personal_info").value = JSON.stringify(personalRows);
 }
 </script>
+
+@vite(['resources/js/maintenance.js'])
 @endsection

@@ -86,7 +86,7 @@ class ProjectComisionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Request $projects_comision)
+    public function update(Request $request, ProjectComision $projects_comision)
     {
         $projects_comision->update($request->all());
 
@@ -101,5 +101,13 @@ class ProjectComisionController extends Controller
         //
     }
 
+
+    public function projectComisionDelete(int $id)
+    {
+        $projectComision = ProjectComision::findOrFail($id);
+        $projectComision->delete();
+
+        return redirect()->route('projects_comisions.index');
+    }
     
 }

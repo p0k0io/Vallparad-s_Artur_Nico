@@ -1,17 +1,25 @@
 document.addEventListener('DOMContentLoaded',()=>{
-    document.querySelectorAll('.liMaintCard').forEach(card=>{
+    document.querySelectorAll('.divMaintCard').forEach(card=>{
+        
+        let trackingA = card.querySelector(".ferSeguiment");
+        let trackDiv=card.querySelector('.trackingDiv');
+        let closerTrackingDiv = card.querySelector(".closeTrackingDiv");
+
+        let openEdit = card.querySelector('.openEdit');
+        let closeEdit = card.querySelector('.closeEdit');
+        let editForm = card.querySelector('.editForm');
 
         let state = card.querySelector(".canviarStatus");
         state.addEventListener('click', function(event){
             event.stopPropagation();
 
-            const cardTitle = card.querySelector(".cardTitle");
-            const trackingA = card.querySelector(".ferSeguiment");
+            let cardTitle = card.querySelector(".cardTitle");
+            
 
             console.log(cardTitle);
 
-            const currentStateInner = state.querySelector('span');
-            const id = state.querySelector('input').value;
+            let currentStateInner = state.querySelector('span');
+            let id = state.querySelector('input').value;
             console.log(currentStateInner.innerHTML);
 
             let meta = document.querySelector('meta[name="csrf-token"]');
@@ -48,19 +56,34 @@ document.addEventListener('DOMContentLoaded',()=>{
             });
         });
 
-    });
 
-
-
-    document.querySelectorAll('.ferSeguiment').forEach(tracking => {
-
-        let trackDiv=tracking.querySelector('.fixed');
-
-        tracking.addEventListener('click', function(event){
-            event.stopPropagation();
+        trackingA.addEventListener('click', function (e) {
+            e.stopPropagation();
 
             trackDiv.classList.remove('hidden');
             trackDiv.classList.add('flex');
         });
+
+        closerTrackingDiv.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            trackDiv.classList.remove('flex');
+            trackDiv.classList.add('hidden');
+        });
+
+        openEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            editForm.classList.remove('hidden');
+            editForm.classList.add('flex');
+        });
+
+        closeEdit.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            editForm.classList.remove('flex');
+            editForm.classList.add('hidden');
+        });
+
     });
 });

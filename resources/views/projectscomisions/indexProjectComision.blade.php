@@ -36,7 +36,7 @@
                         <li
                             id="{{$project_comision->id}}"
                             x-data="{ open: false }"
-                            class="rounded-2xl border border-orange-200 shadow hover:shadow-lg transition overflow-hidden"
+                            class="pjli rounded-2xl border border-orange-200 shadow hover:shadow-lg transition overflow-hidden"
                         >
                             <input type="number" name="num" id="idPrCo" hidden>
                             <button 
@@ -59,7 +59,15 @@
                                 </div>
                             </button>
 
-                            <div x-show="open" x-collapse class="bg-white px-6 py-6 border-t border-orange-100">
+                            <div x-show="open" x-collapse class="bg-white px-6 pb-6 border-t border-orange-100">
+                                <div class="flex mb-4 w-full bg-white border-b border-l border-r border-orange-100 rounded-b-lg overflow-hidden">
+                                            <a class="openEdit w-full text-gray-500 text-center px-4 py-2 hover:bg-orange-50 transition border-r border-orange-100">
+                                                Editar
+                                            </a>
+                                            <a href="{{ route("projectComision.delete", $project_comision) }}" class="w-full text-center px-4 py-2 text-red-600 hover:bg-orange-50 transition ">
+                                                Eliminar
+                                            </a>
+                                        </div>
                                 <p class="text-gray-600 text-sm mb-4">{{ $project_comision->description }}</p>
 
                                 <ul class="text-sm space-y-2 text-gray-700 mb-6">
@@ -101,7 +109,91 @@
                                     <p class="text-gray-500 italic ">No hi han profesionales assignats.</p>
                                 @endif
                             </div>
+                        
+                            <!-- Edit -->
+                            <div 
+                                class="editForm  fixed inset-0 backdrop-blur-sm bg-black/40 items-center justify-center z-50 px-4 hidden"
+                            >
+                                <div class="bg-white/95 rounded-3xl p-6 w-full max-w-lg shadow-xl border border-orange-200"
+                                >
+                                    <h2 class="text-xl font-semibold text-orange-600 mb-6">
+                                        Editar Projecte/Comisio
+                                    </h2>
+
+                                    <form action="{{ route('projects_comisions.update',$project_comision) }}" method="POST" class="space-y-4">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div>
+                                            <label class="block text-sm text-orange-600 mb-1 font-medium">Nom del Projecte/Comisio</label>
+                                            <input type="text" name="name" required value="{{ $project_comision->name }}"
+                                                class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm text-orange-600 mb-1 font-medium">Descripció</label>
+                                            <textarea name="description"
+                                                class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                            >{{ $project_comision->description }}</textarea>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm text-orange-600 mb-1 font-medium">Observacions</label>
+                                            <textarea name="observations"
+                                                class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                            >{{ $project_comision->observations }}</textarea>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm text-orange-600 mb-1 font-medium">Data inici</label>
+                                            <input type="date" name="startDate" value="{{ $project_comision->startDate }}" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-orange-600 mb-1 font-medium">Data final</label>
+                                            <input type="date" name="startDate" value="{{ $project_comision->startDate }}" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div>
+                                                <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus</label>
+                                                <select name="type" required 
+                                                    class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                >
+                                                    <option value="project">Projecte</option>
+                                                    <option value="comision">Comisio</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-orange-600 mb-1 font-medium">Profesional</label>
+                                                <select name="professional_id" required 
+                                                    class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition"
+                                                >
+                                                
+                                                    @foreach($professionals as $professional)
+                                                        <option value="{{ $professional->id }}">{{ $professional->name }} {{ $professional->surname1 }} {{ $professional->surname2 }}</option>
+                                                    @endforeach
+                                                
+                                                </select>
+                                            </div>
+                                        <input type="hidden" name="attendee" value="0">
+                                        
+                                        <div class="flex justify-end gap-3 pt-2">
+                                            <button class="closeEdit px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium transition">
+                                                Cancelar
+                                            </button>
+
+                                            <button type="submit"
+                                                class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md transition"
+                                            >
+                                                Guardar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
+
                     @empty
                         <li class="text-center text-gray-500 py-10">
                             No hi han Projectes/Comisions disponibles.

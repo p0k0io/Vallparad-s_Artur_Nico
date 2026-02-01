@@ -94,9 +94,36 @@ class RrhhController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, RRHH $rrhh)
     {
-        //
+        $rrhh->update([
+            'context'=>request('context'),
+            'description'=>request('description'),
+        ]);
+
+        $request->validate([
+            'files.*' => 'nullable|file|max:10240',
+        ]);
+
+        if ($request->hasFile('files')) {
+
+            foreach ($rrhh->documents as $document) {
+                Storage::disk('maintenance')->delete($document->path);
+                $document->delete();
+            }
+
+            foreach ($request->file('files') as $file) {
+                $name_file = time().'-'. $file->getClientOriginalName();
+                $storage_path = Storage::disk('pending_hr')->putFileAs('', $file, $name_file);
+                
+                RrhhDocument::create([
+                    'rrhh_id' => $rrhh->id,
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
+
+        return redirect()->route('rrhh.index');
     }
 
     /**
@@ -139,5 +166,31 @@ class RrhhController extends Controller
             'message' => 'Estat actualitzat.',
             'data' => $rrhh->status
         ]);
+    }
+
+    public function rrhhDelete(int $id)
+    {
+        $maintenance = RRHH::findOrFail($id);
+        $maintenance->delete();
+
+        return redirect()->route('rrhh.index');
+    }
+
+    public function searchRrhh(Request $request)
+    {
+        $search = $request->input('search');
+
+        $rrhhs=RRHH::where('context', 'like', "%{$search}%")
+            ->orWhere('status', 'like', "%{$search}%")
+            ->get();;
+
+        $professionals = Professional::all();
+
+        return view('rrhh.indexRrhh', 
+            [
+                'rrhhs' => $rrhhs,
+                'professionals' =>$professionals
+            ]
+        );
     }
 }
