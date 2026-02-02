@@ -69,9 +69,6 @@
                                 <x-dropdown-link :href="route('uniforms.index')">
                                     {{ __('Uniformes') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('uniforms.index')">
-                                    {{ __('Documentacio') }}
-                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>
@@ -101,9 +98,12 @@
                                 <x-dropdown-link :href="route('course.index')">
                                     {{ __('Cursos') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('course.index')">
+
+                                @if (Auth::user()->role === 'Equip Directiu')
+                                <x-dropdown-link :href="route('documents.index')">
                                     {{ __('Documentacio del Centre') }}
                                 </x-dropdown-link>
+                                @endif
                             </x-slot>
                         </x-dropdown>
                     </div>
@@ -127,15 +127,19 @@
                             </x-slot>
 
                             <x-slot name="content">
+                                @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Administracio')
                                 <x-dropdown-link :href="route('maintenance.index')">
                                     {{ __('Manteniments') }}
                                 </x-dropdown-link>
+                                @endif
                                 <x-dropdown-link :href="route('accidentability.index')">
                                     {{ __('Accidents') }}
                                 </x-dropdown-link>
+                                @if (Auth::user()->role === 'Equip Directiu')
                                 <x-dropdown-link :href="route('rrhh.index')">
                                     {{ __('Temes Pendents RRHH') }}
                                 </x-dropdown-link>
+                                @endif
                             </x-slot>
                         </x-dropdown>
                     </div>
@@ -159,10 +163,12 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('maintenance.index')">
+                                @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Administracio')
+                                <x-dropdown-link :href="route('serveisGenerals.index')">
                                     {{ __('Generals') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('accidentability.index')">
+                                @endif
+                                <x-dropdown-link :href="route('complementaryService.index')">
                                     {{ __('Complementaris') }}
                                 </x-dropdown-link>
                             </x-slot>

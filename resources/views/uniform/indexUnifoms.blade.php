@@ -1,5 +1,8 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@extends('../layouts.app')
 
+@section('title','Accidentability')
+
+@section('content')
 <div class="w-full flex flex-col gap-16 justify-center items-center p-10 bg-slate-100 min-h-screen">
   <div class="w-5/6 bg-white rounded-3xl shadow-lg p-8 flex flex-col gap-6" x-data="{ openCard: null }">
     
@@ -246,7 +249,4 @@
 
 
 </div>
-
-
-
-
+@endsection

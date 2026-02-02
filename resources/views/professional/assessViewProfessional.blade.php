@@ -22,7 +22,7 @@
             @foreach($evaluations as $evaluation)
                 <div class="bg-white rounded-3xl shadow-lg p-6 space-y-4 hover:shadow-xl transition-all">
                     <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-lg font-semibold text-gray-700">Avaluador: {{ $evaluation->evaluator }}</h3>
+                        <h3 class="text-lg font-semibold text-gray-700">Avaluador: {{ $evaluation->evaluatorAssessment->name }} {{ $evaluation->evaluatorAssessment->surname1 }} {{ $evaluation->evaluatorAssessment->surname2 }}</h3>
                         <span class="text-sm font-medium text-gray-500">{{ $evaluation->created_at->format('d/m/Y') }}</span>
                     </div>
 
@@ -52,7 +52,7 @@
             @endforeach
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <div class="flex flex-wrap justify-center gap-4 mt-6 bg-white rounded-3xl shadow-xl p-4 align-middle">
             <a href="{{ route('professional.index')}}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all">
                 Tornar
             </a>

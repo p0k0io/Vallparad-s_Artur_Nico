@@ -1,9 +1,8 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@extends('../layouts.app')
 
-<head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
+@section('title','Accidentability')
 
+@section('content')
 <div id="toast-container" class="fixed top-6 right-6 space-y-4 z-[9999]"></div>
 
 <script>
@@ -247,3 +246,4 @@
         </div>
     </div>
 </div>
+@endsection

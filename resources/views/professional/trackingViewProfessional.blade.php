@@ -42,7 +42,21 @@
                     @forelse($trackings as $tracking)
                         <div class="hover:-translate-y-1 transition-all duration-300">
 
-                            <x-professional-tracking-card :tracking="$tracking"/>
+                            <div x-data="{ open: false }" class="border border-orange-300 rounded-xl overflow-hidden m-3">
+                                <button @click="open = !open" class="bg-orange-50 hover:bg-orange-100 w-full text-left transition py-1 flex px-3">
+                                    <div class="flex flex-col w-full">
+                                        <h2 class="text-orange-500 text-2xl">{{$tracking->subject}}</h1>
+                                        <div class="flex justify-between">
+                                            <p class="text-gray-400 mr-5">Tipus: {{$tracking->type}}</p>
+                                            <p class="text-gray-400 text-right">Seguiment fet per: {{ $tracking->professionalTracker->name }} {{ $tracking->professionalTracker->surname1 }} {{ $tracking->professionalTracker->surname2 }}</p>
+                                        </div>
+
+                                    </div>
+                                </button>
+                                <div x-show="open" x-collapse class="bg-white px-6 py-4 border-t border-orange-100">
+                                    <p class="w-3/5">{{$tracking->description}}</p>
+                                </div>
+                            </div>
 
                         </div>
                     @empty
@@ -82,7 +96,9 @@
                     <label class="block text-sm text-orange-600 mb-1 font-medium">Tipus de Seguiment</label>
                     <select name="type" id="" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 px-5 py-4 rounded-xl outline-none transition resize-none" required>
                         <option value="obert">Obert</option>
+                        @if (Auth::user()->role === 'Equip Directiu')
                         <option value="restringit">Restringit</option>
+                        @endif
                         <option value="fi de la vinculacio">Fi de la vinculacio</option>
                     </select>
                 </div>

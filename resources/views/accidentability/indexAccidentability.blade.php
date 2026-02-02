@@ -46,7 +46,9 @@
                                         <select id="baixaSelect" name="type" class="w-full border border-orange-200 bg-orange-50 focus:border-orange-400 focus:ring-orange-400 px-3 py-2 rounded-xl outline-none transition">
                                             <option value="Sense Baixa" selected>Sense Baixa</option>
                                             <option value="Amb Baixa">Amb Baixa</option>
+                                            @if (Auth::user()->role === 'Equip Directiu' || Auth::user()->role === 'Administracio')
                                             <option value="Baixa Llarga">Baixa Llarga</option>
+                                            @endif
                                         </select>
                                         <div>
                                             <label class="block text-sm text-orange-600 mb-1 font-medium">Context</label>

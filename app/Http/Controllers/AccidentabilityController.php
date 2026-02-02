@@ -16,8 +16,7 @@ class AccidentabilityController extends Controller
     public function index()
     {
         $accidents = Accidentability::all();
-
-
+        
         return view('accidentability.indexAccidentability', 
             [
                 'accidents' => $accidents,
@@ -189,7 +188,13 @@ class AccidentabilityController extends Controller
 
     public function indexPerProfessional(Professional $professional)
     {
-        $accidents = Accidentability::where('professional_id', $professional->id)->get();
+        if(Auth()->user()->role==="Equip Directiu" || Auth()->user()->role==="Administracio"){
+            $accidents = Accidentability::where('professional_id', $professional->id)->get();
+        }
+        else{
+            $accidents = Accidentability::where('professional_id', $professional->id)
+                ->where('type',['Sense Baixa', 'Amb Baixa'])->get();
+        }
 
         return view('accidentability.indexAccidentability', 
             [
@@ -214,12 +219,27 @@ class AccidentabilityController extends Controller
     {
         $search = $request->input('search');
 
-        $accidents=Accidentability::where('context', 'like', "%{$search}%")
+        if(Auth()->user()->role==="Equip Directiu" || Auth()->user()->role==="Administracio"){
+            $accidents = Accidentability::where('professional_id', $professional->id)->where('context', 'like', "%{$search}%")
             ->orWhere('type', 'like', "%{$search}%")
             ->orWhere('duration', 'like', "%{$search}%")
             ->orWhere('startDate', 'like', "%{$search}%")
             ->orWhere('endDate', 'like', "%{$search}%")
             ->get();
+        }
+        else{
+            $accidents = Accidentability::where('professional_id', $professional->id)
+            ->where('type','Sense Baixa')
+            ->where('type','Amb Baixa')
+            ->where('type','Sense Baixa')
+            ->where('type','Amb Baixa')
+            ->where('context', 'like', "%{$search}%")
+            ->orWhere('type', 'like', "%{$search}%")
+            ->orWhere('duration', 'like', "%{$search}%")
+            ->orWhere('startDate', 'like', "%{$search}%")
+            ->orWhere('endDate', 'like', "%{$search}%")
+            ->get();
+        }
 
         return view('accidentability.indexAccidentability', 
             [

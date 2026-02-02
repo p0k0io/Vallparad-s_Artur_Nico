@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administracion - Usuarios</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-slate-100 min-h-screen">
+@extends('../layouts.app')
 
+@section('title','Accidentability')
+
+@section('content')
 <div class="w-full flex flex-col justify-center items-center py-16 px-6">
     <div class="w-full max-w-7xl bg-white rounded-3xl shadow-xl p-10">
 
@@ -185,6 +180,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+@endsection

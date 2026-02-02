@@ -37,22 +37,18 @@
                             <x-lucide-file-badge class="mr-3 text-orange-600 size-5"/>
                             Veure Accidentabilitat
                         </a>
-                        @if (Auth::user()->role === 'Equip Directiu')
                         <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
                             <x-lucide-file-text class="mr-3 text-orange-600 size-5"/>
                             Veure Seguiments
                         </a>
-                        @endif
+                        
                     </div>
 
                     <div class="border-t border-gray-200 py-1 md:py-2">
-                        @if (Auth::user()->role === 'Equip Directiu')
                         <a href="{{ route('trackingView.professional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
                             <x-lucide-file-pen-line class="mr-3 text-orange-600 size-5"/>
                             Fer Seguiment
                         </a>
-
-                        @endif
                         <a href="{{ route('assessView.professional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
                             <x-lucide-user-pen class="mr-3 text-orange-600 size-5"/>
                             Avaluar Professional
