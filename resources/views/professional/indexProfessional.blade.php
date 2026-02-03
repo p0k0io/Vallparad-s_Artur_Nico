@@ -20,6 +20,13 @@
                     
                 </div>
 
+                <form action="{{ route('searchProfessional.professional') }}" method="POST" class="flex justify-between items-center mb-6 border-b-2">
+                    @csrf
+                    <input type="text" name="search" id="searchMaintenances" class="w-11/12 border-0 bg-transparent px-3 py-2 outline-none ring-0 focus:ring-0 transition-all" placeholder="Busca professionals...">
+                    <button type="submit" class="w-1/12 flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                    </button>
+                </form>
                 <div class="flex flex-col gap-6">
                     @foreach ($professionals as $professional)
                         <div 
@@ -30,10 +37,7 @@
                         </div>
                     @endforeach
                 </div>
-
-                <div class="mt-12 flex justify-center">
-                    {{ $professionals->links('pagination::tailwind') }}
-                </div>
+                
             </div>
         </div>
 

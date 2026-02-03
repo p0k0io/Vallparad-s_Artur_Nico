@@ -88,4 +88,25 @@ class CourseController extends Controller
     {
         //
     }
+
+
+
+    public function searchCourses(Request $request)
+    {
+        $search = $request->input('search');
+
+        $courses=Course::where('name', 'like', "%{$search}%")
+            ->orWhere('mode', 'like', "%{$search}%")
+            ->orWhere('event_type', 'like', "%{$search}%")
+            ->get();;
+
+        $centers = Center::all();
+        $professionals = Professional::all();
+
+        return view('course.indexCourse', [
+            'centers' => $centers,
+            'professionals' => $professionals,
+            'courses' => $courses
+        ]);
+    }
 }

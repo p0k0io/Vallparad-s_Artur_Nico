@@ -85,4 +85,21 @@ class ExternalContactController extends Controller
     {
         //
     }
+
+    public function searchExternalContacts(Request $request)
+    {
+        $search = $request->input('search');
+
+        $externalContacts=ExternalContact::where('name', 'like', "%{$search}%")
+            ->orWhere('manager', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%")
+            ->get();
+
+        $centers = Center::all();
+
+        return view('externalContacts.indexExternalContacts',[
+            'externalContacts'=> $externalContacts,
+            'centers' => $centers
+        ]);
+    }
 }

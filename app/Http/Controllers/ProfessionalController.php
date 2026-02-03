@@ -301,27 +301,35 @@ class ProfessionalController extends Controller
 
     //Funcio search amb javascript, no funca
 
-    public function search(Request $request){
-        $name = $request->input('search');
+    public function searchProfessional(Request $request)
+    {
+        $search = $request->input('search');
 
-        // Aquí fariem la consulta a la BBDD
-        $professionals = Professional::where('name',$name)->get();
-        dd($professionals->toArray());
-        /*
-        $usuari = [
-            'name' => $name
-        ];
-        */
-        if ($professionals->count() > 0) {
-            return response()->json([
-                'trobat' => true,
-                'professionals' => $professionals
-        ]);
-        } else {
-            return response()->json([
-                'trobat' => false,
-                'professionals' => []
-        ]);
+        $professionals=Professional::where('name', 'like', "%{$search}%")
+            ->orWhere('surname1', 'like', "%{$search}%")
+            ->orWhere('surname2', 'like', "%{$search}%")
+            ->get();
+
+        return view('professional.indexProfessional', 
+                    [
+                        'professionals' => $professionals
+                    ]
+        );
     }
+
+    public function searchProfessionalTracking(Request $request, Professional $professional)
+    {
+        $search = $request->input('search');
+
+        $trackings=ProfessionalTracking::where('type', 'like', "%{$search}%")
+            ->orWhere('subject', 'like', "%{$search}%")
+            ->get();
+
+        return view("professional.trackingViewProfessional",
+        [
+            "professional" => $professional,
+            "trackings" => $trackings
+        ]
+        );
     }
 }

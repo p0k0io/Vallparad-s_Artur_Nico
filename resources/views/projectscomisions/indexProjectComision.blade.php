@@ -19,7 +19,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-orange-200">
-                <div class="flex justify-between items-center mb-8 pb-6 border-b-2 border-orange-100">
+                <div class="flex justify-between items-center pb-6 ">
                     <h2 class="w-2/4 text-2xl font-bold text-gray-800">Projectes/Comisions disponibles</h2>
                     <div class="flex gap-4">
                         <x-project-comision-create-modal :centers="$centers" :professionals="$professionals"/>

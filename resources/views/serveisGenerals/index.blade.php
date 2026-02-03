@@ -7,7 +7,7 @@
     <div class="w-full max-w-6xl mx-auto bg-white rounded-3xl shadow-xl p-10">
 
         <!-- CABECERA -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
             <div>
                 <h1 class="text-4xl font-extrabold text-orange-500 tracking-tight">
                     Serveis Generals

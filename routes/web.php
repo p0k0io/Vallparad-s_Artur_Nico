@@ -84,6 +84,8 @@ Route::put('/uniforms/{uniform}/confirm', [UniformController::class, 'changeStat
 
 Route::get('/exportar-inscritos', [EnrolledInController::class, 'export'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('inscritos.export');
 
+Route::post('/searchCourses', [CourseController::class, 'searchCourses'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('searchCourses.course');
+
 Route::post('/enrolled-in', [EnrolledInController::class, 'store'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic');
 Route::resource('enrolled-in', EnrolledInController::class)->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic');
 
@@ -114,6 +116,13 @@ Route::get('/projectComisionDelete/{id}', [ProjectComisionController::class, 'pr
 
 
 Route::resource('professional', ProfessionalController::class)->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic');
+
+//Buscador professionals
+Route::post('/searchProfessional', [ProfessionalController::class, 'searchProfessional'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('searchProfessional.professional');
+
+//Buscador seguiments
+Route::post('/searchProfessionalTracking/{professional}', [ProfessionalController::class, 'searchProfessionalTracking'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('searchProfessionalTracking.professional');
+
 
 //Seguiment
 Route::get('/trackingViewProfessional/{professional}', [ProfessionalController::class, 'trackingViewProfessional'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('trackingViewProfessional.professional');
@@ -189,10 +198,13 @@ Route::post('/externalContact', [ExternalContactController::class, 'store'])
     ->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')
     ->name('externalContact.store');
 
+    Route::post('/searchExternalContacts', [ExternalContactController::class, 'searchExternalContacts'])->middleware('role:Equip Directiu,Administracio,Responsable i Equip Tecnic')->name('searchExternalContacts.externalContacts');
+
 
 //Rutas servicios generales
 
 Route::resource('serveisGenerals', ServeiGeneralController::class)->middleware('role:Equip Directiu,Administracio');
+
 
 Route::get('/admin', [AdminController::class, 'index'])
     ->middleware('role:Equip Directiu,Administracio')
@@ -203,6 +215,7 @@ Route::post('/admin/users', [AdminController::class, 'store'])
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])
     ->middleware('role:Equip Directiu,Administracio')
     ->name('admin.destroy');
+
 
 
 //---------------------------------------------------------------------------------------------Rutas servicios complementarios

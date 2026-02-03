@@ -101,4 +101,7 @@ class ServeiGeneralController extends Controller
         return redirect()->route('serveisGenerals.index')
                          ->with('success', 'Servei general eliminat correctament.');
     }
+
+
+    
 }

@@ -34,7 +34,7 @@
                             Veure Valoracions
                         </a>
                         <a href="{{ route('accidentability.indexPerProfessional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
-                            <x-lucide-file-badge class="mr-3 text-orange-600 size-5"/>
+                            <x-lucide-hospital class="mr-3 text-orange-600 size-5"/>
                             Veure Accidentabilitat
                         </a>
                         <a href="{{ route('trackingViewProfessional.professional', $professional) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50">
