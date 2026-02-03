@@ -196,7 +196,7 @@ class MaintenanceController extends Controller
         $maintenances=Maintenance::where('context', 'like', "%{$search}%")
             ->orWhere('responsible', 'like', "%{$search}%")
             ->orWhere('status', 'like', "%{$search}%")
-            ->get();;
+            ->get();
 
         return view(
             'maintenance.indexMaintenance',
