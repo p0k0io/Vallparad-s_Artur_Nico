@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\ProjectComision;
 use App\Models\Professional;
 
-
+/**
+ * Controller of Projects and comissions, the controller shows all the maintenances, shows the pages to create/edit and creates, deletes, edits maintenances
+ */
 class ProjectComisionController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @return .reutrns all projects and comisions, with the centers and professionals
      */
     public function index()
     {
@@ -30,6 +34,19 @@ class ProjectComisionController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
+     * @param .request $request Passes the necessary information to create a maintenance
+     * 
+     * @return .returns the centers and professionals
+     *          
+     *           return view("projectscomisions.altaProjectComision",
+     *              [
+     *                  'professionals' => $professionals
+     *              ],
+     *              [
+     *                  'centers'=> $centers
+     *              ]
+     *   );
      */
     public function create()
     {
@@ -48,6 +65,11 @@ class ProjectComisionController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param .request $request Passes the necessary information to create a project/comission
+     * 
+     * @return .void
+     * 
      */
     public function store(Request $request)
     {
@@ -63,9 +85,7 @@ class ProjectComisionController extends Controller
         return redirect()->route('projects_comisions.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
@@ -73,6 +93,18 @@ class ProjectComisionController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param .request $request Passes the necessary information to edit a project/comission
+     * 
+     * @return .projects and comissions 
+     * 
+     *          return view("projectscomisions.editProjectComision", 
+     *              [
+     *                  "projects_comision" => $projects_comision
+     *              ]
+     *          );
+     *
+     * 
      */
     public function edit(ProjectComision $projects_comision)
     {
@@ -85,6 +117,11 @@ class ProjectComisionController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param .request $request Passes the necessary information to update a project/comission
+     * 
+     * @return .void
+     * 
      */
     public function update(Request $request, ProjectComision $projects_comision)
     {
@@ -93,14 +130,20 @@ class ProjectComisionController extends Controller
         return redirect()->route('projects_comisions.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
     }
 
+
+    /**
+     * Delete the specified resource in storage.
+     * 
+     * @param .int $int id to delete the project/comission
+     * 
+     * @return .void
+     * 
+     */
 
     public function projectComisionDelete(int $id)
     {
@@ -109,7 +152,4 @@ class ProjectComisionController extends Controller
 
         return redirect()->route('projects_comisions.index');
     }
- 
-    
-    
 }

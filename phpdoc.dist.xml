@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org/schema"
+>
+    <paths>
+        <output>public/docs</output>
+        <cache>build/cache</cache>
+    </paths>
+    <version number="3.0.0">
+        <api format="php">
+            <source dsn=".">
+                <path>app</path>
+                <path>database</path>
+                <path>routes</path>
+            </source>
+
+            <ignore hidden="true" symlinks="true">
+                <path>vendor</path>
+                <path>tests</path>
+                <path>storage</path>
+                <path>node_modules</path>
+                <path>public</path>
+                <path>bootstrap/cache</path>
+            </ignore>
+        </api>
+    </version>
+
+
+</phpdocumentor>

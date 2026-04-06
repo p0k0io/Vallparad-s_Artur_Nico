@@ -10,11 +10,16 @@ use App\Models\MaintenanceTracking;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-
+/**
+ * Controller of maintenance, the controller shows all the maintenances, shows the pages to create/edit and creates, deletes, change states, searches, create trackings and edits maintenances
+ */
 class MaintenanceController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
+     * 
+     * @return .reutrns all maintenances
      */
 
     public function index()
@@ -30,9 +35,6 @@ class MaintenanceController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -40,6 +42,9 @@ class MaintenanceController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param .request $request Passes the necessary information to create a maintenance
+     * 
      */
     public function store(Request $request)
     {
@@ -74,17 +79,13 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenance.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         //
@@ -92,6 +93,10 @@ class MaintenanceController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param .request $request Passes the id of the maintenance and the information in $maintenance to update the specific maintenance
+     * 
+     * @return .void
      */
     public function update(Request $request, Maintenance $maintenance)
     {
@@ -125,15 +130,19 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenance.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         //
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Delete a specific mainenance
+     * 
+     * @param .string $id Id of the maintenance that you want to delete
+     * 
+     * @return .void
+     */
 
     public function maintenanceDelete(int $id)
     {
@@ -143,6 +152,13 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenance.index');
     }
 
+    /**
+     * Create the tracking of a specific mainenance
+     * 
+     * @param .request $request The necessary information to create a card with info of the maintenance: id of maintenance, context, description
+     * 
+     * @return .void
+     */
     public function createMaintenanceTracking(Request $request)
     {
         MaintenanceTracking::create([
@@ -152,6 +168,20 @@ class MaintenanceController extends Controller
         ]);
         return redirect()->route('maintenance.index');
     }
+
+    /**
+     * Change the state of a maintenance from active to resolved
+     * 
+     * @param .request $request Passes the id of the maintenance
+     * 
+     * @return .status to change in real time the status of the maintenance
+     * 
+     *          return response()->json([
+     *              'success' => true,
+     *              'message' => 'Estat actualitzat.',
+     *              'data' => $maintenance->status
+     *          ]);
+     */
 
     public function changeStateM(Request $request)
     {
@@ -189,6 +219,20 @@ class MaintenanceController extends Controller
         ]);
     }
     */
+
+    /**
+     * Searches the maintenances
+     * 
+     * @param .request $request Passes the text that you are searching
+     * 
+     * @return .return view(
+     *              'maintenance.indexMaintenance',
+     *              [
+     *                  'maintenances' => $maintenances,
+     *              ]
+     *          );
+     */
+
     public function searchMaintenances(Request $request)
     {
         $search = $request->input('search');

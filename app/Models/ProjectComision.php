@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Projects and Comissions class, contains relations to professional, center and projectcomisionAssigned
+ */
 class ProjectComision extends Model
 {
     protected $table = "projects_comisions";

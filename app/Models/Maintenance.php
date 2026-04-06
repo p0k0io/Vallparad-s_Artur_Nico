@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Maintenance class, contains relations to professional, maintenanceTrackings and documents
+ */
 class Maintenance extends Model
 {
     protected $table = "maintenances";
