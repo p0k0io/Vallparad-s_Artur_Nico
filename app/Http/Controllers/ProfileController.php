@@ -15,6 +15,10 @@ use App\Models\EnrolledIn;
 
 class ProfileController extends Controller
 {
+    /**
+     * Muestra el perfil del usuario autenticado, con sus seguimientos, evaluaciones, proyectos y cursos.
+     * @return \Illuminate\View\View
+     */
 
     public function index()
     {
@@ -105,8 +109,11 @@ class ProfileController extends Controller
         );
     }
     /**
-     * Display the user's profile form.
-     */
+     * Muestra el formulario para editar el perfil del usuario autenticado.
+      * @param .request $request Passes the necessary information to edit the profile
+      * 
+      * @return .returns the user information
+      */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -130,9 +137,12 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
+        /**
+        * Delete the user's account.
+        * @param .request $request Passes the necessary information to delete the account
+        * 
+        * @return .redirects to the home page
+        */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

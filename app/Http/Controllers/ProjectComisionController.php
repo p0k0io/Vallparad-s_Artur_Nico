@@ -13,9 +13,9 @@ use App\Models\Professional;
 class ProjectComisionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * devuelve una lista de los proyectos y comisiones, con los centros y profesionales relacionados.
+     * @return \Illuminate\View\View
      * 
-     * @return .reutrns all projects and comisions, with the centers and professionals
      */
     public function index()
     {
@@ -33,20 +33,12 @@ class ProjectComisionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mestra el formulario para crear un nuevo proyecto o comisión.
      * 
      * @param .request $request Passes the necessary information to create a maintenance
      * 
      * @return .returns the centers and professionals
      *          
-     *           return view("projectscomisions.altaProjectComision",
-     *              [
-     *                  'professionals' => $professionals
-     *              ],
-     *              [
-     *                  'centers'=> $centers
-     *              ]
-     *   );
      */
     public function create()
     {
@@ -64,9 +56,9 @@ class ProjectComisionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo proyecto o comision en la base de datos.
      * 
-     * @param .request $request Passes the necessary information to create a project/comission
+     * @param .request $request Pasa la información necesaria para crear un proyecto o comisión
      * 
      * @return .void
      * 
@@ -92,18 +84,11 @@ class ProjectComisionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un proyecto o comisión existente.
      * 
-     * @param .request $request Passes the necessary information to edit a project/comission
+     * @param .request $request Passes the necessary information to edit a project or commission
      * 
-     * @return .projects and comissions 
-     * 
-     *          return view("projectscomisions.editProjectComision", 
-     *              [
-     *                  "projects_comision" => $projects_comision
-     *              ]
-     *          );
-     *
+     * @return .returns the project or commission to edit
      * 
      */
     public function edit(ProjectComision $projects_comision)
@@ -116,9 +101,9 @@ class ProjectComisionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un proyecto o comisión existente en la base de datos.
      * 
-     * @param .request $request Passes the necessary information to update a project/comission
+     * @param .request $request Pasa la información necesaria para actualizar un proyecto o comisión
      * 
      * @return .void
      * 
@@ -137,9 +122,9 @@ class ProjectComisionController extends Controller
 
 
     /**
-     * Delete the specified resource in storage.
+     * Borra un proyecto o comisión de la base de datos.
      * 
-     * @param .int $int id to delete the project/comission
+     * @param .int $int id del proyecto o comisión a borrar
      * 
      * @return .void
      * 

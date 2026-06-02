@@ -8,6 +8,11 @@ use App\Models\MaintenanceDocument;
 
 class MaintenanceDocumentController extends Controller
 {
+    /**
+     * Descarga el documento especificado.
+     * @param MaintenanceDocument $document
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function download(MaintenanceDocument $document)
     {
         return response()->download(Storage::disk('maintenance')->path($document->path));

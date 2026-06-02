@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\File;
 class RrhhController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra la lista depersonal de recursos.
+      * @return \Illuminate\View\View
      */
     public function index()
     {

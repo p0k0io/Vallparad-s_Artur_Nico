@@ -9,18 +9,18 @@ use Illuminate\Http\Request;
 class ServeiGeneralController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de servicios generales.
      */
     public function index()
     {
      $serveis = ServeiGeneral::with('center')->get();
-    $centers = Center::all();   // ⬅️ Añadido
+    $centers = Center::all();
 
     return view('serveisGenerals.index', compact('serveis', 'centers'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo recurso.
      */
     public function create()
     {
@@ -29,7 +29,9 @@ class ServeiGeneralController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un servicio general nuevo en la base de datos.
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
 {
@@ -53,7 +55,9 @@ class ServeiGeneralController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Muestra el recurso especificado.
+     * @param string $id
+     * @return \Illuminate\View\View
      */
     public function show(string $id)
     {
@@ -62,7 +66,7 @@ class ServeiGeneralController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar el recurso especificado.
      */
     public function edit(string $id)
     {
@@ -74,6 +78,9 @@ class ServeiGeneralController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param \Illuminate\Http\Request $request
+     * @param ServeiGeneral $serveisGeneral
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, ServeiGeneral $serveisGeneral)
 {
@@ -91,7 +98,9 @@ class ServeiGeneralController extends Controller
 }
 
     /**
-     * Remove the specified resource from storage.
+     * Borra el recurso especificado de almacenamiento.
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {

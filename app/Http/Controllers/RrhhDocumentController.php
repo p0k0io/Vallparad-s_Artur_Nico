@@ -8,6 +8,11 @@ use App\Models\RrhhDocument;
 
 class RrhhDocumentController extends Controller
 {
+        /**
+        * Descarga el documento especificado.
+        * @param RrhhDocument $document
+        * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+        */
     public function download(RrhhDocument $document)
     {
         return response()->download(Storage::disk('complementaryService')->path($document->path));

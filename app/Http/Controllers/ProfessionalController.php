@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\DB;
 class ProfessionalController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de los profesionales.
+     * @return \Illuminate\View\View
+     *
      */
-    public function index()
+     public function index()
     {
-        $professionals = Professional::paginate(6);
+        $professionals = Professional::all();
 
-        
-        
         return view('professional.indexProfessional', 
                     [
                         'professionals' => $professionals
@@ -28,17 +28,22 @@ class ProfessionalController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+        /**
+        * Muestra el formulario para crear un nuevo profesional.
+        * @return \Illuminate\View\View
+        */
+
     public function create()
     {
         return view("professional.altaProfessional");
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
+     * Almacena un profesional nuevo en la base de datos.
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */ 
     public function store(Request $request)
     {
         Professional::create([
@@ -63,6 +68,8 @@ class ProfessionalController extends Controller
 
     /**
      * Display the specified resource.
+     * @param string $id
+     * @return \Illuminate\View\View
      */
     public function show(string $id)
     {
@@ -71,6 +78,8 @@ class ProfessionalController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
      */
     public function edit(Professional $professional)
     {
@@ -93,6 +102,8 @@ class ProfessionalController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {
@@ -102,7 +113,12 @@ class ProfessionalController extends Controller
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Change Professional State Actiu-Desactivat
+    /**
+     * Cambia el estado de un profesional entre activo e inactivo.
+     * @param \Illuminate\Http\Request $request
+     * @param Professional $professional
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStateP(Request $request, Professional $professional)
     {
         if ($professional-> status == 0){
@@ -116,7 +132,12 @@ class ProfessionalController extends Controller
         return redirect()->route('professional.index');
     }
 
-    //Seguiment professionals
+    /** 
+     * Cambia el estado de un profesional entre activo e inactivo.
+     * @param \Illuminate\Http\Request $request
+     * @param Professional $professional
+     * @return \Illuminate\Http\RedirectResponse
+     */
 
     public function trackingViewProfessional(Professional $professional)
     {
@@ -137,6 +158,11 @@ class ProfessionalController extends Controller
         );
     }
 
+    /** 
+     * Muestra el formulario para ver el seguimiento de un profesional.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
+     */
 
     public function trackingView(Professional $professional)
     {
@@ -159,6 +185,13 @@ class ProfessionalController extends Controller
         );
     }
 
+    /**
+     * Crea un seguimiento para un profesional.
+     * @param \Illuminate\Http\Request $request
+     * @param Professional $professional
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
     public function track(Professional $professional)
     {
         $idTracker = auth()->user();
@@ -178,8 +211,11 @@ class ProfessionalController extends Controller
         
     }
 
-    //Valorar professionals
-
+    /**
+     * Muestra el formulario para valorar un profesional.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
+     */
     public function assessView(Professional $professional)
     {
         return view("professional.assessProfessional",
@@ -188,6 +224,12 @@ class ProfessionalController extends Controller
         ]
         );
     }
+
+    /**
+     * Muestra el formulario para valorar un profesional.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
+     */
 
     public function assessViewProfessional(Professional $professional)
     {
@@ -200,6 +242,12 @@ class ProfessionalController extends Controller
         );
     }
 
+    /**
+     * Crea una evaluación para un profesional.
+     * @param \Illuminate\Http\Request $request
+     * @param Professional $professional
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function assess(Request $request, Professional $professional)
     {
         Evaluation::create([
@@ -229,6 +277,11 @@ class ProfessionalController extends Controller
         return redirect()->route('assessViewProfessional.professional', $professional);
     }
 
+    /**
+     * Muestra el formulario para valorar un profesional.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
+     */
     public function getAssessment(Request $request){
         $id=$request->input('idP2');
         $id=(int) $id;
@@ -316,6 +369,12 @@ class ProfessionalController extends Controller
                     ]
         );
     }
+
+    /**
+     * Muestra el formulario para ver el seguimiento de un profesional.
+     * @param Professional $professional
+     * @return \Illuminate\View\View
+    **/
 
     public function searchProfessionalTracking(Request $request, Professional $professional)
     {

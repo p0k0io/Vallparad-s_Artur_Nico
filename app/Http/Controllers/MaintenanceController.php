@@ -10,14 +10,12 @@ use App\Models\MaintenanceTracking;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-/**
- * Controller of maintenance, the controller shows all the maintenances, shows the pages to create/edit and creates, deletes, change states, searches, create trackings and edits maintenances
- */
+
 class MaintenanceController extends Controller
 {
     
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de los mantenimientos, con sus documentos y seguimientos relacionados.
      * 
      * @return .reutrns all maintenances
      */
@@ -40,12 +38,9 @@ class MaintenanceController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * 
-     * @param .request $request Passes the necessary information to create a maintenance
-     * 
-     */
+   /**
+    * Guarda un nuevo mantenimiento en la base de datos.
+    */
     public function store(Request $request)
     {
 
@@ -92,11 +87,10 @@ class MaintenanceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     * 
-     * @param .request $request Passes the id of the maintenance and the information in $maintenance to update the specific maintenance
-     * 
-     * @return .void
+     * Actualiza un mantenimiento específico en la base de datos.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para actualizar un mantenimiento
+     * @param Maintenance $maintenance El mantenimiento que se va a actualizar
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Maintenance $maintenance)
     {
@@ -137,9 +131,9 @@ class MaintenanceController extends Controller
     }
 
     /**
-     * Delete a specific mainenance
+     * Borra un mantenimiento de la base de datos.
      * 
-     * @param .string $id Id of the maintenance that you want to delete
+     * @param .int $id Id del mantenimiento a borrar
      * 
      * @return .void
      */
@@ -153,11 +147,9 @@ class MaintenanceController extends Controller
     }
 
     /**
-     * Create the tracking of a specific mainenance
-     * 
-     * @param .request $request The necessary information to create a card with info of the maintenance: id of maintenance, context, description
-     * 
-     * @return .void
+     * Crea un seguimiento para un mantenimiento.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para crear un seguimiento de mantenimiento
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function createMaintenanceTracking(Request $request)
     {

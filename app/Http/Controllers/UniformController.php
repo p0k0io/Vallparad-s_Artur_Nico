@@ -17,7 +17,7 @@ use App\Exports\UniformsExport;
 class UniformController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de los recursos.
      */
         public function index()
         {
@@ -34,7 +34,7 @@ class UniformController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo recurso.
      */
     public function create()
     {
@@ -55,7 +55,10 @@ class UniformController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un uniforme nuevo en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
    public function store(Request $request)
     {
@@ -87,7 +90,7 @@ class UniformController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Muestra el recurso especificado.
      */
     public function show(Uniforms $uniforms)
     {
@@ -95,7 +98,7 @@ class UniformController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar el recurso especificado.
      */
     public function edit(Uniforms $uniforms)
     {

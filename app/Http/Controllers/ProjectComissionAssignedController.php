@@ -13,7 +13,8 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 class ProjectComissionAssignedController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de lso proyectos y comisiones asignados.
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -21,7 +22,7 @@ class ProjectComissionAssignedController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo recurso.
      */
     public function create()
     {
@@ -29,7 +30,9 @@ class ProjectComissionAssignedController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena el recurso recién creado en el almacenamiento.
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {       
@@ -60,7 +63,9 @@ class ProjectComissionAssignedController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra el recurso especificado.
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -106,6 +111,13 @@ class ProjectComissionAssignedController extends Controller
         return Excel::download(new ProjectComissionExport, 'ProjectesIComisionsAsignats.csv');
     }
 
+    /**
+     * Borra la asignación de un profesional a un proyecto o comision.
+     *
+     * @param int $idPC ID del proyecto o comisión
+     * @param int $idProf ID del profesional
+     * @return void
+     */
     public function removeAssignation($idPC, $idProf){
         $asignacio = ProjectComissionAssigned::where(['project_comision_id' => $idPC,'professional_id' => $idProf,])->firstOrFail();
         $asignacio->delete();
