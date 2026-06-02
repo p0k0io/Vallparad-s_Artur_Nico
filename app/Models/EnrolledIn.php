@@ -9,6 +9,11 @@ use App\Models\Course;
 
 class EnrolledIn extends Model
 {
+    /**
+     * El modelo EnrolledIn representa la relación de inscripción de un profesional en un curso específico.
+     * Contiene información sobre el ID del profesional, el ID del curso y el modo de inscripción.
+     * Este modelo se relaciona con el modelo Professional a través de la clave foránea 'professional_id' y con el modelo Course a través de la clave foránea 'course_id'.
+     */
     protected $table = 'enrolled_in'; 
 
     protected $fillable = [
