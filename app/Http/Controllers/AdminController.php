@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
 
+    /**
+     * Muestra una lista de todos los usuarios registrados en el sistema.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.index', [
@@ -22,6 +27,12 @@ class AdminController extends Controller
         ]);
     }
 
+    
+    /**
+     * Muestra el formulario para crear un nuevo usuario.
+     * @return \Illuminate\Http\Response
+     * 
+     */
   public function store(Request $request): RedirectResponse
     {
         DB::transaction(function () use ($request) {
@@ -72,6 +83,12 @@ class AdminController extends Controller
     }
 
 
+    /**
+     * Remove the specified resource from storage.
+     * @param User $user El usuario a eliminar
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function destroy(User $user): RedirectResponse
     {
         

@@ -10,6 +10,10 @@ use App\Models\Center;
 use App\Models\Course;
 class CourseController extends Controller
 {
+    /**
+     * Muestra la lista de cursos.
+     * @return \Illuminate\View\View
+     */
    public function index()
     {
         $centers = Center::all();
@@ -23,16 +27,16 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create()
     {
         
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo curso en la base de datos.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para crear un curso
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -57,40 +61,35 @@ class CourseController extends Controller
     
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //
     }
 
 
-
+    /**
+     * Busca cursos por nombre, modo o tipo de evento.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para buscar cursos
+     * @return \Illuminate\View\View
+     */
     public function searchCourses(Request $request)
     {
         $search = $request->input('search');

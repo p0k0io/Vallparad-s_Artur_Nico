@@ -11,7 +11,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class AccidentabilityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todos los accidentes registrados.
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -24,16 +25,16 @@ class AccidentabilityController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo accidente en la base de datos.
+     * @param \Illuminate\Http\Request $request La solicitud HTTP que contiene los datos del accidente
+     * @return \Illuminate\Http\RedirectResponse Redirige a la página de índice de accidentes para el profesional afectado
      */
     public function store(Request $request)
     {
@@ -71,24 +72,23 @@ class AccidentabilityController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+ 
     public function edit(string $id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un accidente específico en la base de datos.
+     * @param \Illuminate\Http\Request $request La solicitud HTTP que contiene los datos actualizados
+     * @param Accidentability $accident El accidente que se va a actualizar
+     * @return \Illuminate\Http\RedirectResponse Redirige a la página de índice de accidentes para el profesional afectado
      */
     public function update(Request $request, Accidentability $accident)
     {
@@ -117,15 +117,17 @@ class AccidentabilityController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //
     }
 
-
+    /**
+     * Cambia el estado de un accidente específico entre "En Baixa", "Baixa Finalitzada" y "Sense Baixa
+     * @param \Illuminate\Http\Request $request La solicitud HTTP que contiene el ID del accidente a actualizar
+      * @return \Illuminate\Http\JsonResponse Respuesta JSON que indica el éxito de la operación y el nuevo estado del accidente
+     */
     public function changeStateBaixa(Request $request){
         $id=$request->input('id');
         $id=(int) $id;
@@ -151,6 +153,11 @@ class AccidentabilityController extends Controller
         ]);
     }
 
+    /**
+     * Descarga un PDF con los detalles de un accidente específico.
+     * @param Accidentability $accident El accidente del que se generará el PDF
+     * @return \Illuminate\Http\Response El archivo PDF generado para su descarga
+     */
     public function downloadAccident(Accidentability $accident)
     {
         if($accident->type=='Sense Baixa'){
@@ -185,7 +192,11 @@ class AccidentabilityController extends Controller
         return $pdf->download('fitxaAccident.pdf');
     }
 
-
+    /**
+     * Muestra una lista de accidentes para un profesional específico.
+     * @param Professional $professional El profesional del que se mostrarán los accidentes
+     * @return \Illuminate\Http\Response La vista con la lista de accidentes para el profesional especificado
+     */
     public function indexPerProfessional(Professional $professional)
     {
         if(Auth()->user()->role==="Equip Directiu" || Auth()->user()->role==="Administracio"){
@@ -204,7 +215,12 @@ class AccidentabilityController extends Controller
         );
     }
 
-
+    /**
+     * Elimina un accidente específico de la base de datos.
+     * @param int $id El ID del accidente a eliminar
+     * @param Professional $professional El profesional al que pertenece el accidente a eliminar
+     * @return \Illuminate\Http\RedirectResponse Redirige a la página de índice de accidentes para el profesional afectado
+     */    
     public function accidentDelete(int $id, Professional $professional)
     {
         $accid = Accidentability::findOrFail($id);
@@ -215,6 +231,12 @@ class AccidentabilityController extends Controller
         ]);
     }
 
+    /**
+     * Busca accidentes para un profesional específico según un término de búsqueda.
+     * @param \Illuminate\Http\Request $request La solicitud HTTP que contiene el término de búsqueda
+     * @param Professional $professional El profesional del que se mostrarán los accidentes encontrados
+     * @return \Illuminate\Http\Response La vista con la lista de accidentes encontrados para el profesional especificado
+     */
     public function searchAccidents(Request $request, Professional $professional)
     {
         $search = $request->input('search');

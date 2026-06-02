@@ -8,7 +8,8 @@ use App\Models\Center;
 class CenterController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todos los centros registrados en el sistema.
+      * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,7 +22,8 @@ class CenterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo centro.
+      * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -43,7 +45,9 @@ class CenterController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra el formulario para visualizar un centro específico.
+     * @param string $id El ID del centro a mostrar
+     * @return \Illuminate\Http\Response
      */
     public function show(string $id)
     {
@@ -51,7 +55,10 @@ class CenterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un centro específico.
+     * @param Center $center El centro a editar
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException Si el centro no se encuentra
      */
     public function edit(Center $center)
     {
@@ -63,7 +70,10 @@ class CenterController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un centro específico en la base de datos.
+     * @param Request $request La solicitud HTTP
+     * @param Center $center El centro a actualizar
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Center $center)
     {
@@ -74,12 +84,20 @@ class CenterController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string $id El ID del centro a eliminar
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {
         //
     }
 
+    /**
+     * Cambia el estado de un centro específico.
+     * @param Request $request La solicitud HTTP
+     * @param Center $center El centro a actualizar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStateC(Request $request, Center $center)
     {
         if ($center-> status == 0){

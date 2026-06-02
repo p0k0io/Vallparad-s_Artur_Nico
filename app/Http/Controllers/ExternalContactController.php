@@ -11,7 +11,9 @@ use App\Models\Center;
 class ExternalContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de los contactos externos, con sus centros relacionados.
+      * @return \Illuminate\View\View
+      *
      */
     public function index()
     {
@@ -23,17 +25,18 @@ class ExternalContactController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
        
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo contacto externo en la base de datos.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para crear un contacto externo
+     * @return \Illuminate\Http\RedirectResponse
      */
+
     public function store(Request $request)
     {
         //
@@ -86,6 +89,11 @@ class ExternalContactController extends Controller
         //
     }
 
+        /**
+        * Busca contactos externos por nombre, manager o email.
+        * @param \Illuminate\Http\Request $request Pasa la información necesaria para buscar contactos externos
+        * @return \Illuminate\View\View
+        */
     public function searchExternalContacts(Request $request)
     {
         $search = $request->input('search');

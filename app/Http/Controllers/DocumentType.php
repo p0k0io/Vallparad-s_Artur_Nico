@@ -9,6 +9,7 @@ class DocumentTypeController extends Controller
 {
     /**
      * Mostrar todos los tipos de documento.
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -17,6 +18,8 @@ class DocumentTypeController extends Controller
 
     /**
      * Crear un tipo de documento.
+     * @param \Illuminate\Http\Request $request Pasa la información necesaria para crear un tipo de documento
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -34,6 +37,8 @@ class DocumentTypeController extends Controller
 
     /**
      * Mostrar un tipo de documento.
+     * @param int $id El ID del tipo de documento a mostrar
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -62,6 +67,8 @@ class DocumentTypeController extends Controller
 
     /**
      * Eliminar un tipo de documento.
+     * @param int $id El ID del tipo de documento a eliminar
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

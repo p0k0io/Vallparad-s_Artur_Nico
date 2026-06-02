@@ -12,11 +12,21 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class EnrolledInController extends Controller
 {
+        /**
+        * Muestra una lista de los profesionales inscritos en cursos, con su información relacionada.
+        * @return \Illuminate\Http\JsonResponse
+        */
     public function index()
     {
         return EnrolledIn::with(['professional', 'course'])->get();
     }
 
+   
+    /**
+     * Muestra el formulario para crear un nuevo recurso.
+     * @return \Illuminate\Http\Response
+     * 
+     */
    public function store(Request $request)
 {
     $data = $request->validate([
@@ -37,6 +47,12 @@ class EnrolledInController extends Controller
     return redirect()->route('course')->with('success', 'Uniforme creado correctamente');
 }
 
+
+    /**
+     * Muestra el recurso especificado.
+     * @param int $id El ID del recurso a mostrar
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function show($id)
     {
@@ -65,7 +81,11 @@ class EnrolledInController extends Controller
     }
 }
 
-
+    
+    /**
+     * exporta los profesionales inscritos en cursos a un archivo CSV.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function export()
     {
         return Excel::download(new CourseExport, 'CourseExport.csv');

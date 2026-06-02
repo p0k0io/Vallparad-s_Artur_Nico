@@ -12,7 +12,8 @@ use App\Models\ComplementaryServiceDocument;
 class ComplementaryServiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todos los servicios complementarios.
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -25,17 +26,17 @@ class ComplementaryServiceController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+        /**
+        * Guarda un nuevo servicio complementario en la base de datos.
+        * @param \Illuminate\Http\Request $request Pasa la información necesaria para crear un servicio complementario
+        * @return \Illuminate\Http\RedirectResponse
+        */
     public function store(Request $request)
     {
         $complementaryService=ComplementaryService::create([
@@ -67,9 +68,7 @@ class ComplementaryServiceController extends Controller
     
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         //
