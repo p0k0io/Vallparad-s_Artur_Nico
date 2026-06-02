@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServeiGeneral extends Model
 {
-    //
+    /**
+     * El modelo ServeiGeneral representa un servicio general específico.
+     * Contiene información sobre el centro asociado, el responsable, la información personal y el nombre del servicio.
+     * Se relaciona con el modelo Center a través de una relación de muchos a uno.
+     */
     protected $table = 'serveis_generals';
     protected $fillable = [
         'center_id',
